@@ -66,3 +66,16 @@ Cột "Trạng thái": ĐÃ KIỂM CHỨNG = đã chạy thật trong n8n 2.45.0
 - Lệnh `n8n execute` chạy trong container đang có n8n chạy sẽ báo trùng cổng task broker 5679; thêm `-e N8N_RUNNERS_BROKER_PORT=5690` khi gọi.
 - Container không có IPv6: phải đặt `N8N_LISTEN_ADDRESS=0.0.0.0`.
 - Đổi `N8N_ENCRYPTION_KEY` khi thư mục dữ liệu đã có khóa cũ: n8n **từ chối khởi động** ("Mismatching encryption keys"). Đây là bằng chứng thực tế cho quy tắc giữ nguyên khóa trong RUNBOOK.
+
+## Hành vi đã kiểm chứng ở giai đoạn 3 (n8n 2.45.0, Docker)
+Bằng chứng: `evidence/p3-collector/`.
+- **Data Table**: tham chiếu bảng theo tên bằng `dataTableId: { "__rl": true, "mode": "name", "value": "news_items" }`; không cần biết ID bảng. Thao tác tạo bảng (`resource: table`, `operation: create`, `options.createIfNotExists: true`) tạo được bảng kèm cột.
+- Data Table có sẵn cột hệ thống `id`, `createdAt`, `updatedAt`: không đặt cột riêng tên `id`.
+- Cột kiểu `date` lưu thời điểm tuyệt đối và trả về dạng UTC (`…Z`).
+- `rowNotExists` mất ~16–25 ms mỗi tin (424 tin ≈ 7 giây, SQLite).
+- `n8n execute` (CLI) **không** dùng được Data Table: báo "Attempted to use Data table node but the module is disabled". Chạy qua máy chủ n8n (giao diện, lịch, hoặc REST).
+- **Code node** (bộ chạy JavaScript) không có lớp `URL`; lỗi bị nuốt nếu bọc `try`. Có sẵn `DateTime` (Luxon); `DateTime.fromRFC2822` đọc đúng năm 2 chữ số của CafeF.
+- **XML** (1): đầu ra không giữ `pairedItem`, nên `$('Node trước').item` không dùng được sau node này.
+- **HTTP Request** (4.2) với `onError: continueErrorOutput`: lỗi 404 đi ra đầu ra thứ hai, item có trường `error`; các nguồn khác chạy bình thường.
+- Biểu thức `{{ $json.x.hash('sha256') }}` trong node Set cho SHA-256 dạng hex, trùng với `hashlib.sha256` của Python.
+- `executionOrder: v1`: nhánh nằm trên (tọa độ y nhỏ hơn) chạy xong mới tới nhánh dưới.

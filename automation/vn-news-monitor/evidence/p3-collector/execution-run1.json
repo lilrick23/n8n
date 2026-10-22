@@ -1,0 +1,235 @@
+{
+ "id": "2",
+ "status": "success",
+ "mode": "manual",
+ "startedAt": "2026-10-22T08:47:47.301Z",
+ "stoppedAt": "2026-10-22T08:47:51.566Z",
+ "workflowId": "vnNewsCollTest01",
+ "_note": "Trimmed: node status, item counts, run summary and 5 sample rows (title and URL only). Full execution data stays out of the public repo (publisher content).",
+ "nodes": {
+  "Chay tay": {
+   "executionStatus": "success",
+   "executionTime_ms": 1,
+   "items_out": [
+    1
+   ]
+  },
+  "Config": {
+   "executionStatus": "success",
+   "executionTime_ms": 136,
+   "items_out": [
+    1
+   ],
+   "output_summary": {
+    "trigger": "Chay tay",
+    "run_started_at": "2026-10-22T15:47:47.578+07:00",
+    "MAX_ITEMS_PER_RUN": 300,
+    "MAX_AI_ITEMS_PER_DAY": 200,
+    "ALERT_MIN_IMPORTANCE": 4,
+    "AI_BATCH_SIZE": 10,
+    "SNIPPET_MAX_CHARS": 500,
+    "DRY_RUN": true,
+    "FEED_BASE_OVERRIDE": "http://127.0.0.1:8099/",
+    "sources": [
+     "cafef-chungkhoan",
+     "cafef-doanhnghiep",
+     "cafef-taichinh-nganhang",
+     "cafef-vimo",
+     "vietstock-cophieu",
+     "vietstock-giaodichnoibo",
+     "vietstock-niemyet",
+     "vietstock-hoatdongkinhdoanh",
+     "vietstock-cotuc",
+     "vietstock-tangvon-ma",
+     "vietstock-chinhsach",
+     "vietstock-vimo",
+     "vietstock-nganhang",
+     "vietstock-nhandinh",
+     "vietstock-en-stocks",
+     "test-missing-feed"
+    ]
+   }
+  },
+  "Tach nguon": {
+   "executionStatus": "success",
+   "executionTime_ms": 29,
+   "items_out": [
+    16
+   ]
+  },
+  "Tai feed": {
+   "executionStatus": "success",
+   "executionTime_ms": 140,
+   "items_out": [
+    15,
+    1
+   ]
+  },
+  "Gan nguon": {
+   "executionStatus": "success",
+   "executionTime_ms": 65,
+   "items_out": [
+    15
+   ]
+  },
+  "XML sang JSON": {
+   "executionStatus": "success",
+   "executionTime_ms": 64,
+   "items_out": [
+    15
+   ]
+  },
+  "Chuan hoa": {
+   "executionStatus": "success",
+   "executionTime_ms": 68,
+   "items_out": [
+    146
+   ]
+  },
+  "Tao id": {
+   "executionStatus": "success",
+   "executionTime_ms": 217,
+   "items_out": [
+    146
+   ]
+  },
+  "Da co trong news_items?": {
+   "executionStatus": "success",
+   "executionTime_ms": 2847,
+   "items_out": [
+    146
+   ]
+  },
+  "Gioi han": {
+   "executionStatus": "success",
+   "executionTime_ms": 12,
+   "items_out": [
+    146
+   ]
+  },
+  "Khop watchlist": {
+   "executionStatus": "success",
+   "executionTime_ms": 159,
+   "items_out": [
+    146
+   ]
+  },
+  "Dinh dang dong": {
+   "executionStatus": "success",
+   "executionTime_ms": 25,
+   "items_out": [
+    146
+   ]
+  },
+  "Luu tin": {
+   "executionStatus": "success",
+   "executionTime_ms": 191,
+   "items_out": [
+    146
+   ],
+   "sample_rows_title_url_only": [
+    {
+     "item_id": "eb9b19cc8b3eda25c9a667e832df24943b66f1774ab40195e6f6093d9d6a4d2c",
+     "source_id": "cafef-vimo",
+     "title": "14 thương nhân đầu mối xăng dầu giảm 300-350 đồng/lít so với giá điều hành",
+     "url": "https://cafef.vn/14-thuong-nhan-dau-moi-xang-dau-giam-300-350-dong-lit-so-voi-gia-dieu-hanh-188261022135640291.chn",
+     "published_at": "2026-10-22T07:50:00.000Z",
+     "tickers": "",
+     "topics": "",
+     "classified_by": "not_matched"
+    },
+    {
+     "item_id": "12ae7e522823626c38982a986433f2c6fde1f0b00e10765030006dce53c640de",
+     "source_id": "cafef-doanhnghiep",
+     "title": "Giá lợn hơi giảm, Dabaco báo lãi ròng quý III/2026 giảm hơn 41% dù doanh thu tăng",
+     "url": "https://cafef.vn/gia-lon-hoi-giam-dabaco-bao-lai-rong-quy-iii-2026-giam-hon-41-du-doanh-thu-tang-188261022144656249.chn",
+     "published_at": "2026-10-22T07:47:00.000Z",
+     "tickers": "",
+     "topics": "",
+     "classified_by": "pending_ai"
+    },
+    {
+     "item_id": "327cdf0db5f67d595b115bb90f3b3b30c620d231020cac31fc082b1e0be32886",
+     "source_id": "cafef-taichinh-nganhang",
+     "title": "Techcombank giảm lãi suất cho vay đến 2%, tập trung vào hoạt động sản xuất kinh doanh",
+     "url": "https://cafef.vn/techcombank-giam-lai-suat-cho-vay-den-2-tap-trung-vao-hoat-dong-san-xuat-kinh-doanh-188261022143951193.chn",
+     "published_at": "2026-10-22T07:39:00.000Z",
+     "tickers": "",
+     "topics": "",
+     "classified_by": "not_matched"
+    },
+    {
+     "item_id": "949dd4cb56ff18935f175bd29ecdedb03302e2183e69ac8f0d918e133a802153",
+     "source_id": "cafef-vimo",
+     "title": "6,5 triệu người dân tại thành phố giàu nhất Việt Nam đón tin vui, công trình 10.000 tỷ đồng chưa từng có sắp hoàn thành, khu vực hưởng lợi lộ diện",
+     "url": "https://cafef.vn/65-trieu-nguoi-dan-tai-thanh-pho-giau-nhat-viet-nam-don-tin-vui-cong-trinh-10000-ty-dong-chua-tung-co-sap-hoan-thanh-khu-vuc-huong-loi-lo-dien-18826102214393086.chn",
+     "published_at": "2026-10-22T07:39:00.000Z",
+     "tickers": "",
+     "topics": "",
+     "classified_by": "not_matched"
+    },
+    {
+     "item_id": "e88f0f6e9ec28ef2d53fdcb6ff190d876afe15b6850b22e5568b89c2b6224f9d",
+     "source_id": "cafef-vimo",
+     "title": "Xã Kim Anh: Tháo gỡ vướng mắc, đẩy nhanh tiến độ dự án Khu công nghiệp sạch Sóc Sơn",
+     "url": "https://cafef.vn/xa-kim-anh-thao-go-vuong-mac-day-nhanh-tien-do-du-an-khu-cong-nghiep-sach-soc-son-188261022134526257.chn",
+     "published_at": "2026-10-22T07:32:00.000Z",
+     "tickers": "",
+     "topics": "",
+     "classified_by": "not_matched"
+    }
+   ]
+  },
+  "Loi tai feed": {
+   "executionStatus": "success",
+   "executionTime_ms": 69,
+   "items_out": [
+    1
+   ],
+   "output": [
+    {
+     "source_id": "test-missing-feed",
+     "error": "404 - \"<!DOCTYPE HTML>\\n<html lang=\\\"en\\\">\\n    <head>\\n        <meta charset=\\\"utf-8\\\">\\n        <title>Error response</title>\\n    </head>\\n    <body>\\n        <h1>Error response</h1>\\n        <p>Error code: 404</p>\\n        <p>Message: File not found.</p>\\n        <p>Error code explanation: 404 -"
+    }
+   ]
+  },
+  "Tong ket": {
+   "executionStatus": "success",
+   "executionTime_ms": 76,
+   "items_out": [
+    1
+   ],
+   "output": [
+    {
+     "run_id": "2",
+     "workflow": "VN news - collector (fixture test)",
+     "trigger": "Chay tay",
+     "started_at": "2026-10-22T15:47:47.578+07:00",
+     "finished_at": "2026-10-22T15:47:51.548+07:00",
+     "sources_total": 16,
+     "sources_ok": 15,
+     "sources_failed": 1,
+     "failed_source_ids": "test-missing-feed",
+     "items_fetched": 150,
+     "items_unique": 146,
+     "items_new": 146,
+     "items_matched": 6,
+     "items_saved": 146,
+     "items_to_ai": 85,
+     "ai_calls": 0,
+     "ai_failures": 0,
+     "alerts_sent": 0,
+     "dry_run": true,
+     "error": ""
+    }
+   ]
+  },
+  "Ghi run_log": {
+   "executionStatus": "success",
+   "executionTime_ms": 15,
+   "items_out": [
+    1
+   ]
+  }
+ }
+}

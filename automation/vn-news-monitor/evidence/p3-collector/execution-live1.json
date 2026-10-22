@@ -1,0 +1,221 @@
+{
+ "id": "4",
+ "status": "success",
+ "mode": "manual",
+ "startedAt": "2026-10-22T08:48:00.333Z",
+ "stoppedAt": "2026-10-22T08:48:13.452Z",
+ "workflowId": "vnNewsCollector1",
+ "_note": "Trimmed: node status, item counts, run summary and 5 sample rows (title and URL only). Full execution data stays out of the public repo (publisher content).",
+ "nodes": {
+  "Chay tay": {
+   "executionStatus": "success",
+   "executionTime_ms": 1,
+   "items_out": [
+    1
+   ]
+  },
+  "Config": {
+   "executionStatus": "success",
+   "executionTime_ms": 18,
+   "items_out": [
+    1
+   ],
+   "output_summary": {
+    "trigger": "Chay tay",
+    "run_started_at": "2026-10-22T15:48:00.365+07:00",
+    "MAX_ITEMS_PER_RUN": 300,
+    "MAX_AI_ITEMS_PER_DAY": 200,
+    "ALERT_MIN_IMPORTANCE": 4,
+    "AI_BATCH_SIZE": 10,
+    "SNIPPET_MAX_CHARS": 500,
+    "DRY_RUN": true,
+    "FEED_BASE_OVERRIDE": "",
+    "sources": [
+     "cafef-chungkhoan",
+     "cafef-doanhnghiep",
+     "cafef-taichinh-nganhang",
+     "cafef-vimo",
+     "vietstock-cophieu",
+     "vietstock-giaodichnoibo",
+     "vietstock-niemyet",
+     "vietstock-hoatdongkinhdoanh",
+     "vietstock-cotuc",
+     "vietstock-tangvon-ma",
+     "vietstock-chinhsach",
+     "vietstock-vimo",
+     "vietstock-nganhang",
+     "vietstock-nhandinh",
+     "vietstock-en-stocks"
+    ]
+   }
+  },
+  "Tach nguon": {
+   "executionStatus": "success",
+   "executionTime_ms": 9,
+   "items_out": [
+    15
+   ]
+  },
+  "Tai feed": {
+   "executionStatus": "success",
+   "executionTime_ms": 4773,
+   "items_out": [
+    15,
+    0
+   ]
+  },
+  "Gan nguon": {
+   "executionStatus": "success",
+   "executionTime_ms": 60,
+   "items_out": [
+    15
+   ]
+  },
+  "XML sang JSON": {
+   "executionStatus": "success",
+   "executionTime_ms": 86,
+   "items_out": [
+    15
+   ]
+  },
+  "Chuan hoa": {
+   "executionStatus": "success",
+   "executionTime_ms": 92,
+   "items_out": [
+    424
+   ]
+  },
+  "Tao id": {
+   "executionStatus": "success",
+   "executionTime_ms": 464,
+   "items_out": [
+    424
+   ]
+  },
+  "Da co trong news_items?": {
+   "executionStatus": "success",
+   "executionTime_ms": 6900,
+   "items_out": [
+    280
+   ]
+  },
+  "Gioi han": {
+   "executionStatus": "success",
+   "executionTime_ms": 3,
+   "items_out": [
+    280
+   ]
+  },
+  "Khop watchlist": {
+   "executionStatus": "success",
+   "executionTime_ms": 154,
+   "items_out": [
+    280
+   ]
+  },
+  "Dinh dang dong": {
+   "executionStatus": "success",
+   "executionTime_ms": 28,
+   "items_out": [
+    280
+   ]
+  },
+  "Luu tin": {
+   "executionStatus": "success",
+   "executionTime_ms": 329,
+   "items_out": [
+    280
+   ],
+   "sample_rows_title_url_only": [
+    {
+     "item_id": "858596765dcc0e90b3d0015c518c339185ad47e63c45a63291fc9cfd1a1ebd60",
+     "source_id": "cafef-doanhnghiep",
+     "title": "Siêu dự án gần 1 triệu tỷ đồng tại Hà Nội có diễn biến mới: Vinhomes muốn ký hợp đồng với 2 công ty, dùng tài sản bảo đảm cho công ty con",
+     "url": "https://cafef.vn/sieu-du-an-gan-1-trieu-ty-dong-tai-ha-noi-co-dien-bien-moi-vinhomes-muon-ky-hop-dong-voi-2-cong-ty-dung-tai-san-bao-dam-cho-cong-ty-con-188261022153107281.chn",
+     "published_at": "2026-10-22T08:41:00.000Z",
+     "tickers": "",
+     "topics": "",
+     "classified_by": "pending_ai"
+    },
+    {
+     "item_id": "cb802f382fff143c03b8ec73473dd6cb43f8791ba81706b0251be3f9700abe05",
+     "source_id": "cafef-vimo",
+     "title": "Cần Thơ đầu tư hơn 6.400 tỷ đồng làm đường Vành đai dài gần 20 km",
+     "url": "https://cafef.vn/can-tho-dau-tu-hon-6400-ty-dong-lam-duong-vanh-dai-dai-gan-20-km-188261022151420578.chn",
+     "published_at": "2026-10-22T08:36:00.000Z",
+     "tickers": "",
+     "topics": "",
+     "classified_by": "not_matched"
+    },
+    {
+     "item_id": "a4bf97a56be1067f1dff38d554c1af5beccd378756b0208d1584ab6c013940a8",
+     "source_id": "cafef-taichinh-nganhang",
+     "title": "Case study pop-up BIGBANG tại VPBank: Lời giải cho bài toán \"bây giờ còn mấy ai ra ngân hàng giao dịch\"",
+     "url": "https://cafef.vn/case-study-pop-up-bigbang-tai-vpbank-loi-giai-cho-bai-toan-bay-gio-con-may-ai-ra-ngan-hang-giao-dich-188261022150741239.chn",
+     "published_at": "2026-10-22T08:30:00.000Z",
+     "tickers": "",
+     "topics": "",
+     "classified_by": "not_matched"
+    },
+    {
+     "item_id": "40c2207ab76eb43d1e7374893dbac5685ceb67eac1df61f5dd973145713fdc1c",
+     "source_id": "cafef-doanhnghiep",
+     "title": "Vietnam Airlines mở đường bay thẳng Đà Nẵng - Singapore",
+     "url": "https://cafef.vn/vietnam-airlines-mo-duong-bay-thang-da-nang-singapore-188261022124806924.chn",
+     "published_at": "2026-10-22T08:22:00.000Z",
+     "tickers": "",
+     "topics": "",
+     "classified_by": "pending_ai"
+    },
+    {
+     "item_id": "e37436c07df17183f0539aca2840af75e2c0d443836fe18428234a9b6d4f83bf",
+     "source_id": "vietstock-niemyet",
+     "title": "DatVietVAC (DVV) chốt ngày chào sàn HOSE, giá tham chiếu 54,800 đồng/cổ phiếu",
+     "url": "https://vietstock.vn/2026/10/datvietvac-dvv-chot-ngay-chao-san-hose-gia-tham-chieu-54800-dongco-phieu-741-1505597.htm",
+     "published_at": "2026-10-22T08:10:00.000Z",
+     "tickers": "",
+     "topics": "",
+     "classified_by": "pending_ai"
+    }
+   ]
+  },
+  "Tong ket": {
+   "executionStatus": "success",
+   "executionTime_ms": 143,
+   "items_out": [
+    1
+   ],
+   "output": [
+    {
+     "run_id": "4",
+     "workflow": "VN news - collector",
+     "trigger": "Chay tay",
+     "started_at": "2026-10-22T15:48:00.365+07:00",
+     "finished_at": "2026-10-22T15:48:13.407+07:00",
+     "sources_total": 15,
+     "sources_ok": 15,
+     "sources_failed": 0,
+     "failed_source_ids": "",
+     "items_fetched": 430,
+     "items_unique": 424,
+     "items_new": 280,
+     "items_matched": 9,
+     "items_saved": 280,
+     "items_to_ai": 146,
+     "ai_calls": 0,
+     "ai_failures": 0,
+     "alerts_sent": 0,
+     "dry_run": true,
+     "error": ""
+    }
+   ]
+  },
+  "Ghi run_log": {
+   "executionStatus": "success",
+   "executionTime_ms": 37,
+   "items_out": [
+    1
+   ]
+  }
+ }
+}

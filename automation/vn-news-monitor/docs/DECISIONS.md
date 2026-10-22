@@ -1,6 +1,6 @@
 # Quyết định, giả định và điểm Rick cần chọn
 
-Cập nhật lần cuối: 2026-10-22 (bổ sung sau giai đoạn 2). Claude Code bổ sung khi có phát hiện mới. Nhãn: **MẶC ĐỊNH** = cứ làm theo, Rick đổi được; **CẦN RICK** = chỉ Rick quyết được.
+Cập nhật lần cuối: 2026-10-22 (bổ sung sau giai đoạn 3). Claude Code bổ sung khi có phát hiện mới. Nhãn: **MẶC ĐỊNH** = cứ làm theo, Rick đổi được; **CẦN RICK** = chỉ Rick quyết được.
 
 ## 1. Các điểm Rick cần chọn (đã có mặc định để không phải chờ)
 
@@ -40,7 +40,8 @@ Cập nhật lần cuối: 2026-10-22 (bổ sung sau giai đoạn 2). Claude Cod
 | HTTP Request + XML node đọc đúng 16 feed (BOM, CDATA); đặt UA trình duyệt vì CafeF chặn `curl/...` | Chạy với `fixtures/rss/` | 3 |
 | n8n ngừng chạy quá ~20 giờ sẽ mất tin ở feed nhanh nhất (20 mục phủ ~20 giờ) | Đo lại tần suất sau vài ngày chạy thật | 2, 8 |
 | Remove Duplicates (lịch sử qua các lần chạy) hoạt động đúng với lịch tự động | Kiểm thử 3 chu kỳ lịch thật, sau khi khởi động lại | 6 |
-| Biểu thức cron của Schedule Trigger đúng cú pháp theo phiên bản này | Đọc `ScheduleTrigger.node.ts`, xem "thời điểm chạy kế tiếp" hiển thị trong giao diện | 3 |
+| Biểu thức cron của Schedule Trigger đúng cú pháp theo phiên bản này: import thành công, chưa kích hoạt | Kích hoạt trên máy thật, xem "thời điểm chạy kế tiếp" | 6 |
+| Cổng vào AI "khớp watchlist **hoặc** nguồn tier 1" quá rộng: lần chạy feed thật có 146/280 tin chờ AI, chủ yếu do tier 1 | Đo lại ở giai đoạn 4; phương án: tier 1 chỉ vào AI khi tiêu đề có từ khóa sự kiện (cổ tức, phát hành, giao dịch nội bộ, kết quả kinh doanh...) | 4 |
 | Giờ giao dịch dùng để đặt lịch: đã lấy từ nguồn thứ cấp (DESIGN mục 1.3), chưa đọc quy chế gốc | Rick xem quy chế giao dịch HOSE/HNX | 2 → mở |
 | Cú pháp cron `*/30 8-16 * * 1-5` cho lịch collector | Kích hoạt workflow, xem thời điểm chạy kế tiếp | 3 |
 | Remove Duplicates giữ lịch sử giống nhau khi chạy tay và chạy theo lịch | Kiểm thử ở giai đoạn 3 (tay) và 6 (lịch) | 3, 6 |
@@ -69,3 +70,6 @@ Cập nhật lần cuối: 2026-10-22 (bổ sung sau giai đoạn 2). Claude Cod
 | 2026-10-22 | Gom 10 tin vào một văn bản cho mỗi lần gọi AI | Claude | Batching của Information Extractor vẫn gọi một lần mỗi tin; gom lô giảm 63% chi phí phân loại |
 | 2026-10-22 | Đặt Thinking Mode = Disabled; bỏ yêu cầu nhiệt độ ≤ 0,2 của PROMPTS | Claude | Haiku 5.5 không nhận `temperature`; node n8n tự bỏ tham số này |
 | 2026-10-22 | Thêm lịch quét tối và cuối tuần | Claude (đề xuất), chờ Rick | Khoảng nghỉ cuối tuần ~63 giờ > ~20,5 giờ feed giữ tin |
+| 2026-10-22 | Cột khóa của `news_items` là `item_id` (không phải `id`) | Claude | Data Table đã có cột hệ thống `id` |
+| 2026-10-22 | `MAX_ITEMS_PER_RUN` áp dụng sau bước kiểm tra trùng | Claude | Đặt trước thì các tin cũ nhất bị cắt ở mọi lần chạy (đã thấy khi chạy feed thật) |
+| 2026-10-22 | Workflow JSON tạo từ `scripts/build_workflows.py`; mã Code node nằm ở `workflows/src/collector/*.js` | Claude | Dễ đọc, dễ so sánh thay đổi; Rick vẫn import một file JSON |

@@ -11,14 +11,14 @@
 - [~] CHƯA KIỂM CHỨNG TRỰC TIẾP Mục nguồn chính thức có kết luận và dẫn chiếu điều khoản/robots → `evidence/p1-nguon/source-audit.md` mục 3 (có robots HOSE/UBCKNN/Google News; HNX chưa truy cập được; điều khoản sử dụng chưa đọc)
 
 ## B. Workflow thu thập
-- [ ] `validate-workflows.mjs` báo 0 lỗi (JSON hợp lệ, không node mồ côi, timezone `Asia/Ho_Chi_Minh`, có `errorWorkflow`, không bí mật)
-- [ ] Import thành công vào n8n 2.45.x
-- [ ] Chạy với fixture: số tin vào / sau loại trùng / khớp watchlist đúng kỳ vọng
-- [ ] Chạy lần hai cùng dữ liệu: 0 tin mới
-- [ ] Một nguồn lỗi (404/timeout) không làm hỏng cả lần chạy
-- [ ] Khớp mã: không nhận nhầm từ phổ biến (USD, GDP, CPI, ETF, IPO); khớp alias có/không dấu
-- [ ] Ngày giờ về đúng ICT (+07:00), kiểm tra với ít nhất một tin ở mỗi nguồn
-- [ ] Liên kết chuẩn hóa (bỏ `utm_*`) và id ổn định giữa các lần chạy
+- [x] ĐÃ KIỂM CHỨNG `validate-workflows.mjs` báo 0 lỗi (JSON hợp lệ, không node mồ côi, timezone `Asia/Ho_Chi_Minh`, có `errorWorkflow`, không bí mật) → `evidence/p3-collector/validate.log`
+- [x] ĐÃ KIỂM CHỨNG Import thành công vào n8n 2.45.x → `evidence/p3-collector/import.log`
+- [x] ĐÃ KIỂM CHỨNG Chạy với fixture: số tin vào / sau loại trùng / khớp watchlist đúng kỳ vọng → `evidence/p3-collector/expected-vs-actual.md`
+- [x] ĐÃ KIỂM CHỨNG Chạy lần hai cùng dữ liệu: 0 tin mới (chạy tay; chạy theo lịch kiểm ở giai đoạn 6) → `evidence/p3-collector/execution-run2-no-new.json`
+- [~] Một nguồn lỗi (404/timeout) không làm hỏng cả lần chạy: 404 ĐÃ KIỂM CHỨNG → `evidence/p3-collector/execution-run1.json`; timeout CHƯA KIỂM CHỨNG TRỰC TIẾP
+- [x] ĐÃ KIỂM CHỨNG Khớp mã: không nhận nhầm từ phổ biến (USD, GDP, CPI, ETF, IPO); khớp alias có/không dấu → `evidence/p3-collector/test-match.log` (18 ca, chạy mã Code node bằng Node.js, ngoài n8n)
+- [x] ĐÃ KIỂM CHỨNG Ngày giờ về đúng ICT (+07:00), kiểm tra với ít nhất một tin ở mỗi nguồn → `evidence/p3-collector/expected-vs-actual.log`
+- [x] ĐÃ KIỂM CHỨNG Liên kết chuẩn hóa (bỏ `utm_*`) và id ổn định giữa các lần chạy → `evidence/p3-collector/expected-vs-actual.md` (cùng tập `item_id`; lần 2 ra 0 tin mới)
 
 ## C. AI
 - [ ] Bộ mẫu ≥ 40 tiêu đề có nhãn; Rick duyệt ≥ 20 dòng (hoặc ghi `CHƯA DUYỆT`)

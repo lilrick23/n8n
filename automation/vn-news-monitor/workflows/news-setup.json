@@ -1,0 +1,350 @@
+{
+  "id": "vnNewsSetup00001",
+  "name": "VN news - setup tables",
+  "active": false,
+  "nodes": [
+    {
+      "parameters": {},
+      "id": "19823c1c-0916-5afc-ad3d-30ae1ac892c8",
+      "name": "Chay tay",
+      "type": "n8n-nodes-base.manualTrigger",
+      "typeVersion": 1,
+      "position": [
+        0,
+        300
+      ]
+    },
+    {
+      "parameters": {
+        "resource": "table",
+        "operation": "create",
+        "tableName": "news_items",
+        "columns": {
+          "column": [
+            {
+              "name": "item_id",
+              "type": "string"
+            },
+            {
+              "name": "source_id",
+              "type": "string"
+            },
+            {
+              "name": "source_name",
+              "type": "string"
+            },
+            {
+              "name": "source_tier",
+              "type": "number"
+            },
+            {
+              "name": "lang",
+              "type": "string"
+            },
+            {
+              "name": "title",
+              "type": "string"
+            },
+            {
+              "name": "url",
+              "type": "string"
+            },
+            {
+              "name": "snippet",
+              "type": "string"
+            },
+            {
+              "name": "published_at",
+              "type": "date"
+            },
+            {
+              "name": "fetched_at",
+              "type": "date"
+            },
+            {
+              "name": "tickers",
+              "type": "string"
+            },
+            {
+              "name": "topics",
+              "type": "string"
+            },
+            {
+              "name": "match_reason",
+              "type": "string"
+            },
+            {
+              "name": "event_type",
+              "type": "string"
+            },
+            {
+              "name": "fact_or_opinion",
+              "type": "string"
+            },
+            {
+              "name": "importance",
+              "type": "number"
+            },
+            {
+              "name": "sentiment",
+              "type": "string"
+            },
+            {
+              "name": "summary_vi",
+              "type": "string"
+            },
+            {
+              "name": "why_it_matters",
+              "type": "string"
+            },
+            {
+              "name": "needs_human_check",
+              "type": "boolean"
+            },
+            {
+              "name": "classified_by",
+              "type": "string"
+            },
+            {
+              "name": "alert_sent_at",
+              "type": "date"
+            },
+            {
+              "name": "run_id",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {
+          "createIfNotExists": true
+        }
+      },
+      "id": "54c3a853-9aae-565f-93a2-ff8ff920b998",
+      "name": "Tao news_items",
+      "type": "n8n-nodes-base.dataTable",
+      "typeVersion": 1.1,
+      "position": [
+        240,
+        300
+      ]
+    },
+    {
+      "parameters": {
+        "resource": "table",
+        "operation": "create",
+        "tableName": "run_log",
+        "columns": {
+          "column": [
+            {
+              "name": "run_id",
+              "type": "string"
+            },
+            {
+              "name": "workflow",
+              "type": "string"
+            },
+            {
+              "name": "trigger",
+              "type": "string"
+            },
+            {
+              "name": "started_at",
+              "type": "date"
+            },
+            {
+              "name": "finished_at",
+              "type": "date"
+            },
+            {
+              "name": "sources_total",
+              "type": "number"
+            },
+            {
+              "name": "sources_ok",
+              "type": "number"
+            },
+            {
+              "name": "sources_failed",
+              "type": "number"
+            },
+            {
+              "name": "failed_source_ids",
+              "type": "string"
+            },
+            {
+              "name": "items_fetched",
+              "type": "number"
+            },
+            {
+              "name": "items_unique",
+              "type": "number"
+            },
+            {
+              "name": "items_new",
+              "type": "number"
+            },
+            {
+              "name": "items_matched",
+              "type": "number"
+            },
+            {
+              "name": "items_saved",
+              "type": "number"
+            },
+            {
+              "name": "items_to_ai",
+              "type": "number"
+            },
+            {
+              "name": "ai_calls",
+              "type": "number"
+            },
+            {
+              "name": "ai_failures",
+              "type": "number"
+            },
+            {
+              "name": "alerts_sent",
+              "type": "number"
+            },
+            {
+              "name": "dry_run",
+              "type": "boolean"
+            },
+            {
+              "name": "error",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {
+          "createIfNotExists": true
+        }
+      },
+      "id": "6ddad22f-10aa-54f5-a927-e3f9c61de0d2",
+      "name": "Tao run_log",
+      "type": "n8n-nodes-base.dataTable",
+      "typeVersion": 1.1,
+      "position": [
+        480,
+        300
+      ]
+    },
+    {
+      "parameters": {
+        "resource": "table",
+        "operation": "create",
+        "tableName": "ai_usage",
+        "columns": {
+          "column": [
+            {
+              "name": "date",
+              "type": "string"
+            },
+            {
+              "name": "model",
+              "type": "string"
+            },
+            {
+              "name": "calls",
+              "type": "number"
+            },
+            {
+              "name": "items",
+              "type": "number"
+            },
+            {
+              "name": "tokens_in",
+              "type": "number"
+            },
+            {
+              "name": "tokens_out",
+              "type": "number"
+            },
+            {
+              "name": "estimated",
+              "type": "boolean"
+            },
+            {
+              "name": "cost_usd_est",
+              "type": "number"
+            },
+            {
+              "name": "cap_reached_at",
+              "type": "date"
+            }
+          ]
+        },
+        "options": {
+          "createIfNotExists": true
+        }
+      },
+      "id": "cb8b33c5-63cf-52a8-a025-ab7760efa0a5",
+      "name": "Tao ai_usage",
+      "type": "n8n-nodes-base.dataTable",
+      "typeVersion": 1.1,
+      "position": [
+        720,
+        300
+      ]
+    },
+    {
+      "parameters": {
+        "content": "## Tao bang du lieu\nChay mot lan truoc khi bat news-collector.\nNeu bang da co, node tra lai bang cu (khong tao trung).",
+        "width": 760,
+        "height": 220
+      },
+      "id": "c879ad73-2e0b-5184-b794-87ebee631a5f",
+      "name": "Ghi chu",
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        0,
+        0
+      ]
+    }
+  ],
+  "connections": {
+    "Chay tay": {
+      "main": [
+        [
+          {
+            "node": "Tao news_items",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Tao news_items": {
+      "main": [
+        [
+          {
+            "node": "Tao run_log",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Tao run_log": {
+      "main": [
+        [
+          {
+            "node": "Tao ai_usage",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "settings": {
+    "executionOrder": "v1",
+    "timezone": "Asia/Ho_Chi_Minh",
+    "saveManualExecutions": true,
+    "callerPolicy": "workflowsFromSameOwner"
+  },
+  "pinData": {},
+  "tags": []
+}

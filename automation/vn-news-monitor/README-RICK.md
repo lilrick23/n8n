@@ -11,6 +11,7 @@ Ngày soạn: 2026-10-22. Đây là trang đọc đầu tiên. Không cần bi�
 | `docs/DECISIONS.md` | Các điểm bạn cần chọn, đã có mặc định, và danh sách giả định chưa xác minh. |
 | `docs/DESIGN.md` | Bản thiết kế (giai đoạn 2): sơ đồ, bảng dữ liệu, cách loại trùng, prompt AI, mẫu tin nhắn, xử lý lỗi, điểm bạn cần chọn (mục 9). |
 | `docs/CHECKLIST.md` | Checklist nghiệm thu để bạn kiểm tra kết quả; kèm kịch bản thử 3 ngày. |
+| `workflows/*.json` | Các workflow để import vào n8n. Bắt đầu bằng `news-setup.json` (tạo bảng), rồi `news-collector.json`. Hướng dẫn: `evidence/p3-collector/INDEX.md`. |
 | `config/sources.json` | 16 feed tin (CafeF, Vietstock) và 4 nguồn chính thức/quốc tế còn chờ xác minh. |
 | `config/watchlist.example.json` | Mẫu danh sách mã và chủ đề theo dõi (mã chỉ là ví dụ). |
 

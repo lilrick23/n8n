@@ -56,7 +56,7 @@ flowchart TD
 | 7 | `Chuan hoa` | `code` (2), chạy mỗi item | Tạo bản ghi theo mục 2.1; `source_id` lấy từ `$('Tach nguon').item` | Cách lấy nguồn ĐÃ KIỂM CHỨNG ở giai đoạn 1 (node `Gan nguon`) |
 | 8 | `Ghi loi nguon` | `code` | Đầu ra lỗi của node 5: ghi `source_id`, mã lỗi vào biến đếm của `run_log` | |
 | 9 | `Gioi han` | `limit` | `maxItems = MAX_ITEMS_PER_RUN` | ĐỌC MÃ |
-| 10 | `Da co trong news_items?` | `dataTable` (1.1) | `resource = row`, `operation = rowNotExists`, điều kiện `id = {{$json.id}}` | ĐỌC MÃ; chạy đúng theo lịch: kiểm ở giai đoạn 6 |
+| 10 | `Da co trong news_items?` | `dataTable` (1.1) | `resource = row`, `operation = rowNotExists`, điều kiện `item_id = {{$json.item_id}}` | ĐỌC MÃ; chạy đúng theo lịch: kiểm ở giai đoạn 6 |
 | 11 | `Khop watchlist` | `code` | Quy tắc mục 4; ghi `tickers[]`, `topics[]`, `match_reason` | |
 | 12 | `Vao AI?` | `if` | `(tickers.length > 0 OR topics.length > 0 OR tier = 1) AND ai_used_today < MAX_AI_ITEMS_PER_DAY` | |
 | 13 | `Gom lo` | `code` | Ghép tối đa 10 tin thành một văn bản đánh số (mục 5.2) | |
@@ -121,6 +121,17 @@ Error Trigger → `Dinh dang loi` (tên workflow, node lỗi, thông điệp đ�
 
 ---
 
+### 1.5 Điều chỉnh khi dựng (giai đoạn 3)
+
+Bản dựng thật (`workflows/news-collector.json`, tạo bằng `scripts/build_workflows.py`) khác bảng ở mục 1.1 ở các điểm sau. Bằng chứng: `evidence/p3-collector/`.
+
+- `Tach nguon` là Code node thay cho Split Out; `Chuan hoa` tự loại trùng trong cùng lần chạy theo URL chuẩn hóa (cùng một URL ở hai feed).
+- `Gan nguon` chèn `<n8n_source_id>` vào XML trước node XML, vì node XML không giữ liên kết với item đầu vào (đọc mã `Xml.node.ts`).
+- `item_id` tính bằng node Set với biểu thức `{{ $json.url_canonical.hash('sha256') }}`; không cần mở quyền `crypto` cho Code node.
+- `Chuan hoa` không dùng lớp `URL`: Code node trong n8n 2.45.0 không có lớp này (lần chạy đầu cho 0 tin; sửa bằng biểu thức chính quy).
+- `Tong ket` và `Ghi run_log` nằm ở nhánh dưới của `Config`. Với `executionOrder = v1`, n8n chạy hết nhánh trên rồi mới chạy nhánh dưới (ĐÃ KIỂM CHỨNG ở hai lần chạy).
+- Nhánh AI và cảnh báo chưa có. Tin cần AI được đánh dấu `classified_by = pending_ai`.
+
 ## 2. Lược đồ dữ liệu (Data Table)
 
 ### 2.1 `news_items`
@@ -129,13 +140,13 @@ Theo PROMPTS mục B, thêm bốn cột phục vụ vận hành (đánh dấu �
 
 | Cột | Kiểu Data Table | Ví dụ | Ghi chú |
 |---|---|---|---|
-| `id` | string | `9f2c…` (64 ký tự) | SHA-256 của URL chuẩn hóa (mục 3.1). Khóa loại trùng |
+| `item_id` | string | `9f2c…` (64 ký tự) | SHA-256 của URL chuẩn hóa (mục 3.1). Khóa loại trùng. Không đặt tên `id`: Data Table đã có cột hệ thống `id`, `createdAt`, `updatedAt` (`packages/workflow/src/data-table.types.ts`) |
 | `source_id`, `source_name` | string | `vietstock-giaodichnoibo` | Từ `sources.json` |
 | ✚ `source_tier` | number | 1 | 1 = ưu tiên cao (tin doanh nghiệp, giao dịch nội bộ) |
 | `title` | string | | Đã bỏ thẻ HTML, cắt khoảng trắng |
 | `url` | string | `https://vietstock.vn/...` | Đã đổi `http://` → `https://` |
 | `snippet` | string | | ≤ 500 ký tự, không HTML |
-| `published_at`, `fetched_at` | date | `2026-10-22T09:41:00+07:00` | Thiếu `pubDate`: để trống, không tự điền |
+| `published_at`, `fetched_at` | date | `2026-10-22T09:41:00+07:00` | Thiếu `pubDate`: để trống, không tự điền. Data Table lưu thời điểm tuyệt đối và trả về dạng UTC (`…Z`); bản tin đổi lại sang ICT khi hiển thị (ĐÃ KIỂM CHỨNG, giai đoạn 3) |
 | `tickers`, `topics` | string | `VNM,FPT` / `ty gia` | Data Table không có kiểu mảng: lưu chuỗi cách nhau dấu phẩy |
 | ✚ `match_reason` | string | `ticker:VNM;alias:Vinamilk` | Để Rick kiểm tra vì sao tin được chọn |
 | `event_type`, `fact_or_opinion`, `importance`, `sentiment` | string/number | | Rỗng nếu tin không vào AI |
@@ -217,7 +228,7 @@ Quy tắc ở `config/watchlist.example.json`, cụ thể hóa:
 2. **Mã cổ phiếu**: khớp trên văn bản gốc, **phân biệt chữ hoa**, theo ranh giới từ: `(^|[^A-Za-z0-9])VNM($|[^A-Za-z0-9])`. Chỉ khớp các mã có trong watchlist, nên các chữ viết tắt phổ biến (USD, GDP, CPI, ETF, IPO) không bị nhận nhầm.
 3. **Mã trùng từ thông thường.** Một số mã là chữ có nghĩa hoặc viết tắt hay gặp (ví dụ `MBB`, `GAS`, `ACB`, `CTG`, `SHB` thì an toàn; `VIC`, `HAG`, `TCH` có thể gặp trong tên riêng). Cho phép đánh dấu `"ambiguous": true` trong watchlist: mã đó chỉ được tính khi đi kèm một tên gọi khác (alias), hoặc đứng trong ngoặc `(VNM)`, hoặc sau tiền tố `mã`/`cổ phiếu`/`CP`.
 4. **Tên gọi khác (alias)**: khớp không phân biệt hoa thường trên cả bản có dấu và không dấu, theo ranh giới từ. Ví dụ "Hòa Phát" khớp "HOA PHAT", "hòa phát", "Hoa Phat". Alias ngắn hơn 4 ký tự bị từ chối khi nạp cấu hình.
-5. **Chủ đề vĩ mô**: khớp cụm từ trên bản không dấu, ranh giới từ ở cả hai đầu cụm. Bản không dấu có thể gây nhận nhầm (ví dụ `ty gia` cũng khớp "tỷ giá trị"). Cách tránh: khớp trên bản có dấu trước; chỉ dùng bản không dấu khi tin không có dấu (tiêu đề viết không dấu). Kiểm thử bằng fixture.
+5. **Chủ đề vĩ mô**: khớp cụm từ có dấu, không phân biệt hoa thường, ranh giới từ ở cả hai đầu. Bản không dấu chỉ dùng khi tin viết không dấu, để "ty gia" không khớp nhầm các từ có dấu khác. **Giới hạn đã biết** (kiểm thử `fixtures/match/match-cases.jsonl`): cụm từ nằm trong một cụm dài hơn vẫn khớp, ví dụ "tỷ giá" khớp "Tỷ giá trị giao dịch". Bước AI ở giai đoạn 4 hạ mức các tin này; Rick có thể thêm cụm cần loại vào `exclude_keywords`.
 6. **Từ loại trừ** (`exclude_keywords`): tin chứa từ này bị gắn `importance = 1` và không vào AI.
 7. Ghi `match_reason` cho mọi lần khớp để Rick sửa watchlist khi thấy nhận nhầm.
 
