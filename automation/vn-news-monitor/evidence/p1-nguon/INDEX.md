@@ -21,6 +21,8 @@ Báo cáo chính: [`source-audit.md`](source-audit.md).
 | 10 | Điều khoản sử dụng (Terms of Use) của CafeF, Vietstock, HOSE | CHƯA KIỂM CHỨNG TRỰC TIẾP: chưa đọc. robots.txt cho phép, và hệ thống chỉ lưu tiêu đề, URL, đoạn trích ngắn | — | — | — |
 | 11 | Chu kỳ 30 phút đủ trong giờ giao dịch; ngừng quá ~20 giờ sẽ mất tin ở feed nhanh nhất | ĐÃ KIỂM CHỨNG cho số đo một ngày; khuyến nghị lịch là GIẢ ĐỊNH | `source-audit.md` mục 4.9 | — | — |
 
+| 12 | Bổ sung 15:20 ICT: SSI MCP trả thông báo công bố HOSE/HNX kèm link gốc, trễ ≥ ~21 giờ lúc gọi; FiinX MCP trả filings và tin gắn mã; Vietcap AI News là ứng dụng JS dùng API nội bộ; Vnstock có giấy phép cấm tổ chức dùng thương mại; HNX vẫn lỗi | ĐÃ KIỂM CHỨNG qua connector của phiên Claude; gọi từ n8n: CHƯA KIỂM CHỨNG TRỰC TIẾP | `source-audit.md` mục 6, `providers-probe.log`, `providers/*` | SSI MCP, FiinX MCP, `curl` | 08:20–08:22 / 15:20–15:22 |
+
 ## Hướng dẫn Rick tự kiểm tra (cho mục 9 và 10)
 
 1. Mở `https://www.hnx.vn` trên máy tính ở công ty, tìm biểu tượng RSS ở chân trang hoặc mục "Tin công bố".

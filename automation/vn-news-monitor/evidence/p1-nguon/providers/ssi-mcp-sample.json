@@ -1,0 +1,20 @@
+{
+  "_note": "Trimmed output of SSI MCP marketdata_list_company_news, called from the Claude session connector (not from n8n). Only id, symbol, title, source, links, dates kept. full_content dropped.",
+  "calls": [
+    { "called_at_utc": "2026-10-22T08:20:12Z", "args": { "range": "1m", "newsType": "Announcement", "pageSize": 10, "orderBy": "PublicDate", "order": "DESC" }, "meta_asOfUtc": "2026-10-22T08:20:12.87Z" },
+    { "called_at_utc": "2026-10-22T08:21:13Z", "args": { "range": "1m", "newsType": "All", "pageSize": 10, "orderBy": "UpdateDate", "order": "DESC" }, "meta_asOfUtc": "2026-10-22T08:21:13.91Z" }
+  ],
+  "rows_call1": [
+    { "news_id": "122003332", "symbol": "GVR", "news_source": "HOSE", "category_code": "oact", "public_date": "21/10/2026 17:36:28", "update_date": "21/10/2026 17:59:10", "news_source_link": "https://www.hsx.vn/vi/tin-tuc/gvr-giay-chung-nhan-dang-ky-hoat-dong-chi-nhanh-dang-ky-lan-dau--khu-cong-nghiep-vrg-tay-ninh/2506684", "attachment_host": "cmsv6.fiingroup.vn" },
+    { "news_id": "122003322", "symbol": "GIL", "news_source": "HOSE", "category_code": "manac", "public_date": "21/10/2026 17:35:04", "update_date": "21/10/2026 17:59:22", "news_source_link": "https://www.hsx.vn/vi/tin-tuc/gil-thong-bao-thay-doi-nhan-su--mien-nhiem-va-bo-nhiem-tong-giam-doc/2506666", "attachment_host": "cmsv6.fiingroup.vn" },
+    { "news_id": "122003302", "symbol": "HDB", "news_source": "HOSE", "category_code": "indtr", "public_date": "21/10/2026 17:33:58", "update_date": "21/10/2026 18:00:00", "news_source_link": "https://www.hsx.vn/vi/tin-tuc/hdb-bao-cao-ket-qua-giao-dich-co-phieu-cua-nguoi-co-lien-quan-den-nguoi-noi-bo-dao-anh-minh/2506665", "attachment_host": "cmsv6.fiingroup.vn" },
+    { "news_id": "122003342", "symbol": "PIT", "news_source": "HOSE", "category_code": "indtr", "public_date": "21/10/2026 17:32:48", "update_date": "21/10/2026 17:59:10" },
+    { "news_id": "122003272", "symbol": "HEV", "news_source": "HNX", "category_code": "bod", "public_date": "21/10/2026 17:32:00", "update_date": "21/10/2026 17:58:47", "news_source_link": "https://hnx.vn/vi-vn/m-tin-tuc-hnx/tintuc-638816-1.html" },
+    { "news_id": "122003282", "symbol": "GLT", "news_source": "HNX", "category_code": "bod", "public_date": "21/10/2026 17:31:00", "update_date": "21/10/2026 17:58:47" },
+    { "news_id": "122003262", "symbol": "HUT", "news_source": "HNX", "category_code": "bod", "public_date": "21/10/2026 17:31:00", "update_date": "21/10/2026 17:58:47" },
+    { "news_id": "122003252", "symbol": "HJS", "news_source": "HNX", "category_code": "div", "public_date": "21/10/2026 17:27:00", "update_date": "21/10/2026 17:58:47" },
+    { "news_id": "122003352", "symbol": "ST8", "news_source": "HOSE", "category_code": "manac", "public_date": "21/10/2026 17:25:44", "update_date": "21/10/2026 17:59:10" },
+    { "news_id": "122003422", "symbol": "TLG", "news_source": "HOSE", "category_code": "eanno", "public_date": "21/10/2026 17:24:41", "update_date": "21/10/2026 17:58:27" }
+  ],
+  "observation": "Both calls at 15:20 ICT on 22/10/2026 returned nothing newer than update_date 21/10/2026 18:00:00. Data lag at least ~21 hours at this moment (single observation)."
+}

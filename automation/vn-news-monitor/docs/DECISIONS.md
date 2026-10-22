@@ -10,7 +10,7 @@ Cập nhật lần cuối: 2026-10-22 (bổ sung sau giai đoạn 1). Claude Cod
 | 2 | Có thêm Email không | Không ở bản đầu; thiết kế sẵn nhánh Gmail/SMTP | Giảm độ phức tạp | MẶC ĐỊNH |
 | 3 | Danh sách mã theo dõi | `config/watchlist.example.json` (mã ví dụ) | Chưa có danh sách thật của Rick | **CẦN RICK** cung cấp mã, alias, mức ưu tiên A/B |
 | 4 | Chủ đề vĩ mô theo dõi | Danh sách ví dụ trong watchlist | Thường dùng trong công việc tư vấn | MẶC ĐỊNH, Rick chỉnh |
-| 5 | Nguồn tin | 14 feed báo chí bật (CafeF, Vietstock); `vietstock-en-stocks` tắt; `vietstock-en-earnings` bỏ; Google News bỏ; nguồn chính thức: dùng feed Vietstock làm tín hiệu, Rick đối chiếu HOSE/HNX | Đã tải thử cả 16 feed ngày 2026-10-22 (`evidence/p1-nguon/source-audit.md`) | MẶC ĐỊNH; **CẦN RICK**: bật tin tiếng Anh không; có kênh dữ liệu chính thức nào Vietcap được dùng không |
+| 5 | Nguồn tin | 15 feed báo chí bật (CafeF, Vietstock, gồm `vietstock-en-stocks` theo lựa chọn của Rick); `vietstock-en-earnings` bỏ; Google News bỏ; nguồn chính thức: dùng feed Vietstock làm tín hiệu, Rick đối chiếu HOSE/HNX | Đã tải thử cả 16 feed ngày 2026-10-22 (`evidence/p1-nguon/source-audit.md`) | MẶC ĐỊNH; Rick chọn bật tin tiếng Anh (2026-10-22). Kênh chính thức: SSI MCP (xem `source-audit.md` mục 6) |
 | 6 | Nơi chạy n8n | Thử bằng Docker/`npx` bản 2.45.x; chạy thật: chọn giữa n8n Cloud, máy chủ riêng (VPS), máy tính cá nhân | Lịch chỉ chạy khi máy bật liên tục; máy cá nhân ngủ là lỡ lịch | **CẦN RICK** chọn trước giai đoạn 7 |
 | 7 | Nhà cung cấp AI | Anthropic (Chat Model có sẵn trong n8n), mô hình nhỏ cho phân loại | Đã có node; chi phí thấp cho tác vụ phân loại | **CẦN RICK**: cần khóa API riêng; gói đăng ký chat không đương nhiên gồm API |
 | 8 | Ngân sách AI thử nghiệm | 5 USD cho toàn bộ giai đoạn 4 (GIẢ ĐỊNH) | Đủ chạy bộ mẫu vài lần | **CẦN RICK** xác nhận hoặc đổi |
@@ -58,3 +58,7 @@ Cập nhật lần cuối: 2026-10-22 (bổ sung sau giai đoạn 1). Claude Cod
 | 2026-10-22 | Không thu thập từ API nội bộ của trang HOSE/HNX/UBCKNN; dùng feed Vietstock làm tín hiệu, gắn `reported_fact` | Claude | Không có RSS/API công khai; CLAUDE.md cấm trình thu thập lách luật |
 | 2026-10-22 | Bỏ Google News RSS | Claude | robots.txt chặn `/rss` |
 | 2026-10-22 | Không commit file RSS đầy đủ; chỉ mẫu 10 mục trong `fixtures/rss/` | Claude | Repo công khai; nội dung thuộc nhà xuất bản |
+| 2026-10-22 | Bật `vietstock-en-stocks` | Rick | Trả lời trong luồng |
+| 2026-10-22 | SSI MCP là nguồn ưu tiên cho nhóm "Công bố chính thức", gọi bằng node MCP Client; chỉ dùng cho bản tin tổng hợp cho tới khi đo được độ trễ | Claude (đề xuất) | Trả tin HOSE/HNX kèm link gốc; quan sát trễ ~21 giờ |
+| 2026-10-22 | Không dùng Vnstock | Claude (đề xuất), chờ Rick | Giấy phép cấm tổ chức dùng thương mại khi chưa có văn bản đồng ý |
+| 2026-10-22 | Không tự gọi API nội bộ của Vietcap AI News | Claude | Cần API/export chính thức |

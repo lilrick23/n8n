@@ -5,7 +5,7 @@ Số liệu bên dưới là **ảnh chụp một thời điểm**, không phả
 
 ## 1. Kết luận
 
-- **Cả 16 feed báo chí đều tải được (HTTP 200, XML hợp lệ, ngày giờ có múi giờ +0700).** Giữ 14, tạm tắt 1 (tiếng Anh, chờ Rick chọn), bỏ 1 (feed tiếng Anh về kết quả kinh doanh, chậm gần 4 tuần). `ĐÃ KIỂM CHỨNG`.
+- **Cả 16 feed báo chí đều tải được (HTTP 200, XML hợp lệ, ngày giờ có múi giờ +0700).** Giữ 14, tạm tắt 1 (tiếng Anh; Rick đã chọn bật lúc 15:20 ICT, xem mục 6), bỏ 1 (feed tiếng Anh về kết quả kinh doanh, chậm gần 4 tuần). `ĐÃ KIỂM CHỨNG`.
 - **n8n 2.45.0 đọc được feed thật** bằng node RSS Read: 5 feed đại diện trả đủ 170 mục, ngày giờ quy đổi đúng về ICT, kể cả kiểu năm 2 chữ số của CafeF. `ĐÃ KIỂM CHỨNG` (`n8n-live/n8n-rss-live.log`).
 - **Nguồn công bố thông tin chính thức: chưa có cách lấy tự động hợp lệ.** Không tìm thấy RSS hay API công khai của HOSE, HNX, UBCKNN. Không viết trình thu thập dựa vào API nội bộ của các trang này. Phương án: dùng feed "Giao dịch nội bộ", "Niêm yết", "Cổ tức", "Tăng vốn, M&A" của Vietstock làm tín hiệu, Rick đối chiếu trang chính thức trước khi dùng. `CHƯA KIỂM CHỨNG TRỰC TIẾP` cho HNX (không kết nối được).
 - **Google News RSS: bỏ.** `robots.txt` chặn đường dẫn `/rss` với mọi bot. `ĐÃ KIỂM CHỨNG`.
@@ -66,3 +66,21 @@ Bối cảnh (từ báo chí, chưa đọc văn bản gốc): từ 2024, doanh n
 
 - Chọn có bật `vietstock-en-stocks` (tin tiếng Anh) không. Mặc định: tắt.
 - Nguồn chính thức: nếu Vietcap có quyền truy cập dịch vụ dữ liệu của HOSE/HNX hoặc nhà cung cấp dữ liệu (FiinX, SSI...), cho biết để xem có kênh tự động hợp lệ. Mặc định: dùng feed Vietstock và đối chiếu tay.
+
+## 6. Bổ sung 2026-10-22 15:20 ICT: kênh dữ liệu Rick đề xuất
+
+Rick trả lời: bật tin tiếng Anh; các kênh có thể dùng là Vietcap AI News, SSI MCP, FiinXPro MCP, Vnstock; thử lại HNX nếu được.
+
+| Kênh | Đã thử gì | Kết quả | Hợp với | Kết luận |
+|---|---|---|---|---|
+| **SSI MCP** (`marketdata_list_company_news`) | Gọi 2 lần từ connector của phiên Claude | Trả **thông báo công bố chính thức** của HOSE và HNX: mã, tiêu đề, `news_source` = HOSE/HNX, link gốc trên `hsx.vn`/`hnx.vn`, file PDF đính kèm, `public_date`, `update_date`, mã loại tin (`indtr` giao dịch nội bộ, `div` cổ tức, `manac` nhân sự, `bod` nghị quyết HĐQT, `eanno` giải trình KQKD...). Lúc 15:20 ICT ngày 22/10, tin mới nhất có `update_date` 21/10 18:00, tức **trễ ít nhất ~21 giờ** | Bản tin tổng hợp hằng ngày, đối chiếu "công bố chính thức" | **Giữ, ưu tiên cao cho nhóm "Công bố chính thức".** Không dùng cho cảnh báo tức thời cho tới khi đo được độ trễ thật qua nhiều ngày |
+| **FiinX MCP** | `get_filings`, `get_stock_business_news` qua sandbox | Filings: kho tài liệu (BCTC, báo cáo quản trị), mới nhất của FPT là 22/08. Business news: tin báo chí đã gắn mã, có tóm tắt; mẫu FPT mới nhất 19/10 | Tra cứu tài liệu; làm giàu tin (gắn mã) | **Chờ xác minh.** Gọi bằng mã Python trong sandbox của FiinX, chưa biết n8n gọi được không |
+| **Vietcap AI News** (`trading.vietcap.com.vn/ai-news`) | Tải trang, robots.txt | Trang ứng dụng JavaScript (single-spa), nội dung tải bằng API nội bộ sau khi đăng nhập (chưa xác nhận). robots.txt cho phép, `Crawl-delay: 10` | Nguồn nội bộ của công ty Rick | **Chờ Rick.** Không tự gọi API nội bộ. Cách hợp lệ: hỏi bộ phận IT/sản phẩm Vietcap có API hoặc export chính thức cho nhân viên |
+| **Vnstock** (`vnstocks.com`) | Đọc giấy phép gói `vnstock3` trên PyPI; xem `vnstock-news` | Giấy phép `vnstock3` 3.2.1: chỉ dùng cá nhân, **cấm tổ chức dùng cho mục đích thương mại** khi chưa có văn bản đồng ý của tác giả. `vnstock-news` (tin doanh nghiệp) chỉ dành cho nhà tài trợ (gói trả phí). Thư viện Python, n8n không chạy trực tiếp được (cần máy chủ Python riêng) | Nghiên cứu cá nhân | **Không dùng trong hệ thống này** trừ khi Rick có văn bản cho phép dùng trong công việc tại Vietcap. Rủi ro tuân thủ cao hơn lợi ích, vì SSI MCP đã có cùng loại dữ liệu |
+| **HNX** (thử lại) | `curl` tới `hnx.vn`, `www.hnx.vn` lúc 15:21 ICT | Vẫn lỗi chứng chỉ qua proxy của phiên | — | `CHƯA KIỂM CHỨNG TRỰC TIẾP`. Không cần gấp: SSI MCP đã trả tin công bố HNX kèm link gốc |
+
+**Cách n8n gọi MCP.** n8n 2.45.0 có node **MCP Client** (`@n8n/n8n-nodes-langchain.mcpClient`, phiên bản 1 và 1.1; `packages/@n8n/nodes-langchain/nodes/mcp/McpClient/McpClient.node.ts`). Node này gọi trực tiếp một công cụ (tool) của máy chủ MCP như một bước bình thường, không cần mô hình AI. Xác thực: Bearer, Header, nhiều Header, hoặc **MCP OAuth2**. Đây là cách phù hợp nhất: n8n gọi `marketdata_list_company_news` của SSI MCP theo lịch. Điều kiện còn thiếu: địa chỉ endpoint của SSI MCP và cách cấp quyền cho một máy (n8n) thay vì cho tài khoản Claude của Rick. `CHƯA KIỂM CHỨNG TRỰC TIẾP`.
+
+**Điều khoản.** SSI MCP và FiinX là dịch vụ có thuê bao. Dùng dữ liệu trong công cụ nội bộ có thể bị giới hạn bởi hợp đồng thuê bao. Rick cần xác nhận quyền sử dụng; Claude không giả định là được phép.
+
+Bằng chứng: `providers-probe.log`, `providers/ssi-mcp-sample.json`, `providers/fiinx-mcp-sample.md`.

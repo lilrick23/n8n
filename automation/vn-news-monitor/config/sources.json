@@ -313,9 +313,9 @@
       "window_hours": 318.2,
       "per_hour_0900_1500": 0.33,
       "link_scheme": "https",
-      "decision": "pending",
-      "enabled": false,
-      "notes": "Tiếng Anh, phần lớn là bản dịch tin tiếng Việt; có BOM UTF-8. Tắt mặc định; bật nếu Rick cần cho tài liệu khách nước ngoài."
+      "decision": "keep",
+      "enabled": true,
+      "notes": "Tiếng Anh, phần lớn là bản dịch tin tiếng Việt; có BOM UTF-8. Rick chọn bật ngày 2026-10-22."
     },
     {
       "id": "vietstock-en-earnings",
@@ -350,7 +350,7 @@
       "id": "hnx",
       "name": "Sở Giao dịch Chứng khoán Hà Nội (HNX)",
       "decision": "pending",
-      "status": "Không kết nối được từ môi trường phiên (lỗi chứng chỉ qua proxy; đi thẳng thì 503). Chưa đọc được trang, robots.txt, điều khoản."
+      "status": "Không kết nối được từ môi trường phiên (lỗi chứng chỉ qua proxy; đi thẳng thì 503). Chưa đọc được trang, robots.txt, điều khoản. Thử lại 2026-10-22 15:21 ICT: vẫn lỗi. SSI MCP đã trả tin công bố HNX kèm link gốc."
     },
     {
       "id": "ssc",
@@ -369,5 +369,41 @@
     "1": "Quét mỗi chu kỳ ngày giao dịch (tin doanh nghiệp, công bố, giao dịch nội bộ).",
     "2": "Quét mỗi chu kỳ nhưng chỉ giữ tin khớp watchlist hoặc chủ đề vĩ mô.",
     "3": "Ý kiến/nhận định: chỉ vào bản tin tổng hợp cuối ngày, gắn nhãn 'ý kiến'."
-  }
+  },
+  "data_providers": [
+    {
+      "id": "ssi-mcp",
+      "name": "SSI MCP - marketdata_list_company_news",
+      "type": "official_via_provider",
+      "decision": "keep",
+      "enabled": false,
+      "reason_disabled": "Chưa có endpoint và credential cho n8n",
+      "node": "@n8n/n8n-nodes-langchain.mcpClient",
+      "notes": "Trả thông báo công bố của HOSE/HNX kèm link gốc. Quan sát 2026-10-22 15:20 ICT: trễ ít nhất ~21 giờ. Dùng cho bản tin tổng hợp, nhóm Công bố chính thức."
+    },
+    {
+      "id": "fiinx-mcp",
+      "name": "FiinX MCP - corporate_news_event",
+      "type": "provider",
+      "decision": "pending",
+      "enabled": false,
+      "notes": "Gọi bằng sandbox Python; chưa biết n8n gọi được không."
+    },
+    {
+      "id": "vietcap-ai-news",
+      "name": "Vietcap AI News",
+      "type": "internal",
+      "decision": "pending",
+      "enabled": false,
+      "notes": "Ứng dụng JavaScript, API nội bộ. Cần API/export chính thức từ Vietcap."
+    },
+    {
+      "id": "vnstock",
+      "name": "Vnstock",
+      "type": "library",
+      "decision": "drop",
+      "enabled": false,
+      "notes": "Giấy phép vnstock3 cấm tổ chức dùng cho mục đích thương mại khi chưa có văn bản đồng ý; vnstock-news chỉ cho nhà tài trợ."
+    }
+  ]
 }
