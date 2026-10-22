@@ -9,6 +9,7 @@ Ngày soạn: 2026-10-22. Đây là trang đọc đầu tiên. Không cần bi�
 | `CLAUDE.md` | Quy tắc thường trực cho phiên Claude Code (ngôn ngữ, quy tắc bằng chứng, an toàn, chuẩn đầu tư–IR). Claude Code tự đọc khi làm trong thư mục này. |
 | `docs/PROMPTS.md` | **Prompt khởi động** (mục A, dán vào Claude Code) và kế hoạch 9 giai đoạn (0–8), mỗi giai đoạn có đầu vào, bước làm, tiêu chí hoàn thành, bằng chứng. |
 | `docs/DECISIONS.md` | Các điểm bạn cần chọn, đã có mặc định, và danh sách giả định chưa xác minh. |
+| `docs/DESIGN.md` | Bản thiết kế (giai đoạn 2): sơ đồ, bảng dữ liệu, cách loại trùng, prompt AI, mẫu tin nhắn, xử lý lỗi, điểm bạn cần chọn (mục 9). |
 | `docs/CHECKLIST.md` | Checklist nghiệm thu để bạn kiểm tra kết quả; kèm kịch bản thử 3 ngày. |
 | `config/sources.json` | 16 feed tin (CafeF, Vietstock) và 4 nguồn chính thức/quốc tế còn chờ xác minh. |
 | `config/watchlist.example.json` | Mẫu danh sách mã và chủ đề theo dõi (mã chỉ là ví dụ). |
@@ -41,8 +42,9 @@ Ngày soạn: 2026-10-22. Đây là trang đọc đầu tiên. Không cần bi�
 
 ## 5. Điều cần biết trước khi kỳ vọng
 
-- Các URL RSS đã được tải thử ngày 2026-10-22 (giai đoạn 1): 16/16 feed trả XML hợp lệ; 14 giữ, 1 tắt, 1 bỏ. Xem `evidence/p1-nguon/source-audit.md`.
-- **Chưa xác minh** có cách lấy công bố thông tin tự động hợp lệ từ HOSE, HNX, UBCKNN hay không. Nếu không, bản đầu dựa vào báo chí và bạn tự đối chiếu trang chính thức. Hệ thống không viết trình thu thập lách điều khoản.
+- Các URL RSS đã được tải thử ngày 2026-10-22 (giai đoạn 1): 16/16 feed trả XML hợp lệ; 15 bật, 1 bỏ. Xem `evidence/p1-nguon/source-audit.md`.
+- Chi phí AI ước tính 1,2–1,7 USD/tháng (đơn giá tra ngày 2026-10-22). Xem `evidence/p2-thiet-ke/cost-model.md`.
+- HOSE, HNX, UBCKNN không có RSS/API công khai. Công bố chính thức sẽ lấy qua SSI MCP (cần bạn xác nhận quyền dùng và cách cấp quyền cho n8n); nếu chưa có, bản đầu dựa vào báo chí và bạn tự đối chiếu trang chính thức. Hệ thống không viết trình thu thập lách điều khoản.
 - Nếu phiên Claude Code cũng bị chặn mạng, các bước kiểm thử với nguồn thật và API AI sẽ mang nhãn `CHƯA KIỂM CHỨNG TRỰC TIẾP` và đi kèm hướng dẫn 5 bước để bạn tự thử. Nhãn này là trung thực, không phải lỗi.
 - Bản tin là công cụ nghiên cứu nội bộ. Nó không đảm bảo bắt hết tin và không đưa khuyến nghị đầu tư.
 - Thư mục này nằm trong bản sao (fork) mã nguồn n8n để có chỗ tham chiếu tham số node; không sửa mã n8n. Không cần dựng n8n từ mã nguồn: bản phát hành chạy bằng Docker hoặc `npx n8n` là đủ.

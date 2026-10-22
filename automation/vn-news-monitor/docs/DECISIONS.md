@@ -1,6 +1,6 @@
 # Quyết định, giả định và điểm Rick cần chọn
 
-Cập nhật lần cuối: 2026-10-22 (bổ sung sau giai đoạn 1). Claude Code bổ sung khi có phát hiện mới. Nhãn: **MẶC ĐỊNH** = cứ làm theo, Rick đổi được; **CẦN RICK** = chỉ Rick quyết được.
+Cập nhật lần cuối: 2026-10-22 (bổ sung sau giai đoạn 2). Claude Code bổ sung khi có phát hiện mới. Nhãn: **MẶC ĐỊNH** = cứ làm theo, Rick đổi được; **CẦN RICK** = chỉ Rick quyết được.
 
 ## 1. Các điểm Rick cần chọn (đã có mặc định để không phải chờ)
 
@@ -12,10 +12,10 @@ Cập nhật lần cuối: 2026-10-22 (bổ sung sau giai đoạn 1). Claude Cod
 | 4 | Chủ đề vĩ mô theo dõi | Danh sách ví dụ trong watchlist | Thường dùng trong công việc tư vấn | MẶC ĐỊNH, Rick chỉnh |
 | 5 | Nguồn tin | 15 feed báo chí bật (CafeF, Vietstock, gồm `vietstock-en-stocks` theo lựa chọn của Rick); `vietstock-en-earnings` bỏ; Google News bỏ; nguồn chính thức: dùng feed Vietstock làm tín hiệu, Rick đối chiếu HOSE/HNX | Đã tải thử cả 16 feed ngày 2026-10-22 (`evidence/p1-nguon/source-audit.md`) | MẶC ĐỊNH; Rick chọn bật tin tiếng Anh (2026-10-22). Kênh chính thức: SSI MCP (xem `source-audit.md` mục 6) |
 | 6 | Nơi chạy n8n | Thử bằng Docker/`npx` bản 2.45.x; chạy thật: chọn giữa n8n Cloud, máy chủ riêng (VPS), máy tính cá nhân | Lịch chỉ chạy khi máy bật liên tục; máy cá nhân ngủ là lỡ lịch | **CẦN RICK** chọn trước giai đoạn 7 |
-| 7 | Nhà cung cấp AI | Anthropic (Chat Model có sẵn trong n8n), mô hình nhỏ cho phân loại | Đã có node; chi phí thấp cho tác vụ phân loại | **CẦN RICK**: cần khóa API riêng; gói đăng ký chat không đương nhiên gồm API |
-| 8 | Ngân sách AI thử nghiệm | 5 USD cho toàn bộ giai đoạn 4 (GIẢ ĐỊNH) | Đủ chạy bộ mẫu vài lần | **CẦN RICK** xác nhận hoặc đổi |
+| 7 | Nhà cung cấp AI | Anthropic (Chat Model có sẵn trong n8n): `claude-haiku-5-5` cho phân loại, `claude-sonnet-5-5` cho bản tin (Rick đổi được sang Haiku 5.5) | Đã có node; chi phí thấp cho tác vụ phân loại | **CẦN RICK**: cần khóa API riêng; gói đăng ký chat không đương nhiên gồm API |
+| 8 | Ngân sách AI thử nghiệm | 5 USD cho toàn bộ giai đoạn 4 (GIẢ ĐỊNH) | Chạy thật ước tính 1,2–1,7 USD/tháng (`evidence/p2-thiet-ke/cost-model.md`); 5 USD đủ chạy bộ mẫu hàng chục lần | **CẦN RICK** xác nhận hoặc đổi |
 | 9 | Trần chi phí hằng ngày khi chạy thật | `MAX_AI_ITEMS_PER_DAY = 200` (GIẢ ĐỊNH) | Chặn chi phí chạy ngoài ý muốn | MẶC ĐỊNH, đo lại ở giai đoạn 4 |
-| 10 | Lịch chạy | Collector thứ 2–6, mỗi 30 phút 08:00–16:00; Digest 08:15 và 15:30; heartbeat thứ 2 07:55 (giờ Việt Nam) | Bám phiên giao dịch | GIẢ ĐỊNH, đối chiếu giờ giao dịch hiện hành của HOSE/HNX trước khi chốt |
+| 10 | Lịch chạy | Collector thứ 2–6 mỗi 30 phút 08:00–16:30, thêm 18:00 và 21:00; thứ 7, CN 09:00 và 20:00. Digest 08:15 và 15:30 thứ 2–6; heartbeat thứ 2 07:55. Ngoài giờ chỉ cảnh báo mức 5 (giờ Việt Nam) | Bám phiên giao dịch; quét cuối tuần vì feed nhanh nhất chỉ giữ ~20,5 giờ (`docs/DESIGN.md` mục 1.3) | GIẢ ĐỊNH; giờ giao dịch lấy từ nguồn thứ cấp, Rick đối chiếu quy chế HOSE/HNX |
 | 11 | Lưu trữ | Data Table của n8n; xuất Google Sheets là tùy chọn | Có sẵn trong n8n, không cần thêm tài khoản | MẶC ĐỊNH |
 | 12 | Thời gian giữ dữ liệu | 180 ngày | Đủ tra cứu theo quý | MẶC ĐỊNH |
 | 13 | Chế độ thử | `DRY_RUN = true` cho tới khi nghiệm thu | Tránh gửi nhầm | MẶC ĐỊNH |
@@ -37,14 +37,16 @@ Cập nhật lần cuối: 2026-10-22 (bổ sung sau giai đoạn 1). Claude Cod
 | ~~Các URL RSS trong `sources.json` trả XML hợp lệ~~ ĐÃ KIỂM CHỨNG 2026-10-22 (16/16) | `evidence/p1-nguon/INDEX.md` | 1 |
 | ~~`pubDate` của từng nguồn có múi giờ rõ ràng~~ ĐÃ KIỂM CHỨNG: tất cả `+0700`; n8n quy đổi đúng | `evidence/p1-nguon/n8n-live/n8n-rss-live.log` | 1 |
 | Có cách lấy công bố thông tin chính thức hợp lệ (HOSE/HNX/UBCKNN): chưa tìm thấy RSS/API công khai; HNX chưa truy cập được | Rick kiểm tra theo `evidence/p1-nguon/INDEX.md` mục hướng dẫn | 1 → mở |
-| Nếu dùng HTTP Request thay RSS Read, CafeF cần header User-Agent rõ ràng (chặn `curl/...`) | Đã thấy ở `evidence/p1-nguon/user-agent-test.log`; kiểm lại với UA mặc định của HTTP Request | 2 |
+| HTTP Request + XML node đọc đúng 16 feed (BOM, CDATA); đặt UA trình duyệt vì CafeF chặn `curl/...` | Chạy với `fixtures/rss/` | 3 |
 | n8n ngừng chạy quá ~20 giờ sẽ mất tin ở feed nhanh nhất (20 mục phủ ~20 giờ) | Đo lại tần suất sau vài ngày chạy thật | 2, 8 |
 | Remove Duplicates (lịch sử qua các lần chạy) hoạt động đúng với lịch tự động | Kiểm thử 3 chu kỳ lịch thật, sau khi khởi động lại | 6 |
 | Biểu thức cron của Schedule Trigger đúng cú pháp theo phiên bản này | Đọc `ScheduleTrigger.node.ts`, xem "thời điểm chạy kế tiếp" hiển thị trong giao diện | 3 |
-| Giờ giao dịch dùng để đặt lịch | Tra trang của HOSE/HNX | 2 |
+| Giờ giao dịch dùng để đặt lịch: đã lấy từ nguồn thứ cấp (DESIGN mục 1.3), chưa đọc quy chế gốc | Rick xem quy chế giao dịch HOSE/HNX | 2 → mở |
 | Cú pháp cron `*/30 8-16 * * 1-5` cho lịch collector | Kích hoạt workflow, xem thời điểm chạy kế tiếp | 3 |
 | Remove Duplicates giữ lịch sử giống nhau khi chạy tay và chạy theo lịch | Kiểm thử ở giai đoạn 3 (tay) và 6 (lịch) | 3, 6 |
-| RSS Read không có timeout: một nguồn treo có thể làm chậm cả lần chạy | Chọn RSS Read hay HTTP Request + phân tích XML ở giai đoạn 2 | 2 |
+| ~~RSS Read không có timeout~~ ĐỌC MÃ, xác nhận; đã chọn HTTP Request (timeout 15 giây) + XML | `docs/DESIGN.md` mục 1.1 | 2 |
+| Haiku 5.5 nhận `Thinking Mode = Disabled`; không đặt được nhiệt độ (mô hình mới bỏ `temperature`) | Gọi thử ở giai đoạn 4 | 4 |
+| Độ trễ của SSI MCP; cách n8n xác thực với SSI MCP | Đo 5 ngày; hỏi SSI | 5, 6 |
 
 ## 4. Nhật ký quyết định
 
@@ -62,3 +64,8 @@ Cập nhật lần cuối: 2026-10-22 (bổ sung sau giai đoạn 1). Claude Cod
 | 2026-10-22 | SSI MCP là nguồn ưu tiên cho nhóm "Công bố chính thức", gọi bằng node MCP Client; chỉ dùng cho bản tin tổng hợp cho tới khi đo được độ trễ | Claude (đề xuất) | Trả tin HOSE/HNX kèm link gốc; quan sát trễ ~21 giờ |
 | 2026-10-22 | Không dùng Vnstock | Claude (đề xuất), chờ Rick | Giấy phép cấm tổ chức dùng thương mại khi chưa có văn bản đồng ý |
 | 2026-10-22 | Không tự gọi API nội bộ của Vietcap AI News | Claude | Cần API/export chính thức |
+| 2026-10-22 | Tải feed bằng HTTP Request (timeout 15 giây, thử lại 2 lần) + XML node; RSS Read là phương án dự phòng | Claude | RSS Read không có timeout (đọc mã) |
+| 2026-10-22 | Loại trùng bằng Data Table `rowNotExists`, lưu mọi tin mới | Claude | Tin chỉ được đánh dấu đã thấy sau khi lưu; chạy hỏng giữa chừng không mất tin |
+| 2026-10-22 | Gom 10 tin vào một văn bản cho mỗi lần gọi AI | Claude | Batching của Information Extractor vẫn gọi một lần mỗi tin; gom lô giảm 63% chi phí phân loại |
+| 2026-10-22 | Đặt Thinking Mode = Disabled; bỏ yêu cầu nhiệt độ ≤ 0,2 của PROMPTS | Claude | Haiku 5.5 không nhận `temperature`; node n8n tự bỏ tham số này |
+| 2026-10-22 | Thêm lịch quét tối và cuối tuần | Claude (đề xuất), chờ Rick | Khoảng nghỉ cuối tuần ~63 giờ > ~20,5 giờ feed giữ tin |
