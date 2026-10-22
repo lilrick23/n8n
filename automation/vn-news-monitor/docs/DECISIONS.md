@@ -1,6 +1,6 @@
 # Quyết định, giả định và điểm Rick cần chọn
 
-Cập nhật lần cuối: 2026-10-22 (bổ sung sau giai đoạn 0). Claude Code bổ sung khi có phát hiện mới. Nhãn: **MẶC ĐỊNH** = cứ làm theo, Rick đổi được; **CẦN RICK** = chỉ Rick quyết được.
+Cập nhật lần cuối: 2026-10-22 (bổ sung sau giai đoạn 1). Claude Code bổ sung khi có phát hiện mới. Nhãn: **MẶC ĐỊNH** = cứ làm theo, Rick đổi được; **CẦN RICK** = chỉ Rick quyết được.
 
 ## 1. Các điểm Rick cần chọn (đã có mặc định để không phải chờ)
 
@@ -10,7 +10,7 @@ Cập nhật lần cuối: 2026-10-22 (bổ sung sau giai đoạn 0). Claude Cod
 | 2 | Có thêm Email không | Không ở bản đầu; thiết kế sẵn nhánh Gmail/SMTP | Giảm độ phức tạp | MẶC ĐỊNH |
 | 3 | Danh sách mã theo dõi | `config/watchlist.example.json` (mã ví dụ) | Chưa có danh sách thật của Rick | **CẦN RICK** cung cấp mã, alias, mức ưu tiên A/B |
 | 4 | Chủ đề vĩ mô theo dõi | Danh sách ví dụ trong watchlist | Thường dùng trong công việc tư vấn | MẶC ĐỊNH, Rick chỉnh |
-| 5 | Nguồn tin | 16 feed báo chí (CafeF, Vietstock) trong `sources.json`; nguồn chính thức chờ khảo sát | Có tên trên trang RSS chính thức của nhà xuất bản | MẶC ĐỊNH; nguồn chính thức **CẦN RICK** xem kết quả giai đoạn 1 |
+| 5 | Nguồn tin | 14 feed báo chí bật (CafeF, Vietstock); `vietstock-en-stocks` tắt; `vietstock-en-earnings` bỏ; Google News bỏ; nguồn chính thức: dùng feed Vietstock làm tín hiệu, Rick đối chiếu HOSE/HNX | Đã tải thử cả 16 feed ngày 2026-10-22 (`evidence/p1-nguon/source-audit.md`) | MẶC ĐỊNH; **CẦN RICK**: bật tin tiếng Anh không; có kênh dữ liệu chính thức nào Vietcap được dùng không |
 | 6 | Nơi chạy n8n | Thử bằng Docker/`npx` bản 2.45.x; chạy thật: chọn giữa n8n Cloud, máy chủ riêng (VPS), máy tính cá nhân | Lịch chỉ chạy khi máy bật liên tục; máy cá nhân ngủ là lỡ lịch | **CẦN RICK** chọn trước giai đoạn 7 |
 | 7 | Nhà cung cấp AI | Anthropic (Chat Model có sẵn trong n8n), mô hình nhỏ cho phân loại | Đã có node; chi phí thấp cho tác vụ phân loại | **CẦN RICK**: cần khóa API riêng; gói đăng ký chat không đương nhiên gồm API |
 | 8 | Ngân sách AI thử nghiệm | 5 USD cho toàn bộ giai đoạn 4 (GIẢ ĐỊNH) | Đủ chạy bộ mẫu vài lần | **CẦN RICK** xác nhận hoặc đổi |
@@ -20,7 +20,7 @@ Cập nhật lần cuối: 2026-10-22 (bổ sung sau giai đoạn 0). Claude Cod
 | 12 | Thời gian giữ dữ liệu | 180 ngày | Đủ tra cứu theo quý | MẶC ĐỊNH |
 | 13 | Chế độ thử | `DRY_RUN = true` cho tới khi nghiệm thu | Tránh gửi nhầm | MẶC ĐỊNH |
 | 14 | Phiên bản n8n khi chạy thật | Thử bằng 2.45.0 cho khớp mã repo; chạy thật dùng bản `stable` mới nhất tại thời điểm cài | Ngày 2026-10-22, npm ghi 2.45.x là `beta`, `stable` là 2.44.5 (`evidence/p0-moi-truong/env-report.md`) | MẶC ĐỊNH; kiểm lại tham số node nếu chênh phiên bản |
-| 15 | Mạng của phiên Claude Code | Tiếp tục bằng dữ liệu mẫu (fixture); phần nguồn thật và Telegram để Rick thử | Proxy của phiên chặn CafeF, Vietstock, Telegram, HOSE, HNX, UBCKNN (403) | MẶC ĐỊNH; **CẦN RICK** nếu muốn mở mạng cho phiên sau |
+| 15 | Mạng của phiên Claude Code | Môi trường mới (2026-10-22 07:50 UTC) đã mở CafeF, Vietstock, Telegram, `www.hsx.vn`, UBCKNN, Google News; HNX vẫn lỗi | `evidence/p1-nguon/egress-retest.log` | MẶC ĐỊNH; HNX: **CẦN RICK** thêm `hnx.vn`, `www.hnx.vn` vào danh sách tên miền nếu muốn thử lại |
 | 16 | Repo công khai | Chỉ commit tài liệu, workflow, dữ liệu mẫu, bằng chứng đã loại bí mật; watchlist thật không commit | `lilrick23/n8n` là fork công khai: ai cũng đọc được | MẶC ĐỊNH; **CẦN RICK** cân nhắc chuyển sang repo riêng tư |
 
 ## 2. Rủi ro tuân thủ cần Rick tự xác nhận
@@ -34,9 +34,11 @@ Cập nhật lần cuối: 2026-10-22 (bổ sung sau giai đoạn 0). Claude Cod
 
 | Giả định | Cách xác minh | Giai đoạn |
 |---|---|---|
-| Các URL RSS trong `sources.json` trả XML hợp lệ | Tải thử từng URL, lưu mẫu | 1 |
-| `pubDate` của từng nguồn có múi giờ rõ ràng | Đọc mẫu, thử chuẩn hóa | 1 |
-| Có cách lấy công bố thông tin chính thức hợp lệ (HOSE/HNX/UBCKNN) | Khảo sát, đọc điều khoản và `robots.txt` | 1 |
+| ~~Các URL RSS trong `sources.json` trả XML hợp lệ~~ ĐÃ KIỂM CHỨNG 2026-10-22 (16/16) | `evidence/p1-nguon/INDEX.md` | 1 |
+| ~~`pubDate` của từng nguồn có múi giờ rõ ràng~~ ĐÃ KIỂM CHỨNG: tất cả `+0700`; n8n quy đổi đúng | `evidence/p1-nguon/n8n-live/n8n-rss-live.log` | 1 |
+| Có cách lấy công bố thông tin chính thức hợp lệ (HOSE/HNX/UBCKNN): chưa tìm thấy RSS/API công khai; HNX chưa truy cập được | Rick kiểm tra theo `evidence/p1-nguon/INDEX.md` mục hướng dẫn | 1 → mở |
+| Nếu dùng HTTP Request thay RSS Read, CafeF cần header User-Agent rõ ràng (chặn `curl/...`) | Đã thấy ở `evidence/p1-nguon/user-agent-test.log`; kiểm lại với UA mặc định của HTTP Request | 2 |
+| n8n ngừng chạy quá ~20 giờ sẽ mất tin ở feed nhanh nhất (20 mục phủ ~20 giờ) | Đo lại tần suất sau vài ngày chạy thật | 2, 8 |
 | Remove Duplicates (lịch sử qua các lần chạy) hoạt động đúng với lịch tự động | Kiểm thử 3 chu kỳ lịch thật, sau khi khởi động lại | 6 |
 | Biểu thức cron của Schedule Trigger đúng cú pháp theo phiên bản này | Đọc `ScheduleTrigger.node.ts`, xem "thời điểm chạy kế tiếp" hiển thị trong giao diện | 3 |
 | Giờ giao dịch dùng để đặt lịch | Tra trang của HOSE/HNX | 2 |
@@ -53,3 +55,6 @@ Cập nhật lần cuối: 2026-10-22 (bổ sung sau giai đoạn 0). Claude Cod
 | 2026-10-22 | Môi trường thử: Docker, image `mirror.gcr.io/n8nio/n8n:2.45.0` | Claude | Docker Hub trả 429; `npx n8n` cần Node ≥ 24, máy có Node 22 |
 | 2026-10-22 | Kiểm thử chuỗi thu thập bằng fixture tự dựng, gắn nhãn dữ liệu giả | Claude | Không tải được RSS thật (giai đoạn 0) |
 | 2026-10-22 | Telegram node luôn đặt `parse_mode = HTML` và `appendAttribution = false` | Claude | Mặc định của node là Markdown và tự chèn dòng quảng cáo n8n |
+| 2026-10-22 | Không thu thập từ API nội bộ của trang HOSE/HNX/UBCKNN; dùng feed Vietstock làm tín hiệu, gắn `reported_fact` | Claude | Không có RSS/API công khai; CLAUDE.md cấm trình thu thập lách luật |
+| 2026-10-22 | Bỏ Google News RSS | Claude | robots.txt chặn `/rss` |
+| 2026-10-22 | Không commit file RSS đầy đủ; chỉ mẫu 10 mục trong `fixtures/rss/` | Claude | Repo công khai; nội dung thuộc nhà xuất bản |

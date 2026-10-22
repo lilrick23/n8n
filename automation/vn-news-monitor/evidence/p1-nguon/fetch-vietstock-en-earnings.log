@@ -1,0 +1,16 @@
+# fetched_at_utc=2026-10-22T07:55:03Z fetched_at_ict=2026-10-22T14:55:03+07:00
+# cmd: curl -sS -L -m 20 -A '<browser UA>' -D - -o raw/vietstock-en-earnings.xml 'https://en.vietstock.vn/962/earnings-and-outlook.rss'
+HTTP/1.1 200 Connection Established
+
+HTTP/2 200 
+date: Thu, 22 Oct 2026 07:55:04 GMT
+content-type: application/rss+xml
+server: cloudflare
+nel: {"report_to":"cf-nel","success_fraction":0.0,"max_age":604800}
+x-powered-by: ASP.NET
+cf-cache-status: DYNAMIC
+report-to: {"group":"cf-nel","max_age":604800,"endpoints":[{"url":"https://a.nel.cloudflare.com/report/v4?s=8Mp0Ay7OzZw4eSXdODXwz2aNbT91SkUAcWAtfplhpiquDBlYtELAq0cV%2F57AJHEcfVXP%2BWn8Cs6XMIKUesFzD33dylWUloPX6JfCzodN6tFuE1aR7AtyejxDMfRKSf3TMw%3D%3D"}]}
+cf-ray: a4e6f0040cf8c946-IAD
+
+
+# http_code=200 content_type=application/rss+xml size=26695 url_effective=https://en.vietstock.vn/962/earnings-and-outlook.rss time=1.452030s

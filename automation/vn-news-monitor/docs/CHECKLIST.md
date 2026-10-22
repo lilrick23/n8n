@@ -4,11 +4,11 @@
 
 ## A. Môi trường và nguồn
 - [x] ĐÃ KIỂM CHỨNG Ghi phiên bản Node, pnpm, n8n, hệ điều hành → `evidence/p0-moi-truong/env-report.md`
-- [x] ĐÃ KIỂM CHỨNG Kiểm tra truy cập mạng ra ngoài, ghi mã trả về → `evidence/p0-moi-truong/egress-test.log` (nguồn tin và Telegram bị chặn 403)
+- [x] ĐÃ KIỂM CHỨNG Kiểm tra truy cập mạng ra ngoài, ghi mã trả về → `evidence/p0-moi-truong/egress-test.log` (nguồn tin và Telegram bị chặn 403); kiểm lại trên môi trường mới → `evidence/p1-nguon/egress-retest.log` (đã mở, trừ HNX)
 - [x] ĐÃ KIỂM CHỨNG n8n khởi động được (2.45.0, Docker) → `evidence/p0-moi-truong/n8n-start.log`
-- [ ] Mỗi nguồn trong `sources.json` đã tải thử, có mẫu XML và thời điểm tải → `fixtures/rss/`
-- [ ] Mỗi nguồn có kết luận giữ/bỏ/chờ
-- [ ] Mục nguồn chính thức có kết luận và dẫn chiếu điều khoản/robots
+- [x] ĐÃ KIỂM CHỨNG Mỗi nguồn trong `sources.json` đã tải thử, có mẫu XML và thời điểm tải → `fixtures/rss/`, `evidence/p1-nguon/fetch-*.log`
+- [x] ĐÃ KIỂM CHỨNG Mỗi nguồn có kết luận giữ/bỏ/chờ → `evidence/p1-nguon/source-audit.md` mục 2, `config/sources.json` (`decision`)
+- [~] CHƯA KIỂM CHỨNG TRỰC TIẾP Mục nguồn chính thức có kết luận và dẫn chiếu điều khoản/robots → `evidence/p1-nguon/source-audit.md` mục 3 (có robots HOSE/UBCKNN/Google News; HNX chưa truy cập được; điều khoản sử dụng chưa đọc)
 
 ## B. Workflow thu thập
 - [ ] `validate-workflows.mjs` báo 0 lỗi (JSON hợp lệ, không node mồ côi, timezone `Asia/Ho_Chi_Minh`, có `errorWorkflow`, không bí mật)

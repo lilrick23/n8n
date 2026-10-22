@@ -41,7 +41,7 @@ Ngày soạn: 2026-10-22. Đây là trang đọc đầu tiên. Không cần bi�
 
 ## 5. Điều cần biết trước khi kỳ vọng
 
-- Các URL RSS đã được đối chiếu với trang RSS chính thức của CafeF và Vietstock ngày 2026-10-22, nhưng **chưa ai tải thử XML thật**: môi trường soạn bị chặn truy cập mạng ra ngoài. Giai đoạn 1 sẽ kiểm tra.
+- Các URL RSS đã được tải thử ngày 2026-10-22 (giai đoạn 1): 16/16 feed trả XML hợp lệ; 14 giữ, 1 tắt, 1 bỏ. Xem `evidence/p1-nguon/source-audit.md`.
 - **Chưa xác minh** có cách lấy công bố thông tin tự động hợp lệ từ HOSE, HNX, UBCKNN hay không. Nếu không, bản đầu dựa vào báo chí và bạn tự đối chiếu trang chính thức. Hệ thống không viết trình thu thập lách điều khoản.
 - Nếu phiên Claude Code cũng bị chặn mạng, các bước kiểm thử với nguồn thật và API AI sẽ mang nhãn `CHƯA KIỂM CHỨNG TRỰC TIẾP` và đi kèm hướng dẫn 5 bước để bạn tự thử. Nhãn này là trung thực, không phải lỗi.
 - Bản tin là công cụ nghiên cứu nội bộ. Nó không đảm bảo bắt hết tin và không đưa khuyến nghị đầu tư.
