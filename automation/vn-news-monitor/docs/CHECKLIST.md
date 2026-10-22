@@ -3,9 +3,9 @@
 Đánh dấu bằng: `[x] ĐÃ KIỂM CHỨNG` (kèm đường dẫn bằng chứng), `[~] CHƯA KIỂM CHỨNG TRỰC TIẾP`, `[ ]` chưa làm, `[n/a]` không áp dụng (kèm lý do). Một dòng không có đường dẫn bằng chứng thì không được đánh `[x]`.
 
 ## A. Môi trường và nguồn
-- [ ] Ghi phiên bản Node, pnpm, n8n, hệ điều hành → `evidence/p0-*/env-report.md`
-- [ ] Kiểm tra truy cập mạng ra ngoài, ghi mã trả về → `egress-test.log`
-- [ ] n8n khởi động được (hoặc ghi rõ vì sao không) → `n8n-start.log`
+- [x] ĐÃ KIỂM CHỨNG Ghi phiên bản Node, pnpm, n8n, hệ điều hành → `evidence/p0-moi-truong/env-report.md`
+- [x] ĐÃ KIỂM CHỨNG Kiểm tra truy cập mạng ra ngoài, ghi mã trả về → `evidence/p0-moi-truong/egress-test.log` (nguồn tin và Telegram bị chặn 403)
+- [x] ĐÃ KIỂM CHỨNG n8n khởi động được (2.45.0, Docker) → `evidence/p0-moi-truong/n8n-start.log`
 - [ ] Mỗi nguồn trong `sources.json` đã tải thử, có mẫu XML và thời điểm tải → `fixtures/rss/`
 - [ ] Mỗi nguồn có kết luận giữ/bỏ/chờ
 - [ ] Mục nguồn chính thức có kết luận và dẫn chiếu điều khoản/robots

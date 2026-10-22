@@ -1,6 +1,6 @@
 # Quyết định, giả định và điểm Rick cần chọn
 
-Cập nhật lần cuối: 2026-10-22 (bản soạn ban đầu). Claude Code bổ sung khi có phát hiện mới. Nhãn: **MẶC ĐỊNH** = cứ làm theo, Rick đổi được; **CẦN RICK** = chỉ Rick quyết được.
+Cập nhật lần cuối: 2026-10-22 (bổ sung sau giai đoạn 0). Claude Code bổ sung khi có phát hiện mới. Nhãn: **MẶC ĐỊNH** = cứ làm theo, Rick đổi được; **CẦN RICK** = chỉ Rick quyết được.
 
 ## 1. Các điểm Rick cần chọn (đã có mặc định để không phải chờ)
 
@@ -19,12 +19,16 @@ Cập nhật lần cuối: 2026-10-22 (bản soạn ban đầu). Claude Code b�
 | 11 | Lưu trữ | Data Table của n8n; xuất Google Sheets là tùy chọn | Có sẵn trong n8n, không cần thêm tài khoản | MẶC ĐỊNH |
 | 12 | Thời gian giữ dữ liệu | 180 ngày | Đủ tra cứu theo quý | MẶC ĐỊNH |
 | 13 | Chế độ thử | `DRY_RUN = true` cho tới khi nghiệm thu | Tránh gửi nhầm | MẶC ĐỊNH |
+| 14 | Phiên bản n8n khi chạy thật | Thử bằng 2.45.0 cho khớp mã repo; chạy thật dùng bản `stable` mới nhất tại thời điểm cài | Ngày 2026-10-22, npm ghi 2.45.x là `beta`, `stable` là 2.44.5 (`evidence/p0-moi-truong/env-report.md`) | MẶC ĐỊNH; kiểm lại tham số node nếu chênh phiên bản |
+| 15 | Mạng của phiên Claude Code | Tiếp tục bằng dữ liệu mẫu (fixture); phần nguồn thật và Telegram để Rick thử | Proxy của phiên chặn CafeF, Vietstock, Telegram, HOSE, HNX, UBCKNN (403) | MẶC ĐỊNH; **CẦN RICK** nếu muốn mở mạng cho phiên sau |
+| 16 | Repo công khai | Chỉ commit tài liệu, workflow, dữ liệu mẫu, bằng chứng đã loại bí mật; watchlist thật không commit | `lilrick23/n8n` là fork công khai: ai cũng đọc được | MẶC ĐỊNH; **CẦN RICK** cân nhắc chuyển sang repo riêng tư |
 
 ## 2. Rủi ro tuân thủ cần Rick tự xác nhận
 
 - Quy định của Vietcap về việc đưa nội dung công việc qua Telegram, dịch vụ AI bên ngoài và máy chủ n8n ngoài hệ thống công ty. Chưa có thông tin; **không giả định là được phép**.
 - Bản quyền nội dung báo: hệ thống chỉ lưu tiêu đề, URL, đoạn trích ≤ 500 ký tự. Nếu cần lưu nhiều hơn, xem điều khoản từng nguồn.
 - Bản tin là công cụ nghiên cứu nội bộ, không gửi khách hàng, không phải khuyến nghị đầu tư.
+- Repo `lilrick23/n8n` là **công khai**. Tài liệu hiện có đã nêu tên Rick và nơi làm việc. Danh sách mã theo dõi thật, nhận định riêng, cấu hình kênh nhận tin không được commit vào đây. Nếu muốn giữ kín cả tài liệu, chuyển thư mục này sang một repo riêng tư.
 
 ## 3. Giả định kỹ thuật chưa xác minh
 
@@ -36,6 +40,9 @@ Cập nhật lần cuối: 2026-10-22 (bản soạn ban đầu). Claude Code b�
 | Remove Duplicates (lịch sử qua các lần chạy) hoạt động đúng với lịch tự động | Kiểm thử 3 chu kỳ lịch thật, sau khi khởi động lại | 6 |
 | Biểu thức cron của Schedule Trigger đúng cú pháp theo phiên bản này | Đọc `ScheduleTrigger.node.ts`, xem "thời điểm chạy kế tiếp" hiển thị trong giao diện | 3 |
 | Giờ giao dịch dùng để đặt lịch | Tra trang của HOSE/HNX | 2 |
+| Cú pháp cron `*/30 8-16 * * 1-5` cho lịch collector | Kích hoạt workflow, xem thời điểm chạy kế tiếp | 3 |
+| Remove Duplicates giữ lịch sử giống nhau khi chạy tay và chạy theo lịch | Kiểm thử ở giai đoạn 3 (tay) và 6 (lịch) | 3, 6 |
+| RSS Read không có timeout: một nguồn treo có thể làm chậm cả lần chạy | Chọn RSS Read hay HTTP Request + phân tích XML ở giai đoạn 2 | 2 |
 
 ## 4. Nhật ký quyết định
 
@@ -43,3 +50,6 @@ Cập nhật lần cuối: 2026-10-22 (bản soạn ban đầu). Claude Code b�
 |---|---|---|---|
 | 2026-10-22 | Đặt dự án trong `automation/vn-news-monitor/` thay vì sửa gốc repo | Claude (đề xuất), chờ Rick | Giữ nguyên `AGENTS.md`/`CLAUDE.md` của monorepo n8n; thư mục con có `CLAUDE.md` riêng |
 | 2026-10-22 | Ba workflow tách riêng (collector, digest, error handler) | Claude (đề xuất) | Dễ kiểm thử và bật/tắt độc lập |
+| 2026-10-22 | Môi trường thử: Docker, image `mirror.gcr.io/n8nio/n8n:2.45.0` | Claude | Docker Hub trả 429; `npx n8n` cần Node ≥ 24, máy có Node 22 |
+| 2026-10-22 | Kiểm thử chuỗi thu thập bằng fixture tự dựng, gắn nhãn dữ liệu giả | Claude | Không tải được RSS thật (giai đoạn 0) |
+| 2026-10-22 | Telegram node luôn đặt `parse_mode = HTML` và `appendAttribution = false` | Claude | Mặc định của node là Markdown và tự chèn dòng quảng cáo n8n |
