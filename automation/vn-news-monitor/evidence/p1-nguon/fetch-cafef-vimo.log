@@ -1,0 +1,20 @@
+# fetched_at_utc=2026-10-22T07:54:48Z fetched_at_ict=2026-10-22T14:54:48+07:00
+# cmd: curl -sS -L -m 20 -A '<browser UA>' -D - -o raw/cafef-vimo.xml 'https://cafef.vn/vi-mo-dau-tu.rss'
+HTTP/1.1 200 Connection Established
+
+HTTP/1.1 200 OK
+date: Thu, 22 Oct 2026 07:54:49 GMT
+content-type: text/xml; charset=utf-8
+transfer-encoding: chunked
+server: cf-rp
+cache-control: no-cache, private
+lastmodifieddate: 22/10/2026 14:54:49
+timeexpire: 300
+servername: 0
+referrer-policy: no-referrer-when-downgrade
+crc32: 61c1101e
+set-cookie: laravel_session=eyJpdiI6IjMzVnlabGdWK3JUN3l1MUlRbUo1Zmc9PSIsInZhbHVlIjoiTlRaR0FVZW1lTEttYW5XRE1aV1lzYWR4NkMzMUw1RWZWK1VtdU5OSEJIOFBRck96YzR6RWJETUloUXoxclo4NEtvL29MNmlLeTFKeW5qSDFyUVNSNkp0OVo4UERLQy9qdFRrWk5IQU1keE9YQlFTNTFqSlhHR29JaUZka09oelMiLCJtYWMiOiI3YzNkMzJjMWJkMjcxNzcyOTk1MzhjMWY4ODM4YjBlOWQ3MGE5N2I3OTBmZjUzZTE0ZmQ4YTJlZjA2MTQzYmMzIiwidGFnIjoiIn0%3D; expires=Thu, 22-Oct-2026 09:54:49 GMT; Max-Age=7200; path=/; httponly; samesite=lax
+filterid: ft
+
+
+# http_code=200 content_type=text/xml; charset=utf-8 size=58130 url_effective=https://cafef.vn/vi-mo-dau-tu.rss time=1.157366s

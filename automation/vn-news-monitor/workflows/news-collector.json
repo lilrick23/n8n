@@ -1,0 +1,549 @@
+{
+  "id": "vnNewsCollector1",
+  "name": "VN news - collector",
+  "active": false,
+  "nodes": [
+    {
+      "parameters": {
+        "rule": {
+          "interval": [
+            {
+              "field": "cronExpression",
+              "expression": "*/30 8-16 * * 1-5"
+            }
+          ]
+        },
+        "misfirePolicy": "skip"
+      },
+      "id": "327354cc-75de-56ba-832f-db6f401c03db",
+      "name": "Lich giao dich",
+      "type": "n8n-nodes-base.scheduleTrigger",
+      "typeVersion": 1.4,
+      "position": [
+        0,
+        200
+      ]
+    },
+    {
+      "parameters": {
+        "rule": {
+          "interval": [
+            {
+              "field": "cronExpression",
+              "expression": "0 18,21 * * 1-5"
+            },
+            {
+              "field": "cronExpression",
+              "expression": "0 9,20 * * 0,6"
+            }
+          ]
+        },
+        "misfirePolicy": "skip"
+      },
+      "id": "396f84bd-0a46-5f55-821b-0a43e6405a00",
+      "name": "Lich ngoai gio",
+      "type": "n8n-nodes-base.scheduleTrigger",
+      "typeVersion": 1.4,
+      "position": [
+        0,
+        360
+      ]
+    },
+    {
+      "parameters": {},
+      "id": "19823c1c-0916-5afc-ad3d-30ae1ac892c8",
+      "name": "Chay tay",
+      "type": "n8n-nodes-base.manualTrigger",
+      "typeVersion": 1,
+      "position": [
+        0,
+        520
+      ]
+    },
+    {
+      "parameters": {
+        "jsCode": "// Cau hinh chung cua news-collector. Rick sua o day.\n// SOURCES va WATCHLIST duoc tao tu config/sources.json va config/watchlist.example.json\n// boi scripts/build_workflows.py. Khong ghi ma khach hang, so tai khoan hay token vao day.\nconst SOURCES = [\n  {\n    \"id\": \"cafef-chungkhoan\",\n    \"name\": \"CafeF - Thị trường chứng khoán\",\n    \"tier\": 1,\n    \"url\": \"https://cafef.vn/thi-truong-chung-khoan.rss\",\n    \"lang\": \"vi\"\n  },\n  {\n    \"id\": \"cafef-doanhnghiep\",\n    \"name\": \"CafeF - Doanh nghiệp\",\n    \"tier\": 1,\n    \"url\": \"https://cafef.vn/doanh-nghiep.rss\",\n    \"lang\": \"vi\"\n  },\n  {\n    \"id\": \"cafef-taichinh-nganhang\",\n    \"name\": \"CafeF - Tài chính ngân hàng\",\n    \"tier\": 2,\n    \"url\": \"https://cafef.vn/tai-chinh-ngan-hang.rss\",\n    \"lang\": \"vi\"\n  },\n  {\n    \"id\": \"cafef-vimo\",\n    \"name\": \"CafeF - Vĩ mô đầu tư\",\n    \"tier\": 2,\n    \"url\": \"https://cafef.vn/vi-mo-dau-tu.rss\",\n    \"lang\": \"vi\"\n  },\n  {\n    \"id\": \"vietstock-cophieu\",\n    \"name\": \"Vietstock - Cổ phiếu\",\n    \"tier\": 1,\n    \"url\": \"https://vietstock.vn/830/chung-khoan/co-phieu.rss\",\n    \"lang\": \"vi\"\n  },\n  {\n    \"id\": \"vietstock-giaodichnoibo\",\n    \"name\": \"Vietstock - Giao dịch nội bộ\",\n    \"tier\": 1,\n    \"url\": \"https://vietstock.vn/739/chung-khoan/giao-dich-noi-bo.rss\",\n    \"lang\": \"vi\"\n  },\n  {\n    \"id\": \"vietstock-niemyet\",\n    \"name\": \"Vietstock - Niêm yết\",\n    \"tier\": 1,\n    \"url\": \"https://vietstock.vn/741/chung-khoan/niem-yet.rss\",\n    \"lang\": \"vi\"\n  },\n  {\n    \"id\": \"vietstock-hoatdongkinhdoanh\",\n    \"name\": \"Vietstock - Hoạt động kinh doanh\",\n    \"tier\": 1,\n    \"url\": \"https://vietstock.vn/737/doanh-nghiep/hoat-dong-kinh-doanh.rss\",\n    \"lang\": \"vi\"\n  },\n  {\n    \"id\": \"vietstock-cotuc\",\n    \"name\": \"Vietstock - Cổ tức\",\n    \"tier\": 1,\n    \"url\": \"https://vietstock.vn/738/doanh-nghiep/co-tuc.rss\",\n    \"lang\": \"vi\"\n  },\n  {\n    \"id\": \"vietstock-tangvon-ma\",\n    \"name\": \"Vietstock - Tăng vốn, M&A\",\n    \"tier\": 1,\n    \"url\": \"https://vietstock.vn/764/doanh-nghiep/tang-von-m-a.rss\",\n    \"lang\": \"vi\"\n  },\n  {\n    \"id\": \"vietstock-chinhsach\",\n    \"name\": \"Vietstock - Chính sách\",\n    \"tier\": 2,\n    \"url\": \"https://vietstock.vn/143/chung-khoan/chinh-sach.rss\",\n    \"lang\": \"vi\"\n  },\n  {\n    \"id\": \"vietstock-vimo\",\n    \"name\": \"Vietstock - Vĩ mô\",\n    \"tier\": 2,\n    \"url\": \"https://vietstock.vn/761/kinh-te/vi-mo.rss\",\n    \"lang\": \"vi\"\n  },\n  {\n    \"id\": \"vietstock-nganhang\",\n    \"name\": \"Vietstock - Ngân hàng\",\n    \"tier\": 2,\n    \"url\": \"https://vietstock.vn/757/tai-chinh/ngan-hang.rss\",\n    \"lang\": \"vi\"\n  },\n  {\n    \"id\": \"vietstock-nhandinh\",\n    \"name\": \"Vietstock - Nhận định thị trường\",\n    \"tier\": 3,\n    \"url\": \"https://vietstock.vn/1636/nhan-dinh-phan-tich/nhan-dinh-thi-truong.rss\",\n    \"lang\": \"vi\"\n  },\n  {\n    \"id\": \"vietstock-en-stocks\",\n    \"name\": \"Vietstock (EN) - Vietnam stocks\",\n    \"tier\": 2,\n    \"url\": \"https://en.vietstock.vn/52015/vietnam-stocks.rss\",\n    \"lang\": \"en\"\n  }\n];\nconst WATCHLIST = {\n  \"tickers\": [\n    {\n      \"ticker\": \"VNM\",\n      \"aliases\": [\n        \"Vinamilk\",\n        \"Công ty CP Sữa Việt Nam\"\n      ],\n      \"sector\": \"Hàng tiêu dùng\",\n      \"priority\": \"A\"\n    },\n    {\n      \"ticker\": \"FPT\",\n      \"aliases\": [\n        \"FPT Corp\",\n        \"Tập đoàn FPT\"\n      ],\n      \"sector\": \"Công nghệ\",\n      \"priority\": \"A\"\n    },\n    {\n      \"ticker\": \"VCB\",\n      \"aliases\": [\n        \"Vietcombank\"\n      ],\n      \"sector\": \"Ngân hàng\",\n      \"priority\": \"A\"\n    },\n    {\n      \"ticker\": \"HPG\",\n      \"aliases\": [\n        \"Hòa Phát\"\n      ],\n      \"sector\": \"Thép\",\n      \"priority\": \"B\"\n    }\n  ],\n  \"macro_topics\": [\n    \"lãi suất điều hành\",\n    \"tỷ giá\",\n    \"room tín dụng\",\n    \"trái phiếu doanh nghiệp\",\n    \"nâng hạng thị trường\",\n    \"FTSE Russell\",\n    \"dòng vốn ngoại\",\n    \"thuế giao dịch\",\n    \"Thông tư chứng khoán\"\n  ],\n  \"exclude_keywords\": [\n    \"quảng cáo\",\n    \"tuyển dụng\",\n    \"khuyến mãi\"\n  ]\n};\n\nconst TRIGGERS = ['Lich giao dich', 'Lich ngoai gio', 'Chay tay'];\nconst trigger = TRIGGERS.find((n) => {\n  try {\n    return $(n).isExecuted;\n  } catch (e) {\n    return false;\n  }\n}) ?? '';\n\nreturn [{\n  json: {\n    trigger,\n    run_started_at: DateTime.now().setZone('Asia/Ho_Chi_Minh').toISO({ suppressMilliseconds: true }),\n    sources: SOURCES,\n    watchlist: WATCHLIST,\n    MAX_ITEMS_PER_RUN: 300,\n    MAX_AI_ITEMS_PER_DAY: 200,\n    ALERT_MIN_IMPORTANCE: 4,\n    AI_BATCH_SIZE: 10,\n    SNIPPET_MAX_CHARS: 500,\n    DRY_RUN: true,\n    // Chi dung khi kiem thu: tai feed tu may chu tep cuc bo thay cho URL that.\n    FEED_BASE_OVERRIDE: \"\",\n  },\n}];\n"
+      },
+      "id": "5083f2ac-127b-5aa3-a7f8-289fa94209d9",
+      "name": "Config",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        240,
+        360
+      ]
+    },
+    {
+      "parameters": {
+        "jsCode": "// Tach danh sach nguon thanh mot item cho moi nguon.\nconst cfg = $input.first().json;\nreturn cfg.sources.map((s) => ({\n  json: {\n    id: s.id,\n    name: s.name,\n    tier: s.tier,\n    lang: s.lang,\n    url: cfg.FEED_BASE_OVERRIDE ? `${cfg.FEED_BASE_OVERRIDE}${s.id}.xml` : s.url,\n  },\n}));\n"
+      },
+      "id": "92638043-5ab7-5534-9843-55d29a7f8c9e",
+      "name": "Tach nguon",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        480,
+        200
+      ]
+    },
+    {
+      "parameters": {
+        "url": "={{ $json.url }}",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "User-Agent",
+              "value": "Mozilla/5.0 (compatible; vn-news-monitor/1.0)"
+            },
+            {
+              "name": "Accept",
+              "value": "application/rss+xml, application/xml, text/xml, */*"
+            }
+          ]
+        },
+        "options": {
+          "timeout": 15000,
+          "response": {
+            "response": {
+              "responseFormat": "text"
+            }
+          }
+        }
+      },
+      "id": "9f0b94c9-5b07-581d-8e04-1a9551c6e8a6",
+      "name": "Tai feed",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        720,
+        200
+      ],
+      "retryOnFail": true,
+      "maxTries": 3,
+      "waitBetweenTries": 5000,
+      "onError": "continueErrorOutput"
+    },
+    {
+      "parameters": {
+        "jsCode": "// Gan ma nguon vao chinh van ban XML, vi node XML khong giu lien ket voi item dau vao.\n// Bo BOM o dau feed (hai feed tieng Anh co BOM, giai doan 1).\nconst src = $('Tach nguon').item.json;\nlet xml = String($json.data ?? '').replace(/^﻿/, '');\nconst tag = `<n8n_source_id>${src.id}</n8n_source_id>`;\nif (/<channel[^>]*>/.test(xml)) {\n  xml = xml.replace(/<channel([^>]*)>/, `<channel$1>${tag}`);\n}\nreturn { json: { data: xml, source_id: src.id } };\n",
+        "mode": "runOnceForEachItem"
+      },
+      "id": "7f3b4ec5-137e-5956-be3f-77db4d6a2827",
+      "name": "Gan nguon",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        960,
+        120
+      ]
+    },
+    {
+      "parameters": {
+        "jsCode": "// Ghi lai nguon tai loi. Cac nguon khac van chay tiep.\nconst src = $('Tach nguon').item.json;\nconst err = $json.error;\nconst message = typeof err === 'string' ? err : (err?.message ?? JSON.stringify(err ?? $json));\nreturn { json: { source_id: src.id, error: String(message).slice(0, 300) } };\n",
+        "mode": "runOnceForEachItem"
+      },
+      "id": "c12f2a2b-6348-5e8a-ba44-cec4f7a6873a",
+      "name": "Loi tai feed",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        960,
+        300
+      ]
+    },
+    {
+      "parameters": {
+        "mode": "xmlToJson",
+        "dataPropertyName": "data",
+        "options": {}
+      },
+      "id": "6b393752-c867-5f8b-90c1-72d8a327936e",
+      "name": "XML sang JSON",
+      "type": "n8n-nodes-base.xml",
+      "typeVersion": 1,
+      "position": [
+        1200,
+        120
+      ],
+      "onError": "continueRegularOutput"
+    },
+    {
+      "parameters": {
+        "jsCode": "// Chuan hoa tin: URL, ngay gio ICT, doan trich; loai trung trong cung lan chay theo URL chuan hoa.\nconst cfg = $('Config').first().json;\nconst sources = Object.fromEntries(cfg.sources.map((s) => [s.id, s]));\nconst TZ = 'Asia/Ho_Chi_Minh';\nconst fetchedAt = DateTime.now().setZone(TZ).toISO({ suppressMilliseconds: true });\nconst TRACKING = /^(utm_.*|fbclid|gclid|zarsrc|ref|source)$/i;\n\nconst asText = (v) => {\n  if (v === undefined || v === null) return '';\n  if (Array.isArray(v)) return asText(v[0]);\n  if (typeof v === 'object') return String(v._ ?? '');\n  return String(v);\n};\nconst decodeEntities = (s) =>\n  s\n    .replace(/&nbsp;/g, ' ')\n    .replace(/&quot;/g, '\"')\n    .replace(/&#39;|&apos;/g, \"'\")\n    .replace(/&lt;/g, '<')\n    .replace(/&gt;/g, '>')\n    .replace(/&#(\\d+);/g, (_, d) => String.fromCodePoint(Number(d)))\n    .replace(/&#x([0-9a-f]+);/gi, (_, h) => String.fromCodePoint(parseInt(h, 16)))\n    .replace(/&amp;/g, '&');\nconst plain = (s) => decodeEntities(s.replace(/<[^>]*>/g, ' ')).replace(/\\s+/g, ' ').trim();\n\n// Khong dung lop URL: moi truong chay Code node khong co san (da thay o lan chay thu dau tien).\nfunction cleanUrl(raw) {\n  const m = raw.trim().match(/^https?:\\/\\/([^/?#\\s]+)([^?#\\s]*)(\\?[^#\\s]*)?/i);\n  if (!m) return null;\n  const keep = (m[3] ?? '')\n    .slice(1)\n    .split('&')\n    .filter((p) => p && !TRACKING.test(p.split('=')[0]));\n  return `https://${m[1]}${m[2] || '/'}${keep.length ? `?${keep.join('&')}` : ''}`;\n}\nfunction canonicalUrl(clean) {\n  return clean\n    .replace(/^https:\\/\\/([^/?#]+)/, (_, host) => `https://${host.toLowerCase().replace(/^www\\./, '')}`)\n    .replace(/\\/$/, '');\n}\nfunction toIct(raw) {\n  if (!raw) return null;\n  let d = DateTime.fromRFC2822(raw.trim());\n  if (!d.isValid) {\n    const js = new Date(raw);\n    if (!Number.isNaN(js.getTime())) d = DateTime.fromJSDate(js);\n  }\n  return d.isValid ? d.setZone(TZ).toISO({ suppressMilliseconds: true }) : null;\n}\n\nconst seen = new Map();\nfor (const item of $input.all()) {\n  const channel = item.json?.rss?.channel;\n  if (!channel) continue; // loi phan tich XML: dem o buoc Tong ket\n  const src = sources[asText(channel.n8n_source_id)];\n  if (!src) continue;\n  const entries = Array.isArray(channel.item) ? channel.item : channel.item ? [channel.item] : [];\n  for (const e of entries) {\n    const url = cleanUrl(asText(e.link) || asText(e.guid));\n    const title = plain(asText(e.title));\n    if (!url || !title) continue;\n    const canonical = canonicalUrl(url);\n    if (seen.has(canonical)) continue;\n    seen.set(canonical, {\n      source_id: src.id,\n      source_name: src.name,\n      source_tier: src.tier,\n      lang: src.lang,\n      title,\n      url,\n      url_canonical: canonical,\n      snippet: plain(asText(e.description)).slice(0, cfg.SNIPPET_MAX_CHARS),\n      published_at: toIct(asText(e.pubDate)),\n      fetched_at: fetchedAt,\n    });\n  }\n}\n\nconst rows = [...seen.values()].sort((a, b) => (b.published_at ?? '').localeCompare(a.published_at ?? ''));\nreturn rows.map((json) => ({ json }));\n"
+      },
+      "id": "fb12e1a0-266a-5369-9d64-edf13043f9f4",
+      "name": "Chuan hoa",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        1440,
+        120
+      ]
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "3b6f0f6e-5a2d-4c1e-9d55-7f3c2a1b0c01",
+              "name": "item_id",
+              "value": "={{ $json.url_canonical.hash('sha256') }}",
+              "type": "string"
+            }
+          ]
+        },
+        "includeOtherFields": true,
+        "options": {}
+      },
+      "id": "d9bb7bc0-8b3c-5b01-981f-1ccd1d321110",
+      "name": "Tao id",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        1680,
+        120
+      ]
+    },
+    {
+      "parameters": {
+        "maxItems": "={{ $('Config').first().json.MAX_ITEMS_PER_RUN }}"
+      },
+      "id": "ecb8d673-641a-5fb7-bdb8-c77ee1fa4f2c",
+      "name": "Gioi han",
+      "type": "n8n-nodes-base.limit",
+      "typeVersion": 1,
+      "position": [
+        2160,
+        120
+      ]
+    },
+    {
+      "parameters": {
+        "resource": "row",
+        "operation": "rowNotExists",
+        "dataTableId": {
+          "__rl": true,
+          "mode": "name",
+          "value": "news_items"
+        },
+        "matchType": "anyCondition",
+        "filters": {
+          "conditions": [
+            {
+              "keyName": "item_id",
+              "keyValue": "={{ $json.item_id }}"
+            }
+          ]
+        }
+      },
+      "id": "283f86dd-cdd2-59f2-84b6-c48478c537e4",
+      "name": "Da co trong news_items?",
+      "type": "n8n-nodes-base.dataTable",
+      "typeVersion": 1.1,
+      "position": [
+        1920,
+        120
+      ]
+    },
+    {
+      "parameters": {
+        "jsCode": "// Khop watchlist va chu de vi mo theo docs/DESIGN.md muc 4.\nconst wl = $('Config').first().json.watchlist;\nconst strip = (s) =>\n  s.normalize('NFD').replace(/[̀-ͯ]/g, '').replace(/đ/g, 'd').replace(/Đ/g, 'D');\nconst escapeRe = (s) => s.replace(/[.*+?^${}()|[\\]\\\\]/g, '\\\\$&');\nconst B = '(^|[^\\\\p{L}\\\\p{N}])';\nconst E = '($|[^\\\\p{L}\\\\p{N}])';\nconst phrase = (p, flags) => new RegExp(`${B}${escapeRe(p)}${E}`, flags);\nconst hasDiacritics = (s) => strip(s) !== s;\n\nconst tickers = (wl.tickers ?? []).map((t) => ({\n  ...t,\n  re: new RegExp(`(^|[^A-Za-z0-9])${escapeRe(t.ticker)}($|[^A-Za-z0-9])`, 'u'),\n  context: new RegExp(`(\\\\(${escapeRe(t.ticker)}\\\\)|(mã|cổ phiếu|CP|ticker)\\\\s*:?\\\\s*${escapeRe(t.ticker)}(?![A-Za-z0-9]))`, 'iu'),\n  aliases: (t.aliases ?? []).filter((a) => a.length >= 4).map((a) => ({\n    alias: a,\n    re: phrase(a.normalize('NFC').toLowerCase(), 'u'),\n    reStripped: phrase(strip(a).toLowerCase(), 'u'),\n  })),\n}));\nconst topics = (wl.macro_topics ?? []).map((t) => ({\n  topic: t,\n  re: phrase(t.normalize('NFC').toLowerCase(), 'u'),\n  reStripped: phrase(strip(t).toLowerCase(), 'u'),\n}));\nconst excludes = (wl.exclude_keywords ?? []).map((k) => phrase(k.normalize('NFC').toLowerCase(), 'u'));\n\nreturn $input.all().map((item) => {\n  const raw = `${item.json.title} ${item.json.snippet}`.normalize('NFC');\n  const lower = raw.toLowerCase();\n  const lowerStripped = strip(lower);\n  const accented = hasDiacritics(raw);\n  const foundTickers = [];\n  const reasons = [];\n\n  for (const t of tickers) {\n    const aliasHit = t.aliases.find((a) => a.re.test(lower) || a.reStripped.test(lowerStripped));\n    const codeHit = t.re.test(raw) && (!t.ambiguous || t.context.test(raw) || aliasHit);\n    if (codeHit || aliasHit) {\n      foundTickers.push(t.ticker);\n      reasons.push(codeHit ? `ticker:${t.ticker}` : `alias:${aliasHit.alias}`);\n    }\n  }\n  const foundTopics = [];\n  for (const t of topics) {\n    // Khop ban co dau truoc; ban khong dau chi dung khi tin viet khong dau.\n    if (t.re.test(lower) || (!accented && t.reStripped.test(lowerStripped))) {\n      foundTopics.push(t.topic);\n      reasons.push(`topic:${t.topic}`);\n    }\n  }\n  const excluded = excludes.some((re) => re.test(lower));\n  if (excluded) reasons.push('excluded');\n\n  return {\n    json: {\n      ...item.json,\n      tickers: foundTickers.join(','),\n      topics: foundTopics.join(','),\n      match_reason: reasons.join(';'),\n      excluded,\n    },\n  };\n});\n"
+      },
+      "id": "bf254ff1-7c81-5f0e-91f0-3cc4dadf9771",
+      "name": "Khop watchlist",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        2400,
+        120
+      ]
+    },
+    {
+      "parameters": {
+        "jsCode": "// Dua item ve dung cac cot cua bang news_items (Data Table tu choi cot la).\n// Giai doan 3 chua co AI: tin khop watchlist/vi mo hoac nguon tier 1 duoc danh dau cho AI.\nconst runId = String($execution.id);\nreturn $input.all().map(({ json: j }) => {\n  const forAi = !j.excluded && (j.tickers !== '' || j.topics !== '' || j.source_tier === 1);\n  return {\n    json: {\n      item_id: j.item_id,\n      source_id: j.source_id,\n      source_name: j.source_name,\n      source_tier: j.source_tier,\n      lang: j.lang,\n      title: j.title,\n      url: j.url,\n      snippet: j.snippet,\n      published_at: j.published_at,\n      fetched_at: j.fetched_at,\n      tickers: j.tickers,\n      topics: j.topics,\n      match_reason: j.match_reason,\n      event_type: '',\n      fact_or_opinion: '',\n      importance: j.excluded ? 1 : null,\n      sentiment: '',\n      summary_vi: '',\n      why_it_matters: '',\n      needs_human_check: false,\n      classified_by: j.excluded ? 'excluded' : forAi ? 'pending_ai' : 'not_matched',\n      alert_sent_at: null,\n      run_id: runId,\n    },\n  };\n});\n"
+      },
+      "id": "dbd7d420-df18-5585-ab32-985e5540e691",
+      "name": "Dinh dang dong",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        2640,
+        120
+      ]
+    },
+    {
+      "parameters": {
+        "resource": "row",
+        "operation": "insert",
+        "dataTableId": {
+          "__rl": true,
+          "mode": "name",
+          "value": "news_items"
+        },
+        "columns": {
+          "mappingMode": "autoMapInputData",
+          "value": {},
+          "matchingColumns": [],
+          "schema": [],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "id": "2a367511-57a1-50de-8ff7-4a3dbfbee77f",
+      "name": "Luu tin",
+      "type": "n8n-nodes-base.dataTable",
+      "typeVersion": 1.1,
+      "position": [
+        2880,
+        120
+      ]
+    },
+    {
+      "parameters": {
+        "jsCode": "// Tong ket mot lan chay de ghi vao run_log. Node nay nam o nhanh duoi,\n// chay sau khi nhanh thu thap xong (executionOrder v1 chay tung nhanh tu tren xuong).\nconst cfg = $('Config').first().json;\nconst all = (name) => {\n  try {\n    return $(name).isExecuted ? $(name).all() : [];\n  } catch (e) {\n    return [];\n  }\n};\nconst xmlItems = all('XML sang JSON');\nconst fetched = xmlItems.reduce((n, i) => {\n  const it = i.json?.rss?.channel?.item;\n  return n + (Array.isArray(it) ? it.length : it ? 1 : 0);\n}, 0);\nconst fetchErrors = all('Loi tai feed').map((i) => i.json.source_id);\nconst xmlErrors = xmlItems.filter((i) => i.json.error).length;\nconst matched = all('Khop watchlist').filter((i) => i.json.tickers || i.json.topics).length;\nconst saved = all('Luu tin');\nconst TZ = 'Asia/Ho_Chi_Minh';\n\nreturn [{\n  json: {\n    run_id: String($execution.id),\n    workflow: $workflow.name,\n    trigger: cfg.trigger,\n    started_at: cfg.run_started_at,\n    finished_at: DateTime.now().setZone(TZ).toISO({ suppressMilliseconds: true }),\n    sources_total: cfg.sources.length,\n    sources_ok: all('Gan nguon').length - xmlErrors,\n    sources_failed: fetchErrors.length + xmlErrors,\n    failed_source_ids: fetchErrors.join(','),\n    items_fetched: fetched,\n    items_unique: all('Chuan hoa').length,\n    items_new: all('Da co trong news_items?').length,\n    items_matched: matched,\n    items_saved: saved.length,\n    items_to_ai: saved.filter((i) => i.json.classified_by === 'pending_ai').length,\n    ai_calls: 0,\n    ai_failures: 0,\n    alerts_sent: 0,\n    dry_run: cfg.DRY_RUN,\n    error: '',\n  },\n}];\n"
+      },
+      "id": "5e703df9-c04a-5aac-8e4d-bf5294e122aa",
+      "name": "Tong ket",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        480,
+        640
+      ]
+    },
+    {
+      "parameters": {
+        "resource": "row",
+        "operation": "insert",
+        "dataTableId": {
+          "__rl": true,
+          "mode": "name",
+          "value": "run_log"
+        },
+        "columns": {
+          "mappingMode": "autoMapInputData",
+          "value": {},
+          "matchingColumns": [],
+          "schema": [],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "id": "ecee2748-ee80-5be5-bd35-abb3f6b94517",
+      "name": "Ghi run_log",
+      "type": "n8n-nodes-base.dataTable",
+      "typeVersion": 1.1,
+      "position": [
+        720,
+        640
+      ]
+    },
+    {
+      "parameters": {
+        "content": "## news-collector\nThu thap tin RSS, chuan hoa, loai trung (bang news_items), khop watchlist, luu.\nSua cau hinh o node **Config**. Nhanh AI va canh bao them o giai doan 4-5.\nNode **Tong ket** phai nam DUOI nhanh thu thap: n8n chay tung nhanh tu tren xuong.\nThiet ke: docs/DESIGN.md",
+        "width": 900,
+        "height": 220
+      },
+      "id": "c879ad73-2e0b-5184-b794-87ebee631a5f",
+      "name": "Ghi chu",
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        0,
+        -260
+      ]
+    }
+  ],
+  "connections": {
+    "Lich giao dich": {
+      "main": [
+        [
+          {
+            "node": "Config",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Lich ngoai gio": {
+      "main": [
+        [
+          {
+            "node": "Config",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Chay tay": {
+      "main": [
+        [
+          {
+            "node": "Config",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Config": {
+      "main": [
+        [
+          {
+            "node": "Tach nguon",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Tong ket",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Tach nguon": {
+      "main": [
+        [
+          {
+            "node": "Tai feed",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Tai feed": {
+      "main": [
+        [
+          {
+            "node": "Gan nguon",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Loi tai feed",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Gan nguon": {
+      "main": [
+        [
+          {
+            "node": "XML sang JSON",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "XML sang JSON": {
+      "main": [
+        [
+          {
+            "node": "Chuan hoa",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Chuan hoa": {
+      "main": [
+        [
+          {
+            "node": "Tao id",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Tao id": {
+      "main": [
+        [
+          {
+            "node": "Da co trong news_items?",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Da co trong news_items?": {
+      "main": [
+        [
+          {
+            "node": "Gioi han",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Gioi han": {
+      "main": [
+        [
+          {
+            "node": "Khop watchlist",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Khop watchlist": {
+      "main": [
+        [
+          {
+            "node": "Dinh dang dong",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Dinh dang dong": {
+      "main": [
+        [
+          {
+            "node": "Luu tin",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Tong ket": {
+      "main": [
+        [
+          {
+            "node": "Ghi run_log",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "settings": {
+    "executionOrder": "v1",
+    "timezone": "Asia/Ho_Chi_Minh",
+    "saveManualExecutions": true,
+    "callerPolicy": "workflowsFromSameOwner",
+    "errorWorkflow": "vnNewsErrorHdl01",
+    "executionTimeout": 600
+  },
+  "pinData": {},
+  "tags": []
+}

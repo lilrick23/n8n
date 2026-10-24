@@ -1,0 +1,98 @@
+# 2026-10-22T04:39:36Z UTC / 2026-10-22T11:39:36+0700 ICT
+$ docker exec n8n-p0 n8n import:workflow --input=/tmp/smoke.json
+[license SDK] Skipping renewal on init: renewOnInit is disabled in config
+[license SDK] Skipping renewal on init: license cert is not initialized
+Importing 1 workflows...
+Successfully imported 1 workflow.
+$ docker exec n8n-p0 n8n list:workflow
+p0smoke000000001|p0 smoke test (khong dung cho san xuat)
+$ docker exec n8n-p0 n8n execute --id=p0smoke000000001 --rawOutput
+n8n Task Broker's port 5679 is already in use. Do you have another instance of n8n running already?
+
+# retry: CLI execute starts its own task broker; give it another port
+$ docker exec -e N8N_RUNNERS_BROKER_PORT=5690 n8n-p0 n8n execute --id=p0smoke000000001 --rawOutput
+                  {
+                    "json": {
+                      "ok": true,
+                      "n8n_now_iso": "2026-10-22T11:40:01.626+07:00",
+                      "zone": "Asia/Ho_Chi_Minh",
+                      "workflow_tz": null,
+                      "sample_hash_input": "https://cafef.vn/a.chn?utm_source=x"
+                    },
+                    "pairedItem": {
+                      "item": 0
+                    }
+                  }
+                ]
+              ]
+            }
+          }
+        ],
+        "Thu tai RSS CafeF": [
+          {
+            "startTime": 1792644001635,
+            "executionIndex": 2,
+            "source": [
+              {
+                "previousNode": "Kiem tra mui gio",
+                "previousNodeOutput": 0,
+                "previousNodeRun": 0
+              }
+            ],
+            "hints": [],
+            "executionTime": 30,
+            "executionStatus": "success",
+            "data": {
+              "main": [
+                [
+                  {
+                    "json": {
+                      "error": {
+                        "message": "getaddrinfo ENOTFOUND cafef.vn",
+                        "name": "Error",
+                        "stack": "Error: getaddrinfo ENOTFOUND cafef.vn\n    at AxiosError.from (/usr/local/lib/node_modules/n8n/node_modules/.pnpm/axios@1.20.0_debug@4.4.3_supports-color@8.1.1__supports-color@8.1.1/node_modules/axios/dist/node/axios.cjs:1577:24)\n    at RedirectableRequest.handleRequestError (/usr/local/lib/node_modules/n8n/node_modules/.pnpm/axios@1.20.0_debug@4.4.3_supports-color@8.1.1__supports-color@8.1.1/node_modules/axios/dist/node/axios.cjs:4792:25)\n    at RedirectableRequest.emit (node:events:526:24)\n    at ClientRequest.eventHandlers.<computed> (/usr/local/lib/node_modules/n8n/node_modules/.pnpm/follow-redirects@1.16.0_debug@4.4.3_supports-color@8.1.1_/node_modules/follow-redirects/index.js:56:24)\n    at ClientRequest.emit (node:events:514:20)\n    at emitErrorEvent (node:_http_client:114:11)\n    at TLSSocket.socketErrorListener (node:_http_client:776:5)\n    at TLSSocket.emit (node:events:526:24)\n    at emitErrorNT (node:internal/streams/destroy:170:8)\n    at emitErrorCloseNT (node:internal/streams/destroy:129:3)\n    at Axios.request (/usr/local/lib/node_modules/n8n/node_modules/.pnpm/axios@1.20.0_debug@4.4.3_supports-color@8.1.1__supports-color@8.1.1/node_modules/axios/dist/node/axios.cjs:6308:43)\n    at processTicksAndRejections (node:internal/process/task_queues:104:5)\n    at requestWithResponseLimit (/usr/local/lib/node_modules/n8n/node_modules/.pnpm/@n8n+backend-network@file++++home+runner+_work+n8n+n8n+packages+@n8n+backend-network/node_modules/@n8n/backend-network/src/http/axios/invoke.ts:38:10)\n    at invokeAxios (/usr/local/lib/node_modules/n8n/node_modules/.pnpm/@n8n+backend-network@file++++home+runner+_work+n8n+n8n+packages+@n8n+backend-network/node_modules/@n8n/backend-network/src/http/axios/invoke.ts:16:10)\n    at executeLegacyRequest (/usr/local/lib/node_modules/n8n/node_modules/.pnpm/@n8n+backend-network@file++++home+runner+_work+n8n+n8n+packages+@n8n+backend-network/node_modules/@n8n/backend-network/src/http/legacy-request.ts:84:6)\n    at Object.requestLegacy (/usr/local/lib/node_modules/n8n/node_modules/.pnpm/@n8n+backend-network@file++++home+runner+_work+n8n+n8n+packages+@n8n+backend-network/node_modules/@n8n/backend-network/src/http/outbound-http.ts:228:13)\n    at proxyRequestToAxios (/usr/local/lib/node_modules/n8n/node_modules/.pnpm/n8n-core@file++++home+runner+_work+n8n+n8n+packages+core/node_modules/n8n-core/src/execution-engine/node-execution-context/utils/request-helpers/legacy-request-adapter.ts:28:9)\n    at Object.request (/usr/local/lib/node_modules/n8n/node_modules/.pnpm/n8n-core@file++++home+runner+_work+n8n+n8n+packages+core/node_modules/n8n-core/src/execution-engine/node-execution-context/utils/request-helpers/factory.ts:167:11)",
+                        "code": "ENOTFOUND"
+                      }
+                    },
+                    "pairedItem": {
+                      "item": 0
+                    }
+                  }
+                ]
+              ]
+            }
+          }
+        ]
+      },
+      "lastNodeExecuted": "Thu tai RSS CafeF"
+    },
+    "executionData": {
+      "contextData": {},
+      "nodeExecutionStack": [],
+      "metadata": {},
+      "waitingExecution": {},
+      "waitingExecutionSource": {},
+      "runtimeData": {
+        "version": 1,
+        "establishedAt": 1792644000648,
+        "source": "cli",
+        "triggerNode": {
+          "name": "Manual Trigger",
+          "type": "n8n-nodes-base.manualTrigger"
+        }
+      }
+    },
+    "resumeToken": "<redacted>"
+  },
+  "mode": "cli",
+  "startedAt": "2026-10-22T04:40:00.644Z",
+  "stoppedAt": "2026-10-22T04:40:01.665Z",
+  "storedAt": "db",
+  "status": "success",
+  "finished": true
+}
+
+# 2026-10-22T04:41:37Z check settings survived import
+$ docker exec n8n-p0 n8n export:workflow --id=p0smoke000000001
+Successfully exported 1 workflow.
+{"active":false,"settings":{"timezone":"Asia/Ho_Chi_Minh","executionOrder":"v1"}}
