@@ -1,0 +1,33 @@
+{
+  "_note": "Danh sách nguồn ứng viên. 'listed' = có tên trong trang RSS chính thức của nhà xuất bản (xem 'listed_on', tra ngày 2026-10-22). 'fetched' = đã tải thử XML thật: tất cả đều false vì môi trường chuẩn bị bị chặn mạng ra ngoài. Giai đoạn 1 phải tải thử từng URL và cập nhật các trường này kèm bằng chứng.",
+  "checked_on": "2026-10-22",
+  "sources": [
+    { "id": "cafef-chungkhoan", "name": "CafeF - Thị trường chứng khoán", "type": "press", "tier": 1, "url": "https://cafef.vn/thi-truong-chung-khoan.rss", "listed_on": "https://cafef.vn/rss.chn", "listed": true, "fetched": false },
+    { "id": "cafef-doanhnghiep", "name": "CafeF - Doanh nghiệp", "type": "press", "tier": 1, "url": "https://cafef.vn/doanh-nghiep.rss", "listed_on": "https://cafef.vn/rss.chn", "listed": true, "fetched": false },
+    { "id": "cafef-taichinh-nganhang", "name": "CafeF - Tài chính ngân hàng", "type": "press", "tier": 2, "url": "https://cafef.vn/tai-chinh-ngan-hang.rss", "listed_on": "https://cafef.vn/rss.chn", "listed": true, "fetched": false },
+    { "id": "cafef-vimo", "name": "CafeF - Vĩ mô đầu tư", "type": "press", "tier": 2, "url": "https://cafef.vn/vi-mo-dau-tu.rss", "listed_on": "https://cafef.vn/rss.chn", "listed": true, "fetched": false },
+    { "id": "vietstock-cophieu", "name": "Vietstock - Cổ phiếu", "type": "press", "tier": 1, "url": "https://vietstock.vn/830/chung-khoan/co-phieu.rss", "listed_on": "https://vietstock.vn/rss", "listed": true, "fetched": false },
+    { "id": "vietstock-giaodichnoibo", "name": "Vietstock - Giao dịch nội bộ", "type": "press", "tier": 1, "url": "https://vietstock.vn/739/chung-khoan/giao-dich-noi-bo.rss", "listed_on": "https://vietstock.vn/rss", "listed": true, "fetched": false },
+    { "id": "vietstock-niemyet", "name": "Vietstock - Niêm yết", "type": "press", "tier": 1, "url": "https://vietstock.vn/741/chung-khoan/niem-yet.rss", "listed_on": "https://vietstock.vn/rss", "listed": true, "fetched": false },
+    { "id": "vietstock-hoatdongkinhdoanh", "name": "Vietstock - Hoạt động kinh doanh", "type": "press", "tier": 1, "url": "https://vietstock.vn/737/doanh-nghiep/hoat-dong-kinh-doanh.rss", "listed_on": "https://vietstock.vn/rss", "listed": true, "fetched": false },
+    { "id": "vietstock-cotuc", "name": "Vietstock - Cổ tức", "type": "press", "tier": 1, "url": "https://vietstock.vn/738/doanh-nghiep/co-tuc.rss", "listed_on": "https://vietstock.vn/rss", "listed": true, "fetched": false },
+    { "id": "vietstock-tangvon-ma", "name": "Vietstock - Tăng vốn, M&A", "type": "press", "tier": 1, "url": "https://vietstock.vn/764/doanh-nghiep/tang-von-m-a.rss", "listed_on": "https://vietstock.vn/rss", "listed": true, "fetched": false },
+    { "id": "vietstock-chinhsach", "name": "Vietstock - Chính sách", "type": "press", "tier": 2, "url": "https://vietstock.vn/143/chung-khoan/chinh-sach.rss", "listed_on": "https://vietstock.vn/rss", "listed": true, "fetched": false },
+    { "id": "vietstock-vimo", "name": "Vietstock - Vĩ mô", "type": "press", "tier": 2, "url": "https://vietstock.vn/761/kinh-te/vi-mo.rss", "listed_on": "https://vietstock.vn/rss", "listed": true, "fetched": false },
+    { "id": "vietstock-nganhang", "name": "Vietstock - Ngân hàng", "type": "press", "tier": 2, "url": "https://vietstock.vn/757/tai-chinh/ngan-hang.rss", "listed_on": "https://vietstock.vn/rss", "listed": true, "fetched": false },
+    { "id": "vietstock-nhandinh", "name": "Vietstock - Nhận định thị trường", "type": "opinion", "tier": 3, "url": "https://vietstock.vn/1636/nhan-dinh-phan-tich/nhan-dinh-thi-truong.rss", "listed_on": "https://vietstock.vn/rss", "listed": true, "fetched": false },
+    { "id": "vietstock-en-stocks", "name": "Vietstock (EN) - Vietnam stocks", "type": "press", "tier": 2, "url": "https://en.vietstock.vn/52015/vietnam-stocks.rss", "listed_on": "https://en.vietstock.vn/rss", "listed": true, "fetched": false },
+    { "id": "vietstock-en-earnings", "name": "Vietstock (EN) - Earnings and outlook", "type": "press", "tier": 2, "url": "https://en.vietstock.vn/962/earnings-and-outlook.rss", "listed_on": "https://en.vietstock.vn/rss", "listed": true, "fetched": false }
+  ],
+  "official_candidates_unverified": [
+    { "id": "hose", "name": "Sở Giao dịch Chứng khoán TP.HCM (HOSE)", "status": "CHƯA XÁC MINH: chưa biết có RSS công khai hay không. Giai đoạn 1 phải tìm nguồn công bố thông tin chính thức, ghi bằng chứng; nếu không có RSS thì đề xuất phương án (trang công bố thông tin, API được phép) và xin ý kiến Rick." },
+    { "id": "hnx", "name": "Sở Giao dịch Chứng khoán Hà Nội (HNX)", "status": "CHƯA XÁC MINH: như trên." },
+    { "id": "ssc", "name": "Ủy ban Chứng khoán Nhà nước (UBCKNN/SSC)", "status": "CHƯA XÁC MINH: như trên." },
+    { "id": "intl", "name": "Tin quốc tế (ví dụ Google News RSS theo từ khóa)", "status": "CHƯA XÁC MINH: kiểm tra điều khoản sử dụng, độ ổn định và chất lượng trước khi đưa vào." }
+  ],
+  "tier_meaning": {
+    "1": "Quét mỗi chu kỳ ngày giao dịch (tin doanh nghiệp, công bố, giao dịch nội bộ).",
+    "2": "Quét mỗi chu kỳ nhưng chỉ giữ tin khớp watchlist hoặc chủ đề vĩ mô.",
+    "3": "Ý kiến/nhận định: chỉ vào bản tin tổng hợp cuối ngày, gắn nhãn 'ý kiến'."
+  }
+}
