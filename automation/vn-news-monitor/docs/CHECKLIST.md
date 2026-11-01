@@ -21,13 +21,13 @@
 - [x] ĐÃ KIỂM CHỨNG Liên kết chuẩn hóa (bỏ `utm_*`) và id ổn định giữa các lần chạy → `evidence/p3-collector/expected-vs-actual.md` (cùng tập `item_id`; lần 2 ra 0 tin mới)
 
 ## C. AI
-- [ ] Bộ mẫu ≥ 40 tiêu đề có nhãn; Rick duyệt ≥ 20 dòng (hoặc ghi `CHƯA DUYỆT`)
-- [ ] Báo cáo: khớp `event_type`, precision/recall mức 4–5, tỉ lệ `needs_human_check`
-- [ ] 100% đầu ra qua kiểm tra lược đồ; trường hợp sai có xử lý thử lại và dự phòng
-- [ ] 5 mẫu chèn lệnh không làm đổi kết quả sai
-- [ ] Không có công cụ nào cấp cho mô hình ở bước phân loại
-- [ ] Chi phí thực tế mỗi tin đã đo; so với mô hình chi phí, có giải trình chênh lệch
-- [ ] Đơn giá có ngày tra và URL; trần `MAX_AI_ITEMS_PER_DAY` hoạt động (thử vượt trần)
+- [~] Bộ mẫu ≥ 40 tiêu đề có nhãn (56 thật + 6 chèn lệnh) → `fixtures/eval/labeled.jsonl`; Rick **CHƯA DUYỆT** (DECISIONS #17)
+- [x] ĐÃ KIỂM CHỨNG Báo cáo: khớp `event_type`, precision/recall mức 4–5, tỉ lệ `needs_human_check` → `evidence/p4-ai/eval-report.md`
+- [x] ĐÃ KIỂM CHỨNG 100% đầu ra qua kiểm tra lược đồ; sai thì node tự sửa một lần, vẫn sai thì `fallback` từng tin → `evidence/p4-ai/eval-report.md` mục 4, `test-kiem-tra.log`
+- [x] ĐÃ KIỂM CHỨNG 6 mẫu chèn lệnh không làm đổi kết quả sai (6/6 lần chạy) → `evidence/p4-ai/injection-test.md`
+- [x] ĐÃ KIỂM CHỨNG Không có công cụ nào cấp cho mô hình ở bước phân loại → `workflows/news-collector.json` (node `Phan loai AI` chỉ nối `ai_languageModel`)
+- [x] ĐÃ KIỂM CHỨNG Chi phí thực tế mỗi tin đã đo (~0,00016 USD), cao hơn mô hình 6–8%, có giải trình → `evidence/p4-ai/cost-actual.md`
+- [x] ĐÃ KIỂM CHỨNG Đơn giá có ngày tra và URL; trần `MAX_AI_ITEMS_PER_DAY` hoạt động khi vượt trần → `evidence/p4-ai/cost-actual.md`, `execution-collector-live2.log`
 
 ## D. Bản tin và gửi
 - [ ] Mẫu bản tin có đủ nhóm: chính thức / báo chí xác nhận / ý kiến / tin đồn, mỗi dòng có nguồn, URL, giờ đăng

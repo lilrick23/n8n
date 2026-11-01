@@ -80,10 +80,10 @@ def main():
     for model in ("claude-haiku-5-5", "claude-sonnet-5-5", "claude-opus-5-5"):
         t_in, t_out, cost = digest_cost_per_day(model)
         print(f"| `{model}` | {t_in:,} | {t_out:,} | {usd(cost)} | {usd(cost * TRADING_DAYS_PER_MONTH)} |")
-    print("\n### 4. Tong theo cau hinh mac dinh (phan loai Haiku 5.5 gom 10 + ban tin Sonnet 5.5)\n")
+    print("\n### 4. Tong theo cau hinh mac dinh (phan loai Haiku 5.5 gom 10 + ban tin Haiku 5.5, Rick chot 2026-11-01)\n")
     print("| Kich ban | USD/ngay | USD/thang (22 ngay) |")
     print("|---|---|---|")
-    digest = digest_cost_per_day("claude-sonnet-5-5")[2]
+    digest = digest_cost_per_day("claude-haiku-5-5")[2]
     for name, items in SCENARIOS.items():
         total = classify_cost_per_day("claude-haiku-5-5", items, 10)[3] + digest
         print(f"| {name} | {usd(total)} | {usd(total * TRADING_DAYS_PER_MONTH)} |")

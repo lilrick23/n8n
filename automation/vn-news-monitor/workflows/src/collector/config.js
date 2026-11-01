@@ -21,6 +21,8 @@ return [{
     watchlist: WATCHLIST,
     MAX_ITEMS_PER_RUN: 300,
     MAX_AI_ITEMS_PER_DAY: 200,
+    // Phan han muc AI toi da cho tin chi vi nguon tier 1 (khong khop watchlist/vi mo).
+    TIER1_ONLY_AI_SHARE: 0.5,
     ALERT_MIN_IMPORTANCE: 4,
     AI_BATCH_SIZE: 10,
     SNIPPET_MAX_CHARS: 500,

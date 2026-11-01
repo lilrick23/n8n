@@ -1,5 +1,5 @@
 // Dua item ve dung cac cot cua bang news_items (Data Table tu choi cot la).
-// Giai doan 3 chua co AI: tin khop watchlist/vi mo hoac nguon tier 1 duoc danh dau cho AI.
+// Tin khop watchlist/vi mo hoac nguon tier 1 duoc danh dau pending_ai; nhanh AI phan loai tiep.
 const runId = String($execution.id);
 return $input.all().map(({ json: j }) => {
   const forAi = !j.excluded && (j.tickers !== '' || j.topics !== '' || j.source_tier === 1);

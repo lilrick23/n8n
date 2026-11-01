@@ -11,7 +11,8 @@ Ngày soạn: 2026-10-22. Đây là trang đọc đầu tiên. Không cần bi�
 | `docs/DECISIONS.md` | Các điểm bạn cần chọn, đã có mặc định, và danh sách giả định chưa xác minh. |
 | `docs/DESIGN.md` | Bản thiết kế (giai đoạn 2): sơ đồ, bảng dữ liệu, cách loại trùng, prompt AI, mẫu tin nhắn, xử lý lỗi, điểm bạn cần chọn (mục 9). |
 | `docs/CHECKLIST.md` | Checklist nghiệm thu để bạn kiểm tra kết quả; kèm kịch bản thử 3 ngày. |
-| `workflows/*.json` | Các workflow để import vào n8n. Bắt đầu bằng `news-setup.json` (tạo bảng), rồi `news-collector.json`. Hướng dẫn: `evidence/p3-collector/INDEX.md`. |
+| `workflows/*.json` | Các workflow để import vào n8n. Bắt đầu bằng `news-setup.json` (tạo bảng), rồi `news-collector.json` (thu thập + phân loại AI). `news-ai-eval.json` chạy bộ mẫu đánh giá AI. Hướng dẫn: `evidence/p3-collector/INDEX.md`, `evidence/p4-ai/INDEX.md`. |
+| `docs/AI-PROMPT.md` | Prompt AI phân loại tin (tiếng Việt), lược đồ và quy tắc kiểm tra sau AI. |
 | `config/sources.json` | 16 feed tin (CafeF, Vietstock) và 4 nguồn chính thức/quốc tế còn chờ xác minh. |
 | `config/watchlist.example.json` | Mẫu danh sách mã và chủ đề theo dõi (mã chỉ là ví dụ). |
 
@@ -44,7 +45,7 @@ Ngày soạn: 2026-10-22. Đây là trang đọc đầu tiên. Không cần bi�
 ## 5. Điều cần biết trước khi kỳ vọng
 
 - Các URL RSS đã được tải thử ngày 2026-10-22 (giai đoạn 1): 16/16 feed trả XML hợp lệ; 15 bật, 1 bỏ. Xem `evidence/p1-nguon/source-audit.md`.
-- Chi phí AI ước tính 1,2–1,7 USD/tháng (đơn giá tra ngày 2026-10-22). Xem `evidence/p2-thiet-ke/cost-model.md`.
+- Chi phí AI đo thật (2026-11-01, chỉ dùng Haiku 5.5 theo yêu cầu của anh): ~0,00016 USD mỗi tin, tối đa ~0,75 USD/tháng khi chạm trần 200 tin/ngày. Xem `evidence/p4-ai/cost-actual.md`.
 - HOSE, HNX, UBCKNN không có RSS/API công khai. Công bố chính thức sẽ lấy qua SSI MCP (cần bạn xác nhận quyền dùng và cách cấp quyền cho n8n); nếu chưa có, bản đầu dựa vào báo chí và bạn tự đối chiếu trang chính thức. Hệ thống không viết trình thu thập lách điều khoản.
 - Nếu phiên Claude Code cũng bị chặn mạng, các bước kiểm thử với nguồn thật và API AI sẽ mang nhãn `CHƯA KIỂM CHỨNG TRỰC TIẾP` và đi kèm hướng dẫn 5 bước để bạn tự thử. Nhãn này là trung thực, không phải lỗi.
 - Bản tin là công cụ nghiên cứu nội bộ. Nó không đảm bảo bắt hết tin và không đưa khuyến nghị đầu tư.

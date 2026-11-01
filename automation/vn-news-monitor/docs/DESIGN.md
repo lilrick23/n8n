@@ -86,7 +86,7 @@ flowchart TD
     SSI --> SSIF[Loc theo watchlist<br/>chuan hoa, loai trung]
     READ --> MERGE[Gop va nhom<br/>theo loai tin, theo ma]
     SSIF --> MERGE
-    MERGE --> SUM[AI tom tat ngan<br/>Sonnet 5.5, chi doc summary_vi]
+    MERGE --> SUM[AI tom tat ngan<br/>Haiku 5.5, chi doc summary_vi]
     SUM --> FMT[Dinh dang HTML<br/>tach 4096 ky tu]
     FMT --> SEND[Telegram]
     SEND --> LOGD[Ghi digest_log]
@@ -95,7 +95,7 @@ flowchart TD
 | Node chính | `type` | Ghi chú |
 |---|---|---|
 | `SSI cong bo` | `@n8n/n8n-nodes-langchain.mcpClient` (1.1) | Gọi công cụ `marketdata_list_company_news` với `newsType = "Announcement"`, `orderBy = "PublicDate"`, `order = "DESC"`, `pageSize = 100` (tham số ĐÃ KIỂM CHỨNG khi gọi từ connector của phiên Claude, `providers/ssi-mcp-sample.json`). Endpoint và cách cấp quyền cho n8n: **CẦN RICK** (mục 9). Khi chưa có quyền: tắt node, bản tin ghi "Chưa kết nối nguồn công bố chính thức" |
-| `Tom tat` | `chainLlm` hoặc Information Extractor + `lmChatAnthropic` | `claude-sonnet-5-5`; Rick đổi sang Haiku 5.5 để giảm ~1 USD/tháng |
+| `Tom tat` | `chainLlm` hoặc Information Extractor + `lmChatAnthropic` | `claude-haiku-5-5` (Rick chốt 2026-11-01: chỉ dùng mô hình rẻ nhất; bản thiết kế cũ dùng Sonnet 5.5, đắt hơn ~1 USD/tháng) |
 | `Gui ban tin` | `telegram` (1.2) | Một item cho mỗi phần đã tách |
 
 **Vì sao SSI chỉ ở bản tin.** Lần đo duy nhất (15:20 ICT ngày 22/10) cho thấy tin mới nhất trễ ít nhất ~21 giờ. Dùng cho cảnh báo tức thời là sai mục đích. Bản tin 08:15 sẽ thu công bố của buổi chiều/tối hôm trước. Đo lại độ trễ qua 5 ngày ở giai đoạn 6.
@@ -240,6 +240,8 @@ Kiểm thử ở giai đoạn 3: một tệp `fixtures/match-cases.jsonl` gồm 
 
 ## 5. AI phân loại
 
+> **Cập nhật giai đoạn 4 (2026-11-01):** bản chính thức của prompt, lược đồ và quy tắc kiểm tra là [`docs/AI-PROMPT.md`](AI-PROMPT.md) (prompt v2). Mục 5.1 và 5.3 dưới đây là bản thiết kế v1, giữ lại để so sánh. Khác biệt chính: thêm định nghĩa loại sự kiện vào prompt; lược đồ trong node chỉ ép kiểu, danh sách giá trị được kiểm từng tin ở `Kiem tra luoc do`; mô hình duy nhất là Haiku 5.5.
+
 ### 5.1 System prompt (nguyên văn, đưa vào `options.systemPromptTemplate`)
 
 Bản này sẽ được chép sang `docs/AI-PROMPT.md` và đánh giá ở giai đoạn 4.
@@ -342,7 +344,9 @@ Chi tiết, công thức và bảng tính chạy lại được: [`evidence/p2-t
 | Vừa | 80 | 1,33 |
 | Cao (bằng trần) | 200 | 1,73 |
 
-Số tin mỗi ngày và token mỗi tin là GIẢ ĐỊNH; giai đoạn 4 đo thật. Ngân sách thử nghiệm 5 USD (DECISIONS #8) đủ chạy bộ mẫu 40–50 tin hàng chục lần.
+Số tin mỗi ngày và token mỗi tin là GIẢ ĐỊNH ở giai đoạn 2.
+
+**Cập nhật giai đoạn 4 (2026-11-01):** Rick chọn chỉ dùng Haiku 5.5 cho cả phân loại và bản tin. Chi phí phân loại đo thật ~0,00016 USD/tin (cao hơn giả định 6–8%). Ở trần 200 tin/ngày: ~0,69 USD/tháng cho phân loại, ~0,05 USD/tháng cho bản tin (ước tính), tổng ≤ ~0,75 USD/tháng. Chi tiết: [`evidence/p4-ai/cost-actual.md`](../evidence/p4-ai/cost-actual.md).
 
 ---
 
@@ -432,10 +436,10 @@ Mọi thông điệp lỗi gửi đi phải qua bước loại bí mật (bỏ c
 | # | Câu hỏi | Mặc định | Khi nào cần | Ảnh hưởng nếu chưa có |
 |---|---|---|---|---|
 | A | Danh sách mã thật (mã, alias, ưu tiên A/B, mã nào dễ nhầm) | Watchlist ví dụ 4 mã | Giai đoạn 4 (bộ mẫu đánh giá) | Số tin vào AI và chi phí chỉ là ước tính |
-| B | Khóa API Anthropic (tài khoản API riêng, không phải gói Claude chat) | Chưa có | Giai đoạn 4 | Mọi số đo AI ở `CHƯA KIỂM CHỨNG TRỰC TIẾP` |
+| B | Khóa API Anthropic (tài khoản API riêng, không phải gói Claude chat) | **Đã có** (2026-11-01, biến `N8N_ANTHROPIC_API_KEY`) | Giai đoạn 4 | — |
 | C | Bot Telegram và chat thử nghiệm | Chưa có | Giai đoạn 5 | Bản tin chỉ xuất ra file mẫu |
 | D | SSI MCP cho n8n: endpoint, cách cấp quyền cho máy (không phải tài khoản Claude), và hợp đồng thuê bao có cho dùng trong công cụ nội bộ không | Tắt node SSI | Giai đoạn 5 | Mục "Công bố chính thức" trống; Rick tự xem HOSE/HNX |
-| E | Mô hình cho bản tin: Sonnet 5.5 (~1,07 USD/tháng) hay Haiku 5.5 (~0,05 USD/tháng) | Sonnet 5.5 | Giai đoạn 5 | Không |
+| E | Mô hình cho bản tin: Sonnet 5.5 (~1,07 USD/tháng) hay Haiku 5.5 (~0,05 USD/tháng) | **Đã chốt: Haiku 5.5** (Rick, 2026-11-01: chỉ dùng mô hình rẻ nhất) | Giai đoạn 5 | Không |
 | F | Lịch quét tối và cuối tuần, cảnh báo ngoài giờ chỉ mức 5 | Bật như mục 1.3 | Giai đoạn 3 | Không |
 | G | Nơi chạy n8n thật (n8n Cloud, VPS, máy cá nhân) | Chưa chọn | Giai đoạn 7 | Không chạy theo lịch được |
 | H | Quy định nội bộ Vietcap về Telegram, AI bên ngoài, máy chủ ngoài công ty | Chưa xác nhận | Trước khi chạy thật | Không được chạy thật |

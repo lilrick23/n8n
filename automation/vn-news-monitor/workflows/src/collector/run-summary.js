@@ -8,6 +8,20 @@ const all = (name) => {
     return [];
   }
 };
+// 'Luu tin' chay mot lan cho nhanh AI va mot lan cho nhanh khong AI: gom moi lan chay.
+const allRuns = (name) => {
+  const items = [];
+  for (let run = 0; run < 5; run += 1) {
+    try {
+      const got = $(name).all(0, run);
+      if (!got.length && run > 0) break;
+      items.push(...got);
+    } catch (e) {
+      break;
+    }
+  }
+  return items;
+};
 const xmlItems = all('XML sang JSON');
 const fetched = xmlItems.reduce((n, i) => {
   const it = i.json?.rss?.channel?.item;
@@ -16,7 +30,8 @@ const fetched = xmlItems.reduce((n, i) => {
 const fetchErrors = all('Loi tai feed').map((i) => i.json.source_id);
 const xmlErrors = xmlItems.filter((i) => i.json.error).length;
 const matched = all('Khop watchlist').filter((i) => i.json.tickers || i.json.topics).length;
-const saved = all('Luu tin');
+const saved = allRuns('Luu tin');
+const checked = all('Kiem tra luoc do');
 const TZ = 'Asia/Ho_Chi_Minh';
 
 return [{
@@ -35,9 +50,9 @@ return [{
     items_new: all('Da co trong news_items?').length,
     items_matched: matched,
     items_saved: saved.length,
-    items_to_ai: saved.filter((i) => i.json.classified_by === 'pending_ai').length,
-    ai_calls: 0,
-    ai_failures: 0,
+    items_to_ai: checked.length,
+    ai_calls: all('Phan loai AI').filter((i) => !i.json.error).length,
+    ai_failures: checked.filter((i) => ['fallback', 'keyword_only'].includes(i.json.classified_by)).length,
     alerts_sent: 0,
     dry_run: cfg.DRY_RUN,
     error: '',

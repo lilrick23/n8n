@@ -70,11 +70,11 @@ function checkWorkflow(file, wf) {
     }
   }
 
-  // Role comes from the file name: *error-handler* needs an Error Trigger, *setup* runs by hand,
-  // every other workflow runs on a schedule and must name an error workflow.
+  // Role comes from the file name: *error-handler* needs an Error Trigger, *setup* and *eval* run by
+  // hand, every other workflow runs on a schedule and must name an error workflow.
   const types = wf.nodes.map((n) => n.type);
   const isErrorWf = file.includes('error-handler');
-  const isSetup = file.includes('setup');
+  const isSetup = file.includes('setup') || file.includes('-eval');
   if (!types.some((t) => TRIGGER_TYPES.has(t))) fail(file, 'no Schedule, Manual or Error Trigger');
   if (isErrorWf && !types.includes('n8n-nodes-base.errorTrigger')) fail(file, 'error workflow without Error Trigger');
   if (!isErrorWf && !isSetup && !types.includes('n8n-nodes-base.scheduleTrigger')) {

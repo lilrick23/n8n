@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Build the n8n workflow JSON files from workflows/src/ and config/ (phase 3).
+"""Build the n8n workflow JSON files from workflows/src/ and config/ (phases 3-4).
 
 Usage:
   python3 -I scripts/build_workflows.py                 # writes workflows/*.json
@@ -18,6 +18,7 @@ ROOT = pathlib.Path(__file__).resolve().parent.parent
 SRC = ROOT / "workflows" / "src" / "collector"
 
 IDS = {
+    "eval": "vnNewsAiEval0001",
     "setup": "vnNewsSetup00001",
     "collector": "vnNewsCollector1",
     "error": "vnNewsErrorHdl01",
@@ -104,13 +105,40 @@ def load_sources():
         if not s.get("enabled"):
             continue
         out.append({"id": s["id"], "name": s["name"], "tier": s["tier"], "url": s["url"],
-                    "lang": "en" if "-en-" in s["id"] else "vi"})
+                    "type": s.get("type", "press"), "lang": "en" if "-en-" in s["id"] else "vi"})
     return out
 
 
 def load_watchlist():
     wl = json.loads((ROOT / "config" / "watchlist.example.json").read_text(encoding="utf-8"))
     return {k: wl[k] for k in ("tickers", "macro_topics", "exclude_keywords")}
+
+
+# Rick only uses the cheapest model (DECISIONS #11). Change it here, not in the node.
+AI_MODEL = "claude-haiku-5-5"
+ANTHROPIC_CREDENTIAL = {"id": "vnNewsAnthropic1", "name": "Anthropic (vn-news)"}
+
+
+def ai_nodes(x, y):
+    """Return the AI classifier root node and its chat model sub-node."""
+    schema = (SRC / "ai-schema.json").read_text(encoding="utf-8")
+    prompt = (SRC / "ai-system-prompt.txt").read_text(encoding="utf-8")
+    extractor = node("Phan loai AI", "@n8n/n8n-nodes-langchain.informationExtractor", 1.2, x, y, {
+        "text": "={{ $json.text }}",
+        "schemaType": "manual",
+        "inputSchema": schema,
+        "options": {"systemPromptTemplate": prompt, "batching": {"batchSize": 2, "delayBetweenBatches": 0}},
+    }, retryOnFail=True, maxTries=2, waitBetweenTries=5000, onError="continueRegularOutput")
+    model = node("Mo hinh Haiku", "@n8n/n8n-nodes-langchain.lmChatAnthropic", 1.6, x, y + 200, {
+        "model": {"__rl": True, "mode": "id", "value": AI_MODEL},
+        "options": {"maxTokensToSample": 3000, "thinkingMode": "disabled"},
+    }, credentials={"anthropicApi": dict(ANTHROPIC_CREDENTIAL)})
+    return extractor, model
+
+
+def ai_model_connection(conns):
+    conns["Mo hinh Haiku"] = {"ai_languageModel": [[{"node": "Phan loai AI", "type": "ai_languageModel", "index": 0}]]}
+    return conns
 
 
 def setup_workflow():
@@ -186,7 +214,32 @@ def collector_workflow(feed_override=""):
             "filters": {"conditions": [{"keyName": "item_id", "keyValue": "={{ $json.item_id }}"}]}}),
         code("Khop watchlist", 2400, 120, js("match-watchlist.js")),
         code("Dinh dang dong", 2640, 120, js("shape-row.js")),
-        node("Luu tin", "n8n-nodes-base.dataTable", 1.1, 2880, 120, {
+        node("Doc ai_usage", "n8n-nodes-base.dataTable", 1.1, 2880, 120, {
+            "resource": "row", "operation": "get", "dataTableId": table("ai_usage"),
+            "matchType": "anyCondition",
+            "filters": {"conditions": [{"keyName": "date",
+                                        "keyValue": "={{ $now.setZone('Asia/Ho_Chi_Minh').toFormat('yyyy-MM-dd') }}"}]},
+            "returnAll": True}, executeOnce=True, alwaysOutputData=True),
+        code("Chon tin cho AI", 3120, 120, js("ai-select.js")),
+        node("Vao AI?", "n8n-nodes-base.if", 2.2, 3360, 120, {
+            "conditions": {"options": {"caseSensitive": True, "leftValue": "", "typeValidation": "strict", "version": 2},
+                           "conditions": [{"id": "6f1d2c3b-0a4e-4b5f-8c6d-7e8f9a0b1c2d",
+                                           "leftValue": "={{ $json.classified_by }}", "rightValue": "pending_ai",
+                                           "operator": {"type": "string", "operation": "equals"}}],
+                           "combinator": "and"},
+            "options": {}}),
+        code("Gom lo", 3600, 0, js("gom-lo.js")),
+        *ai_nodes(3840, 0),
+        code("Kiem tra luoc do", 4080, 0, js("kiem-tra.js")),
+        code("Tinh ai_usage", 4320, -160, js("ai-usage.js")),
+        node("Ghi ai_usage", "n8n-nodes-base.dataTable", 1.1, 4560, -160, {
+            "resource": "row", "operation": "upsert", "dataTableId": table("ai_usage"),
+            "matchType": "allConditions",
+            "filters": {"conditions": [{"keyName": "date", "keyValue": "={{ $json.date }}"}]},
+            "columns": {"mappingMode": "autoMapInputData", "value": {}, "matchingColumns": [],
+                        "schema": [], "attemptToConvertTypes": False, "convertFieldsToString": False},
+            "options": {}}),
+        node("Luu tin", "n8n-nodes-base.dataTable", 1.1, 4560, 120, {
             "resource": "row", "operation": "insert", "dataTableId": table("news_items"),
             "columns": {"mappingMode": "autoMapInputData", "value": {}, "matchingColumns": [],
                         "schema": [], "attemptToConvertTypes": False, "convertFieldsToString": False},
@@ -198,7 +251,8 @@ def collector_workflow(feed_override=""):
                         "schema": [], "attemptToConvertTypes": False, "convertFieldsToString": False},
             "options": {}}),
         sticky("## news-collector\nThu thap tin RSS, chuan hoa, loai trung (bang news_items), khop watchlist, luu.\n"
-               "Sua cau hinh o node **Config**. Nhanh AI va canh bao them o giai doan 4-5.\n"
+               "Sua cau hinh o node **Config**. Nhanh AI: chi tin khop watchlist/vi mo/tier 1, toi da MAX_AI_ITEMS_PER_DAY tin/ngay, mo hinh Haiku 5.5.\n"
+               "Canh bao Telegram them o giai doan 5.\n"
                "Node **Tong ket** phai nam DUOI nhanh thu thap: n8n chay tung nhanh tu tren xuong.\n"
                "Thiet ke: docs/DESIGN.md", 0, -260, 900, 220),
     ]
@@ -212,14 +266,52 @@ def collector_workflow(feed_override=""):
         ("Chuan hoa", "Tao id", 0), ("Tao id", "Da co trong news_items?", 0),
         ("Da co trong news_items?", "Gioi han", 0), ("Gioi han", "Khop watchlist", 0),
         ("Khop watchlist", "Dinh dang dong", 0),
-        ("Dinh dang dong", "Luu tin", 0),
+        ("Dinh dang dong", "Doc ai_usage", 0), ("Doc ai_usage", "Chon tin cho AI", 0),
+        ("Chon tin cho AI", "Vao AI?", 0),
+        ("Vao AI?", "Gom lo", 0), ("Gom lo", "Phan loai AI", 0), ("Phan loai AI", "Kiem tra luoc do", 0),
+        ("Kiem tra luoc do", "Luu tin", 0), ("Kiem tra luoc do", "Tinh ai_usage", 0),
+        ("Tinh ai_usage", "Ghi ai_usage", 0),
+        ("Vao AI?", "Luu tin", 1),
         ("Tong ket", "Ghi run_log", 0),
     ]
     return {
         "id": IDS["collector"], "name": "VN news - collector", "active": False,
-        "nodes": nodes, "connections": connect(pairs),
+        "nodes": nodes, "connections": ai_model_connection(connect(pairs)),
         "settings": {**SETTINGS, "errorWorkflow": IDS["error"], "executionTimeout": 600},
         "pinData": {}, "tags": [],
+    }
+
+
+def eval_workflow():
+    """Manual workflow: run fixtures/eval/labeled.jsonl through the same AI nodes as the collector."""
+    rows = []
+    for line in (ROOT / "fixtures" / "eval" / "labeled.jsonl").read_text(encoding="utf-8").splitlines():
+        r = json.loads(line)
+        rows.append({
+            "item_id": uuid.uuid5(uuid.NAMESPACE_URL, r["url"] + r["eval_id"]).hex,
+            "eval_id": r["eval_id"], "source_id": r["source_id"], "source_type": r["source_type"],
+            "source_tier": r["source_tier"], "title": r["title"], "snippet": r["snippet"], "url": r["url"],
+            "tickers": r["tickers"], "topics": r["topics"],
+        })
+    load = ("// Bo mau danh gia, tao tu fixtures/eval/labeled.jsonl boi scripts/build_workflows.py.\n"
+            "// Nhan ky vong khong nam o day: scripts/eval_report.py so sanh sau khi chay.\n"
+            f"const ROWS = {json.dumps(rows, ensure_ascii=False, indent=1)};\n"
+            "return ROWS.map((json) => ({ json }));\n")
+    nodes = [
+        node("Chay tay", "n8n-nodes-base.manualTrigger", 1, 0, 200, {}),
+        code("Nap bo mau", 240, 200, load),
+        code("Gom lo", 480, 200, js("gom-lo.js")),
+        *ai_nodes(720, 200),
+        code("Kiem tra luoc do", 960, 200, js("kiem-tra.js")),
+        sticky("## Danh gia AI (giai doan 4)\nChay tay. Goi API Anthropic that (Haiku 5.5), ~0,01 USD moi lan.\n"
+               "Khong ghi vao Data Table. Ket qua doc bang scripts/eval_report.py.", 0, -100, 700, 200),
+    ]
+    pairs = [("Chay tay", "Nap bo mau", 0), ("Nap bo mau", "Gom lo", 0), ("Gom lo", "Phan loai AI", 0),
+             ("Phan loai AI", "Kiem tra luoc do", 0)]
+    return {
+        "id": IDS["eval"], "name": "VN news - AI eval", "active": False,
+        "nodes": nodes, "connections": ai_model_connection(connect(pairs)),
+        "settings": {**SETTINGS}, "pinData": {}, "tags": [],
     }
 
 
@@ -262,6 +354,7 @@ def main():
     if not args.test_feeds:
         docs["news-setup.json"] = setup_workflow()
         docs["news-error-handler.json"] = error_workflow()
+        docs["news-ai-eval.json"] = eval_workflow()
     else:
         docs["news-collector.json"]["id"] = "vnNewsCollTest01"
         docs["news-collector.json"]["name"] = "VN news - collector (fixture test)"

@@ -12,9 +12,9 @@ Cập nhật lần cuối: 2026-10-22 (bổ sung sau giai đoạn 3). Claude Cod
 | 4 | Chủ đề vĩ mô theo dõi | Danh sách ví dụ trong watchlist | Thường dùng trong công việc tư vấn | MẶC ĐỊNH, Rick chỉnh |
 | 5 | Nguồn tin | 15 feed báo chí bật (CafeF, Vietstock, gồm `vietstock-en-stocks` theo lựa chọn của Rick); `vietstock-en-earnings` bỏ; Google News bỏ; nguồn chính thức: dùng feed Vietstock làm tín hiệu, Rick đối chiếu HOSE/HNX | Đã tải thử cả 16 feed ngày 2026-10-22 (`evidence/p1-nguon/source-audit.md`) | MẶC ĐỊNH; Rick chọn bật tin tiếng Anh (2026-10-22). Kênh chính thức: SSI MCP (xem `source-audit.md` mục 6) |
 | 6 | Nơi chạy n8n | Thử bằng Docker/`npx` bản 2.45.x; chạy thật: chọn giữa n8n Cloud, máy chủ riêng (VPS), máy tính cá nhân | Lịch chỉ chạy khi máy bật liên tục; máy cá nhân ngủ là lỡ lịch | **CẦN RICK** chọn trước giai đoạn 7 |
-| 7 | Nhà cung cấp AI | Anthropic (Chat Model có sẵn trong n8n): `claude-haiku-5-5` cho phân loại, `claude-sonnet-5-5` cho bản tin (Rick đổi được sang Haiku 5.5) | Đã có node; chi phí thấp cho tác vụ phân loại | **CẦN RICK**: cần khóa API riêng; gói đăng ký chat không đương nhiên gồm API |
-| 8 | Ngân sách AI thử nghiệm | 5 USD cho toàn bộ giai đoạn 4 (GIẢ ĐỊNH) | Chạy thật ước tính 1,2–1,7 USD/tháng (`evidence/p2-thiet-ke/cost-model.md`); 5 USD đủ chạy bộ mẫu hàng chục lần | **CẦN RICK** xác nhận hoặc đổi |
-| 9 | Trần chi phí hằng ngày khi chạy thật | `MAX_AI_ITEMS_PER_DAY = 200` (GIẢ ĐỊNH) | Chặn chi phí chạy ngoài ý muốn | MẶC ĐỊNH, đo lại ở giai đoạn 4 |
+| 7 | Nhà cung cấp AI | Anthropic, **chỉ `claude-haiku-5-5`** cho cả phân loại và bản tin | Rick, 2026-11-01: "API của Anthropic phải được sử dụng với model thấp nhất" | **ĐÃ CHỐT** (Rick). Khóa API đã có và chạy được (2026-11-01) |
+| 8 | Ngân sách AI thử nghiệm | 5 USD cho toàn bộ giai đoạn 4 (GIẢ ĐỊNH) | Đã chi ~0,11 USD ở giai đoạn 4 (`evidence/p4-ai/cost-actual.md`); chạy thật ≤ ~0,75 USD/tháng ở trần | MẶC ĐỊNH; Rick nên đặt hạn mức chi tiêu tháng trên Anthropic Console |
+| 9 | Trần chi phí hằng ngày khi chạy thật | `MAX_AI_ITEMS_PER_DAY = 200`, tin chỉ vì nguồn tier 1 dùng tối đa 50% (`TIER1_ONLY_AI_SHARE`) | ~0,032 USD/ngày ở trần (đo thật). Lần thu thập đầu có 150/167 tin vào AI chỉ vì tier 1 | MẶC ĐỊNH; đã thử vượt trần (`evidence/p4-ai/INDEX.md` #9–10) |
 | 10 | Lịch chạy | Collector thứ 2–6 mỗi 30 phút 08:00–16:30, thêm 18:00 và 21:00; thứ 7, CN 09:00 và 20:00. Digest 08:15 và 15:30 thứ 2–6; heartbeat thứ 2 07:55. Ngoài giờ chỉ cảnh báo mức 5 (giờ Việt Nam) | Bám phiên giao dịch; quét cuối tuần vì feed nhanh nhất chỉ giữ ~20,5 giờ (`docs/DESIGN.md` mục 1.3) | GIẢ ĐỊNH; giờ giao dịch lấy từ nguồn thứ cấp, Rick đối chiếu quy chế HOSE/HNX |
 | 11 | Lưu trữ | Data Table của n8n; xuất Google Sheets là tùy chọn | Có sẵn trong n8n, không cần thêm tài khoản | MẶC ĐỊNH |
 | 12 | Thời gian giữ dữ liệu | 180 ngày | Đủ tra cứu theo quý | MẶC ĐỊNH |
@@ -22,6 +22,8 @@ Cập nhật lần cuối: 2026-10-22 (bổ sung sau giai đoạn 3). Claude Cod
 | 14 | Phiên bản n8n khi chạy thật | Thử bằng 2.45.0 cho khớp mã repo; chạy thật dùng bản `stable` mới nhất tại thời điểm cài | Ngày 2026-10-22, npm ghi 2.45.x là `beta`, `stable` là 2.44.5 (`evidence/p0-moi-truong/env-report.md`) | MẶC ĐỊNH; kiểm lại tham số node nếu chênh phiên bản |
 | 15 | Mạng của phiên Claude Code | Môi trường mới (2026-10-22 07:50 UTC) đã mở CafeF, Vietstock, Telegram, `www.hsx.vn`, UBCKNN, Google News; HNX vẫn lỗi | `evidence/p1-nguon/egress-retest.log` | MẶC ĐỊNH; HNX: **CẦN RICK** thêm `hnx.vn`, `www.hnx.vn` vào danh sách tên miền nếu muốn thử lại |
 | 16 | Repo công khai | Chỉ commit tài liệu, workflow, dữ liệu mẫu, bằng chứng đã loại bí mật; watchlist thật không commit | `lilrick23/n8n` là fork công khai: ai cũng đọc được | MẶC ĐỊNH; **CẦN RICK** cân nhắc chuyển sang repo riêng tư |
+| 17 | Nhãn bộ mẫu đánh giá AI | 62 dòng do Claude đề xuất, `CHƯA DUYỆT` | PROMPTS giai đoạn 4 yêu cầu Rick duyệt ≥ 20 dòng | **CẦN RICK** duyệt; số đo hiện tại dựa trên nhãn chưa duyệt |
+| 18 | Ngưỡng đạt của AI và cách xử lý recall mức 4–5 (0,62) | Đề xuất phương án B (`evidence/p4-ai/eval-report.md` mục 5); chưa sửa prompt | Sự kiện thường lệ của mã watchlist bị AI chấm 3 thay vì 4 | **CẦN RICK** chọn: nâng mức trong prompt, hay hạ nhãn |
 
 ## 2. Rủi ro tuân thủ cần Rick tự xác nhận
 
@@ -73,3 +75,9 @@ Cập nhật lần cuối: 2026-10-22 (bổ sung sau giai đoạn 3). Claude Cod
 | 2026-10-22 | Cột khóa của `news_items` là `item_id` (không phải `id`) | Claude | Data Table đã có cột hệ thống `id` |
 | 2026-10-22 | `MAX_ITEMS_PER_RUN` áp dụng sau bước kiểm tra trùng | Claude | Đặt trước thì các tin cũ nhất bị cắt ở mọi lần chạy (đã thấy khi chạy feed thật) |
 | 2026-10-22 | Workflow JSON tạo từ `scripts/build_workflows.py`; mã Code node nằm ở `workflows/src/collector/*.js` | Claude | Dễ đọc, dễ so sánh thay đổi; Rick vẫn import một file JSON |
+| 2026-11-01 | Chỉ dùng `claude-haiku-5-5` cho mọi lời gọi Anthropic | Rick | "API của Anthropic phải được sử dụng với model thấp nhất" |
+| 2026-11-01 | Đặt khóa ở biến `N8N_ANTHROPIC_API_KEY` | Claude | Môi trường Claude Code giữ riêng tên `ANTHROPIC_API_KEY`, không chuyển vào phiên |
+| 2026-11-01 | Prompt v2: thêm định nghĩa 13 loại sự kiện; lược đồ node chỉ ép kiểu, `Kiem tra luoc do` kiểm giá trị từng tin | Claude | v1 mất cả lô 10 tin vì một giá trị enum sai; khớp `event_type` tăng từ 71–77% lên 86–93% |
+| 2026-11-01 | Không gửi lại riêng tin sai enum; dùng lần sửa tự động của node + `fallback` | Claude | Tỉ lệ đo được 0,5%; tránh thêm một nhánh workflow |
+| 2026-11-01 | Tin khớp watchlist ưu tiên vào AI; tin chỉ vì tier 1 tối đa 50% trần ngày | Claude | Lần chạy thật đầu dùng hết 167/200 suất cho 150 tin không khớp |
+| 2026-11-01 | `ai_usage` ghi token ước tính, hệ số tiếng Việt 1,3 ký tự/token vào, 1,9 ra | Claude | Code node không đọc được `tokenUsage`; hệ số cũ (÷3) ước tính thấp 41% |
