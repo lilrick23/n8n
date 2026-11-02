@@ -75,3 +75,21 @@ Tôi chưa áp cách nào để tránh chỉnh prompt theo nhãn chưa duyệt.
 3. Tải dữ liệu chạy: `GET /rest/executions/<id>` (hoặc dùng `python3 -I scripts/n8n_rest.py run vnNewsAiEval0001 "Chay tay" out.json` với n8n cục bộ).
 4. `python3 -I scripts/eval_report.py evidence/p4-ai out.json` để ra số đo.
 5. Sau khi Rick sửa nhãn trong `scripts/make_eval_set.py`: `python3 -I scripts/make_eval_set.py`, rồi chạy lại bước 4 trên dữ liệu cũ (không tốn API) và chạy `build_workflows.py` để cập nhật workflow.
+
+## 7. Bổ sung 2026-11-02: nhãn đã duyệt và prompt v3
+
+Rick duyệt toàn bộ đề xuất lúc 11:06 UTC ngày 02/11/2026: 62 nhãn, phương án B và cách xử lý 1 (nâng mức trong prompt).
+Prompt v3 thêm quy tắc: tin có `ticker:` trong dòng khớp, nói về sự kiện cụ thể của chính mã đó, được tối thiểu mức 4. Quy tắc này không áp dụng cho analyst_opinion và rumor.
+
+Kết quả 3 lần chạy thật (ĐÃ KIỂM CHỨNG, `v3/eval-report-v3.log`, `v3/execution-eval-v3-run*.json`):
+
+| Chỉ số | v2 | v3 | Ngưỡng B | Đạt |
+|---|---|---|---|---|
+| Tin qua kiểm tra lược đồ | 99,5% | 186/186 (100%), 0 fallback | ≥ 98% | Có |
+| Khớp `event_type` | 86–93% | 48–49/56 (86–88%) | ≥ 85% | Có |
+| Precision mức 4–5 | 0,81–0,93 | 0,81–0,84 | ≥ 0,75 | Có |
+| Recall mức 4–5 | 0,62 | 1,0 (21/21) | ≥ 0,75 | Có |
+| Mẫu chèn lệnh | 6/6 | 6/6 mỗi lần | 100% | Có |
+| Chi phí | ~0,00016 USD/tin | ~0,00016 USD/tin (0,030 USD cho 3 lần) | — | — |
+
+Tin bị chấm 4 nhưng nhãn là 3 (nguồn gốc của precision < 1): r28, r31 (ngân hàng hạ lãi suất cho vay), r30 (1/3 lần), r40 (SHB niêm yết trái phiếu tại SGX), r52 (TVC không hoàn tất mua cổ phiếu TVB). Theo quy tắc v3, r40 và r52 là sự kiện cụ thể của mã nên mức 4 là hợp lý; nhãn 3 của hai dòng này có thể cần sửa ở lần duyệt sau. Đây là suy luận của Claude, chưa sửa nhãn.

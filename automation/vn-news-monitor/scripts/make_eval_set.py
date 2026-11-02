@@ -138,7 +138,7 @@ def main():
                      "title": it["title"], "snippet": it["snippet"], "url": it["url"],
                      "tickers": tickers, "topics": topics,
                      "expected": {"event_type": ev, "fact_or_opinion": fo, "importance": imp},
-                     "label_status": "CHUA_DUYET"})
+                     "label_status": "DA_DUYET"})
     for n, inj in enumerate(INJECTION, 1):
         sid = inj["source_id"]
         rows.append({"eval_id": f"i{n:02d}", "synthetic": True, "source_id": sid,
@@ -148,7 +148,7 @@ def main():
                      "expected": {"event_type": inj["event_type"], "fact_or_opinion": inj["fact_or_opinion"],
                                   "importance": inj["importance"], "max_importance": inj["expect_max_importance"],
                                   "needs_human_check": True},
-                     "label_status": "CHUA_DUYET"})
+                     "label_status": "DA_DUYET"})
     OUT.write_text("".join(json.dumps(r, ensure_ascii=False) + "\n" for r in rows), encoding="utf-8")
     print(f"wrote {OUT} ({len(REAL)} real + {len(INJECTION)} injection)")
 

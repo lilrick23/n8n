@@ -1,6 +1,6 @@
 # Quyết định, giả định và điểm Rick cần chọn
 
-Cập nhật lần cuối: 2026-10-22 (bổ sung sau giai đoạn 3). Claude Code bổ sung khi có phát hiện mới. Nhãn: **MẶC ĐỊNH** = cứ làm theo, Rick đổi được; **CẦN RICK** = chỉ Rick quyết được.
+Cập nhật lần cuối: 2026-11-02 (Rick duyệt #17, #18). Claude Code bổ sung khi có phát hiện mới. Nhãn: **MẶC ĐỊNH** = cứ làm theo, Rick đổi được; **CẦN RICK** = chỉ Rick quyết được.
 
 ## 1. Các điểm Rick cần chọn (đã có mặc định để không phải chờ)
 
@@ -22,8 +22,8 @@ Cập nhật lần cuối: 2026-10-22 (bổ sung sau giai đoạn 3). Claude Cod
 | 14 | Phiên bản n8n khi chạy thật | Thử bằng 2.45.0 cho khớp mã repo; chạy thật dùng bản `stable` mới nhất tại thời điểm cài | Ngày 2026-10-22, npm ghi 2.45.x là `beta`, `stable` là 2.44.5 (`evidence/p0-moi-truong/env-report.md`) | MẶC ĐỊNH; kiểm lại tham số node nếu chênh phiên bản |
 | 15 | Mạng của phiên Claude Code | Môi trường mới (2026-10-22 07:50 UTC) đã mở CafeF, Vietstock, Telegram, `www.hsx.vn`, UBCKNN, Google News; HNX vẫn lỗi | `evidence/p1-nguon/egress-retest.log` | MẶC ĐỊNH; HNX: **CẦN RICK** thêm `hnx.vn`, `www.hnx.vn` vào danh sách tên miền nếu muốn thử lại |
 | 16 | Repo công khai | Chỉ commit tài liệu, workflow, dữ liệu mẫu, bằng chứng đã loại bí mật; watchlist thật không commit | `lilrick23/n8n` là fork công khai: ai cũng đọc được | MẶC ĐỊNH; **CẦN RICK** cân nhắc chuyển sang repo riêng tư |
-| 17 | Nhãn bộ mẫu đánh giá AI | 62 dòng do Claude đề xuất, `CHƯA DUYỆT` | PROMPTS giai đoạn 4 yêu cầu Rick duyệt ≥ 20 dòng | **CẦN RICK** duyệt; số đo hiện tại dựa trên nhãn chưa duyệt |
-| 18 | Ngưỡng đạt của AI và cách xử lý recall mức 4–5 (0,62) | Đề xuất phương án B (`evidence/p4-ai/eval-report.md` mục 5); chưa sửa prompt | Sự kiện thường lệ của mã watchlist bị AI chấm 3 thay vì 4 | **CẦN RICK** chọn: nâng mức trong prompt, hay hạ nhãn |
+| 17 | Nhãn bộ mẫu đánh giá AI | 62 dòng, `DA_DUYET` | Rick duyệt toàn bộ đề xuất ngày 2026-11-02 | **ĐÃ CHỐT** (Rick) |
+| 18 | Ngưỡng đạt của AI và cách xử lý recall mức 4–5 | Phương án B; prompt v3: sự kiện cụ thể của mã watchlist tối thiểu mức 4 | Rick duyệt 2026-11-02. Prompt v3 đạt mọi ngưỡng B: recall 1,0, precision 0,81–0,84 (`evidence/p4-ai/eval-report.md` mục 7) | **ĐÃ CHỐT** (Rick) |
 
 ## 2. Rủi ro tuân thủ cần Rick tự xác nhận
 

@@ -32,7 +32,7 @@ Kết quả: **ĐẠT có điều kiện**. 100% đầu ra đúng lược đồ,
 | 10 | Tin khớp watchlist được ưu tiên; tin chỉ vì tier 1 dừng ở 50% trần | ĐÃ KIỂM CHỨNG (n8n + 3 ca ngoài n8n) | `execution-collector-live3.json`, `.log`; `test-ai-select.log` | REST run; `node scripts/test-ai-select.mjs` | 15:38 / 22:38 |
 | 11 | Ước tính token trong `ai_usage` lệch −0,7% về tiền so với số API | ĐÃ KIỂM CHỨNG (lần chạy 3) | `cost-actual.md` mục 5 | như #10 | 15:38 / 22:38 |
 | 12 | Mô hình không có công cụ; đầu ra AI chỉ ghi vào cột dữ liệu | ĐÃ KIỂM CHỨNG (đọc cấu hình) | `workflows/news-collector.json`: node `Phan loai AI` chỉ có kết nối `ai_languageModel` | đọc JSON | — |
-| 13 | Rick đã duyệt ≥ 20 nhãn | CHƯA | `fixtures/eval/labeled.jsonl` (`label_status = CHUA_DUYET`) | — | — |
+| 13 | Rick đã duyệt ≥ 20 nhãn | ĐÃ KIỂM CHỨNG | Rick duyệt toàn bộ 62 dòng (2026-11-02); `fixtures/eval/labeled.jsonl` (`label_status = DA_DUYET`) | — | 11:06 UTC 02/11 |
 | 14 | Lỗi khóa API sai/hết hạn mức chuyển sang `keyword_only` | CHƯA KIỂM CHỨNG TRỰC TIẾP; mã đã có (`kiem-tra.js`), thử ở giai đoạn 6 kịch bản (c) | — | — | — |
 
 ## Lưu ý về file chạy
