@@ -16,12 +16,14 @@ import uuid
 
 ROOT = pathlib.Path(__file__).resolve().parent.parent
 SRC = ROOT / "workflows" / "src" / "collector"
+DIGEST_SRC = ROOT / "workflows" / "src" / "digest"
 
 IDS = {
     "eval": "vnNewsAiEval0001",
     "setup": "vnNewsSetup00001",
     "collector": "vnNewsCollector1",
     "error": "vnNewsErrorHdl01",
+    "digest": "vnNewsDigest0001",
 }
 SETTINGS = {
     "executionOrder": "v1",
@@ -49,6 +51,12 @@ RUN_LOG_COLUMNS = [
     ("ai_calls", "number"), ("ai_failures", "number"), ("alerts_sent", "number"),
     ("dry_run", "boolean"), ("error", "string"),
 ]
+DIGEST_LOG_COLUMNS = [
+    ("slot", "string"), ("period_start", "date"), ("period_end", "date"),
+    ("items_in_period", "number"), ("items_listed", "number"), ("parts", "number"),
+    ("parts_sent", "number"), ("sent", "boolean"), ("dry_run", "boolean"), ("error", "string"),
+    ("created_at", "date"),
+]
 AI_USAGE_COLUMNS = [
     ("date", "string"), ("model", "string"), ("calls", "number"), ("items", "number"),
     ("tokens_in", "number"), ("tokens_out", "number"), ("estimated", "boolean"),
@@ -56,8 +64,8 @@ AI_USAGE_COLUMNS = [
 ]
 
 
-def js(name, **subs):
-    text = (SRC / name).read_text(encoding="utf-8")
+def js(name, src=SRC, **subs):
+    text = (src / name).read_text(encoding="utf-8")
     for key, value in subs.items():
         marker = f"/*__{key}__*/"
         assert marker in text, f"{marker} missing in {name}"
@@ -153,13 +161,14 @@ def setup_workflow():
         create("news_items", "Tao news_items", NEWS_ITEMS_COLUMNS, 240),
         create("run_log", "Tao run_log", RUN_LOG_COLUMNS, 480),
         create("ai_usage", "Tao ai_usage", AI_USAGE_COLUMNS, 720),
+        create("digest_log", "Tao digest_log", DIGEST_LOG_COLUMNS, 960),
         sticky("## Tao bang du lieu\nChay mot lan truoc khi bat news-collector.\nNeu bang da co, node tra lai bang cu (khong tao trung).", 0, 0, 760, 220),
     ]
     return {
         "id": IDS["setup"], "name": "VN news - setup tables", "active": False,
         "nodes": nodes,
         "connections": connect([("Chay tay", "Tao news_items", 0), ("Tao news_items", "Tao run_log", 0),
-                                ("Tao run_log", "Tao ai_usage", 0)]),
+                                ("Tao run_log", "Tao ai_usage", 0), ("Tao ai_usage", "Tao digest_log", 0)]),
         "settings": {**SETTINGS}, "pinData": {}, "tags": [],
     }
 
@@ -315,6 +324,94 @@ def eval_workflow():
     }
 
 
+TELEGRAM_CREDENTIAL = {"id": "vnNewsTelegram01", "name": "Telegram (vn-news)"}
+
+
+def digest_workflow(chat_id=""):
+    """Scheduled digest (phase 5): read news_items since the last digest, group, add AI highlights, send."""
+    d = lambda name, **subs: js(name, src=DIGEST_SRC, **subs)  # noqa: E731
+    extractor = node("Viet diem nhan", "@n8n/n8n-nodes-langchain.informationExtractor", 1.2, 1440, 0, {
+        "text": "={{ $json.ai_input }}",
+        "schemaType": "manual",
+        "inputSchema": (DIGEST_SRC / "highlight-schema.json").read_text(encoding="utf-8"),
+        "options": {"systemPromptTemplate": (DIGEST_SRC / "highlight-prompt.txt").read_text(encoding="utf-8")},
+    }, retryOnFail=True, maxTries=2, waitBetweenTries=5000, onError="continueRegularOutput")
+    model = node("Mo hinh Haiku (ban tin)", "@n8n/n8n-nodes-langchain.lmChatAnthropic", 1.6, 1440, 200, {
+        "model": {"__rl": True, "mode": "id", "value": AI_MODEL},
+        "options": {"maxTokensToSample": 800, "thinkingMode": "disabled"},
+    }, credentials={"anthropicApi": dict(ANTHROPIC_CREDENTIAL)})
+    nodes = [
+        node("Ban tin sang", "n8n-nodes-base.scheduleTrigger", 1.4, 0, 100, {
+            "rule": {"interval": [{"field": "cronExpression", "expression": "15 8 * * 1-5"}]}, "misfirePolicy": "skip"}),
+        node("Ban tin chieu", "n8n-nodes-base.scheduleTrigger", 1.4, 0, 260, {
+            "rule": {"interval": [{"field": "cronExpression", "expression": "30 15 * * 1-5"}]}, "misfirePolicy": "skip"}),
+        node("Chay tay", "n8n-nodes-base.manualTrigger", 1, 0, 420, {}),
+        code("Config", 240, 260, d("config.js", CHAT_ID=json.dumps(chat_id))),
+        node("Doc digest_log", "n8n-nodes-base.dataTable", 1.1, 480, 260, {
+            "resource": "row", "operation": "get", "dataTableId": table("digest_log"),
+            "matchType": "anyCondition",
+            "filters": {"conditions": [{"keyName": "sent", "condition": "isTrue"}]},
+            "returnAll": True}, executeOnce=True, alwaysOutputData=True),
+        code("Tinh ky", 720, 260, d("period.js")),
+        node("Doc tin", "n8n-nodes-base.dataTable", 1.1, 960, 260, {
+            "resource": "row", "operation": "get", "dataTableId": table("news_items"),
+            "matchType": "allConditions",
+            "filters": {"conditions": [{"keyName": "fetched_at", "condition": "gt", "keyValue": "={{ $json.since_utc }}"}]},
+            "returnAll": True}, executeOnce=True, alwaysOutputData=True),
+        code("Chon va nhom", 1200, 260, d("group.js")),
+        node("Co tin muc cao?", "n8n-nodes-base.if", 2.2, 1200, 60, {
+            "conditions": {"options": {"caseSensitive": True, "leftValue": "", "typeValidation": "strict", "version": 2},
+                           "conditions": [{"id": "0c9d6c1e-2f3a-4b5c-8d7e-1f2a3b4c5d6e",
+                                           "leftValue": "={{ $json.has_highlights }}", "rightValue": "",
+                                           "operator": {"type": "boolean", "operation": "true", "singleValue": True}}],
+                           "combinator": "and"},
+            "options": {}}),
+        extractor, model,
+        code("Dinh dang", 1680, 260, d("format.js")),
+        node("Co chat ID?", "n8n-nodes-base.if", 2.2, 1920, 160, {
+            "conditions": {"options": {"caseSensitive": True, "leftValue": "", "typeValidation": "strict", "version": 2},
+                           "conditions": [{"id": "5a4b3c2d-1e0f-4a9b-8c7d-6e5f4a3b2c1d",
+                                           "leftValue": "={{ $json.chat_id }}", "rightValue": "",
+                                           "operator": {"type": "string", "operation": "notEmpty", "singleValue": True}}],
+                           "combinator": "and"},
+            "options": {}}),
+        node("Gui Telegram", "n8n-nodes-base.telegram", 1.2, 2160, 100, {
+            "chatId": "={{ $json.chat_id }}",
+            "text": "={{ $json.text }}",
+            "additionalFields": {"appendAttribution": False, "parse_mode": "HTML", "disable_web_page_preview": True},
+        }, credentials={"telegramApi": dict(TELEGRAM_CREDENTIAL)},
+            retryOnFail=True, maxTries=3, waitBetweenTries=5000, onError="continueRegularOutput"),
+        code("Tong ket ban tin", 2160, 400, d("summary.js")),
+        node("Ghi digest_log", "n8n-nodes-base.dataTable", 1.1, 2400, 400, {
+            "resource": "row", "operation": "insert", "dataTableId": table("digest_log"),
+            "columns": {"mappingMode": "autoMapInputData", "value": {}, "matchingColumns": [],
+                        "schema": [], "attemptToConvertTypes": False, "convertFieldsToString": False},
+            "options": {}}),
+        sticky("## news-digest\nBan tin 08:15 va 15:30 thu 2-6 (gio Viet Nam). Doc news_items tu lan gui truoc.\n"
+               "Sua cau hinh o node **Config**: dien TELEGRAM_CHAT_ID, tat DRY_RUN khi nghiem thu xong.\n"
+               "AI (Haiku 5.5) chi viet 'Diem nhan' tu tom tat da co; loi AI thi ban tin van gui.\n"
+               "Thiet ke: docs/DESIGN.md muc 1.2 va 7", 0, -240, 900, 200),
+    ]
+    pairs = [
+        ("Ban tin sang", "Config", 0), ("Ban tin chieu", "Config", 0), ("Chay tay", "Config", 0),
+        ("Config", "Doc digest_log", 0), ("Doc digest_log", "Tinh ky", 0), ("Tinh ky", "Doc tin", 0),
+        ("Doc tin", "Chon va nhom", 0), ("Chon va nhom", "Co tin muc cao?", 0),
+        ("Co tin muc cao?", "Viet diem nhan", 0), ("Co tin muc cao?", "Dinh dang", 1),
+        ("Viet diem nhan", "Dinh dang", 0),
+        ("Dinh dang", "Co chat ID?", 0), ("Dinh dang", "Tong ket ban tin", 0),
+        ("Co chat ID?", "Gui Telegram", 0),
+        ("Tong ket ban tin", "Ghi digest_log", 0),
+    ]
+    conns = connect(pairs)
+    conns["Mo hinh Haiku (ban tin)"] = {"ai_languageModel": [[{"node": "Viet diem nhan", "type": "ai_languageModel", "index": 0}]]}
+    return {
+        "id": IDS["digest"], "name": "VN news - digest", "active": False,
+        "nodes": nodes, "connections": conns,
+        "settings": {**SETTINGS, "errorWorkflow": IDS["error"], "executionTimeout": 300},
+        "pinData": {}, "tags": [],
+    }
+
+
 def error_workflow():
     fmt = (
         "// Ban toi thieu (giai doan 3). Giai doan 6 them Telegram va chong bao loi.\n"
@@ -355,6 +452,7 @@ def main():
         docs["news-setup.json"] = setup_workflow()
         docs["news-error-handler.json"] = error_workflow()
         docs["news-ai-eval.json"] = eval_workflow()
+        docs["news-digest.json"] = digest_workflow()
     else:
         docs["news-collector.json"]["id"] = "vnNewsCollTest01"
         docs["news-collector.json"]["name"] = "VN news - collector (fixture test)"

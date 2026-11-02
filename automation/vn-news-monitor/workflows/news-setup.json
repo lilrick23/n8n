@@ -290,6 +290,72 @@
     },
     {
       "parameters": {
+        "resource": "table",
+        "operation": "create",
+        "tableName": "digest_log",
+        "columns": {
+          "column": [
+            {
+              "name": "slot",
+              "type": "string"
+            },
+            {
+              "name": "period_start",
+              "type": "date"
+            },
+            {
+              "name": "period_end",
+              "type": "date"
+            },
+            {
+              "name": "items_in_period",
+              "type": "number"
+            },
+            {
+              "name": "items_listed",
+              "type": "number"
+            },
+            {
+              "name": "parts",
+              "type": "number"
+            },
+            {
+              "name": "parts_sent",
+              "type": "number"
+            },
+            {
+              "name": "sent",
+              "type": "boolean"
+            },
+            {
+              "name": "dry_run",
+              "type": "boolean"
+            },
+            {
+              "name": "error",
+              "type": "string"
+            },
+            {
+              "name": "created_at",
+              "type": "date"
+            }
+          ]
+        },
+        "options": {
+          "createIfNotExists": true
+        }
+      },
+      "id": "aa25e9e0-3cba-571f-a7e6-09a8d939881f",
+      "name": "Tao digest_log",
+      "type": "n8n-nodes-base.dataTable",
+      "typeVersion": 1.1,
+      "position": [
+        960,
+        300
+      ]
+    },
+    {
+      "parameters": {
         "content": "## Tao bang du lieu\nChay mot lan truoc khi bat news-collector.\nNeu bang da co, node tra lai bang cu (khong tao trung).",
         "width": 760,
         "height": 220
@@ -332,6 +398,17 @@
         [
           {
             "node": "Tao ai_usage",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Tao ai_usage": {
+      "main": [
+        [
+          {
+            "node": "Tao digest_log",
             "type": "main",
             "index": 0
           }
