@@ -1,0 +1,155 @@
+{
+ "id": "3",
+ "status": "success",
+ "mode": "manual",
+ "startedAt": "2026-10-22T08:47:53.833Z",
+ "stoppedAt": "2026-10-22T08:47:58.076Z",
+ "workflowId": "vnNewsCollTest01",
+ "_note": "Trimmed: node status, item counts, run summary and 5 sample rows (title and URL only). Full execution data stays out of the public repo (publisher content).",
+ "nodes": {
+  "Chay tay": {
+   "executionStatus": "success",
+   "executionTime_ms": 1,
+   "items_out": [
+    1
+   ]
+  },
+  "Config": {
+   "executionStatus": "success",
+   "executionTime_ms": 15,
+   "items_out": [
+    1
+   ],
+   "output_summary": {
+    "trigger": "Chay tay",
+    "run_started_at": "2026-10-22T15:47:53.966+07:00",
+    "MAX_ITEMS_PER_RUN": 300,
+    "MAX_AI_ITEMS_PER_DAY": 200,
+    "ALERT_MIN_IMPORTANCE": 4,
+    "AI_BATCH_SIZE": 10,
+    "SNIPPET_MAX_CHARS": 500,
+    "DRY_RUN": true,
+    "FEED_BASE_OVERRIDE": "http://127.0.0.1:8099/",
+    "sources": [
+     "cafef-chungkhoan",
+     "cafef-doanhnghiep",
+     "cafef-taichinh-nganhang",
+     "cafef-vimo",
+     "vietstock-cophieu",
+     "vietstock-giaodichnoibo",
+     "vietstock-niemyet",
+     "vietstock-hoatdongkinhdoanh",
+     "vietstock-cotuc",
+     "vietstock-tangvon-ma",
+     "vietstock-chinhsach",
+     "vietstock-vimo",
+     "vietstock-nganhang",
+     "vietstock-nhandinh",
+     "vietstock-en-stocks",
+     "test-missing-feed"
+    ]
+   }
+  },
+  "Tach nguon": {
+   "executionStatus": "success",
+   "executionTime_ms": 9,
+   "items_out": [
+    16
+   ]
+  },
+  "Tai feed": {
+   "executionStatus": "success",
+   "executionTime_ms": 1073,
+   "items_out": [
+    15,
+    1
+   ]
+  },
+  "Gan nguon": {
+   "executionStatus": "success",
+   "executionTime_ms": 42,
+   "items_out": [
+    15
+   ]
+  },
+  "XML sang JSON": {
+   "executionStatus": "success",
+   "executionTime_ms": 19,
+   "items_out": [
+    15
+   ]
+  },
+  "Chuan hoa": {
+   "executionStatus": "success",
+   "executionTime_ms": 43,
+   "items_out": [
+    146
+   ]
+  },
+  "Tao id": {
+   "executionStatus": "success",
+   "executionTime_ms": 149,
+   "items_out": [
+    146
+   ]
+  },
+  "Da co trong news_items?": {
+   "executionStatus": "success",
+   "executionTime_ms": 2680,
+   "items_out": [
+    0
+   ]
+  },
+  "Loi tai feed": {
+   "executionStatus": "success",
+   "executionTime_ms": 32,
+   "items_out": [
+    1
+   ],
+   "output": [
+    {
+     "source_id": "test-missing-feed",
+     "error": "404 - \"<!DOCTYPE HTML>\\n<html lang=\\\"en\\\">\\n    <head>\\n        <meta charset=\\\"utf-8\\\">\\n        <title>Error response</title>\\n    </head>\\n    <body>\\n        <h1>Error response</h1>\\n        <p>Error code: 404</p>\\n        <p>Message: File not found.</p>\\n        <p>Error code explanation: 404 -"
+    }
+   ]
+  },
+  "Tong ket": {
+   "executionStatus": "success",
+   "executionTime_ms": 35,
+   "items_out": [
+    1
+   ],
+   "output": [
+    {
+     "run_id": "3",
+     "workflow": "VN news - collector (fixture test)",
+     "trigger": "Chay tay",
+     "started_at": "2026-10-22T15:47:53.966+07:00",
+     "finished_at": "2026-10-22T15:47:58.050+07:00",
+     "sources_total": 16,
+     "sources_ok": 15,
+     "sources_failed": 1,
+     "failed_source_ids": "test-missing-feed",
+     "items_fetched": 150,
+     "items_unique": 146,
+     "items_new": 0,
+     "items_matched": 0,
+     "items_saved": 0,
+     "items_to_ai": 0,
+     "ai_calls": 0,
+     "ai_failures": 0,
+     "alerts_sent": 0,
+     "dry_run": true,
+     "error": ""
+    }
+   ]
+  },
+  "Ghi run_log": {
+   "executionStatus": "success",
+   "executionTime_ms": 23,
+   "items_out": [
+    1
+   ]
+  }
+ }
+}

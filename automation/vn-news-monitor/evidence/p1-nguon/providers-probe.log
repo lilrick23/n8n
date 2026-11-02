@@ -1,0 +1,22 @@
+# Provider probe 2026-10-22T08:21:29Z (ICT 15:21:29)
+https://www.hnx.vn/                                     curl: (60) SSL certificate problem: unable to get local issuer certificate More details here: https://curl.se/docs/sslcerts.html  curl failed to verify the legitimacy of the server and therefore could not establish a secure connection to it. To learn more about this situation and how to fix it, please visit the web page mentioned above. 000  0B -> https://www.hnx.vn/ 
+https://hnx.vn/                                         curl: (60) SSL certificate problem: unable to get local issuer certificate More details here: https://curl.se/docs/sslcerts.html  curl failed to verify the legitimacy of the server and therefore could not establish a secure connection to it. To learn more about this situation and how to fix it, please visit the web page mentioned above. 000  0B -> https://hnx.vn/ 
+https://trading.vietcap.com.vn/ai-news?exchange=hose    200 text/html; charset=utf-8 2867B -> https://trading.vietcap.com.vn/ai-news?exchange=hose 
+https://trading.vietcap.com.vn/robots.txt               200 text/plain; charset=utf-8 39B -> https://trading.vietcap.com.vn/robots.txt 
+https://vnstocks.com/account                            200 text/html; charset=utf-8 1479414B -> https://vnstocks.com/login?callbackUrl=https%3A%2F%2Fvnstocks.com%2Faccount 
+# trading.vietcap.com.vn/robots.txt:
+User-agent: *
+Allow: /
+Crawl-delay: 10
+
+# vietcap ai-news page assets (single-spa app, content loaded by JS):
+href="/js/vietcap-core.js?v=c0bd0beba8de"
+href="/js/single-spa.min.js"
+href="/main.js?v=e20f6a6f2c41b2d8b10793b26df0cd45002633ca"
+href="/js/react.production.min.js"
+href="/js/react-dom.production.min.js"
+href="/js/single-spa-react.min.js"
+# PyPI:
+vnstock3 3.2.1 | A comprehensive and transparent solution for Vietnamese stock market analysis.
+vnstock-news 0.0.1 | Name placeholder for vnstock-news (company news and corporate events for Vnstock sponsors). Setup guide: https://vnstock
+vnstock-data 0.0.1 | Name placeholder for vnstock-data (Vietnamese market data for Vnstock sponsors). Setup guide: https://vnstocks.com/files

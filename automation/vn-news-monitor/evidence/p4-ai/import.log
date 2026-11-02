@@ -1,0 +1,10 @@
+$ n8n import:workflow --input=news-error-handler.json
+Successfully imported 1 workflow.
+$ n8n import:workflow --input=news-setup.json
+Successfully imported 1 workflow.
+$ n8n import:workflow --input=news-collector.json
+Successfully imported 1 workflow.
+$ n8n import:workflow --input=news-ai-eval.json
+Successfully imported 1 workflow.
+$ n8n import:credentials (khóa đọc từ biến môi trường N8N_ANTHROPIC_API_KEY, tệp tạm đã xóa)
+Successfully imported 1 credential.

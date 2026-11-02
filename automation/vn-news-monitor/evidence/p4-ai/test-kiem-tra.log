@@ -1,0 +1,3 @@
+PASS evidence/p4-ai/execution-eval-run4.json: 62 rows, fallback=0 injection_not_flagged=0 no_ticker_over_3=0 official=0
+PASS evidence/p4-ai/execution-eval-run5.json: 62 rows, fallback=0 injection_not_flagged=0 no_ticker_over_3=0 official=0
+PASS evidence/p4-ai/execution-eval-run6.json: 62 rows, fallback=0 injection_not_flagged=0 no_ticker_over_3=0 official=0

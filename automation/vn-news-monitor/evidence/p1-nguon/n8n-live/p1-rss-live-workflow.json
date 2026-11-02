@@ -1,0 +1,123 @@
+{
+  "id": "p1rsslive0000001",
+  "name": "p1 RSS live probe (khong dung cho san xuat)",
+  "nodes": [
+    {
+      "parameters": {},
+      "id": "b1",
+      "name": "Manual Trigger",
+      "type": "n8n-nodes-base.manualTrigger",
+      "typeVersion": 1,
+      "position": [
+        0,
+        0
+      ]
+    },
+    {
+      "parameters": {
+        "jsCode": "const ids = ['cafef-chungkhoan','cafef-doanhnghiep','vietstock-cophieu','vietstock-giaodichnoibo','vietstock-en-stocks'];\nconst urls = {\n 'cafef-chungkhoan':'https://cafef.vn/thi-truong-chung-khoan.rss',\n 'cafef-doanhnghiep':'https://cafef.vn/doanh-nghiep.rss',\n 'vietstock-cophieu':'https://vietstock.vn/830/chung-khoan/co-phieu.rss',\n 'vietstock-giaodichnoibo':'https://vietstock.vn/739/chung-khoan/giao-dich-noi-bo.rss',\n 'vietstock-en-stocks':'https://en.vietstock.vn/52015/vietnam-stocks.rss'\n};\nreturn ids.map(id => ({ json: { source_id: id, url: urls[id] } }));"
+      },
+      "id": "b2",
+      "name": "Danh sach nguon",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        220,
+        0
+      ]
+    },
+    {
+      "parameters": {
+        "url": "={{ $json.url }}",
+        "options": {}
+      },
+      "id": "b3",
+      "name": "RSS Read",
+      "type": "n8n-nodes-base.rssFeedRead",
+      "typeVersion": 1.2,
+      "position": [
+        440,
+        0
+      ],
+      "onError": "continueRegularOutput"
+    },
+    {
+      "parameters": {
+        "mode": "runOnceForEachItem",
+        "jsCode": "const src = $('Danh sach nguon').item.json.source_id;\nreturn { json: { ...$json, source_id: src } };"
+      },
+      "id": "b5",
+      "name": "Gan nguon",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        550,
+        0
+      ]
+    },
+    {
+      "parameters": {
+        "jsCode": "const out = {};\nfor (const it of $input.all()) {\n  const id = it.json.source_id ?? 'unknown';\n  out[id] ??= { items: 0, errors: [], first: null, fields: {} };\n  const o = out[id];\n  if (it.json.error) { o.errors.push(String(it.json.error.message ?? it.json.error).slice(0, 200)); continue; }\n  o.items++;\n  for (const k of Object.keys(it.json)) o.fields[k] = (o.fields[k] ?? 0) + 1;\n  if (!o.first) {\n    const iso = it.json.isoDate;\n    o.first = { title: it.json.title, link: it.json.link, pubDate: it.json.pubDate, isoDate: iso,\n      ict: iso ? DateTime.fromISO(iso).setZone('Asia/Ho_Chi_Minh').toISO() : null,\n      contentSnippet: (it.json.contentSnippet ?? '').slice(0, 160) };\n  }\n}\nreturn [{ json: { checked_at_ict: $now.setZone('Asia/Ho_Chi_Minh').toISO(), workflow_tz: $workflow.timezone ?? null, feeds: out } }];"
+      },
+      "id": "b4",
+      "name": "Tom tat",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        770,
+        0
+      ]
+    }
+  ],
+  "connections": {
+    "Manual Trigger": {
+      "main": [
+        [
+          {
+            "node": "Danh sach nguon",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Danh sach nguon": {
+      "main": [
+        [
+          {
+            "node": "RSS Read",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "RSS Read": {
+      "main": [
+        [
+          {
+            "node": "Gan nguon",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Gan nguon": {
+      "main": [
+        [
+          {
+            "node": "Tom tat",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "settings": {
+    "timezone": "Asia/Ho_Chi_Minh",
+    "executionOrder": "v1"
+  },
+  "active": false
+}

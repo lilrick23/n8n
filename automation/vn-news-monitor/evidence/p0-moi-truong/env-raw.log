@@ -1,0 +1,44 @@
+# collected 2026-10-22T04:31:40Z UTC / 2026-10-22T11:31:40+0700 ICT
+## node -v
+v22.22.0
+## pnpm -v
+12.4.2
+## npm -v
+10.9.4
+## npx -v
+10.9.4
+## n8n version in repo (packages/cli/package.json)
+  "version": "2.45.0",
+## engines (root package.json)
+  "engines": {
+    "node": ">=24.0.0",
+    "pnpm": ">=12.4.2"
+  },
+  "packageManager": "pnpm@12.4.2",
+## packageManager
+  "packageManager": "pnpm@12.4.2",
+## uname -a
+Linux vm 6.18.44-fc-v140 #1 SMP PREEMPT_DYNAMIC @0 x86_64 x86_64 x86_64 GNU/Linux
+## /etc/os-release
+PRETTY_NAME="Ubuntu 24.04.5 LTS"
+NAME="Ubuntu"
+VERSION_ID="24.04"
+VERSION="24.04.5 LTS (Noble Numbat)"
+## docker
+Docker version 29.9.1, build dfc520d
+Client: Docker Engine - Community
+ Version:    29.9.1
+ Context:    default
+ Debug Mode: false
+ Plugins:
+## memory
+               total        used        free      shared  buff/cache   available
+Mem:            15Gi       1.5Gi        10Gi        14Mi       3.8Gi        14Gi
+Swap:             0B          0B          0B
+## disk
+/dev/vda        252G   12G   28G  30% /
+## TZ
+Thu Oct 22 04:31:46 UTC 2026
+TZ=
+## proxy configured
+HTTPS_PROXY set (value redacted)

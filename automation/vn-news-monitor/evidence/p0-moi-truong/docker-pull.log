@@ -1,0 +1,11 @@
+# 2026-10-22T04:32:32Z started dockerd as root
+server 29.9.1
+# docker pull n8nio/n8n:2.45.0
+Error response from daemon: unknown: failed to resolve reference "docker.io/n8nio/n8n:2.45.0": unexpected status from HEAD request to https://registry-1.docker.io/v2/n8nio/n8n/manifests/2.45.0: 429 Too Many Requests
+# 2026-10-22T04:32:48Z docker pull mirror.gcr.io/n8nio/n8n:2.45.0 (Google mirror of Docker Hub, because Docker Hub answered 429)
+af47e9b8e4e2: Pull complete
+Digest: sha256:2797383b01f762e0659278309c317d9f80301b6941a749faebfc52939d8b6c3d
+Status: Downloaded newer image for mirror.gcr.io/n8nio/n8n:2.45.0
+mirror.gcr.io/n8nio/n8n:2.45.0
+REPOSITORY                TAG       DIGEST                                                                    IMAGE ID       CREATED        SIZE
+mirror.gcr.io/n8nio/n8n   2.45.0    sha256:2797383b01f762e0659278309c317d9f80301b6941a749faebfc52939d8b6c3d   2797383b01f7   44 hours ago   1.81GB

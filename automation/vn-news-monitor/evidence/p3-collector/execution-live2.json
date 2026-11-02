@@ -1,0 +1,141 @@
+{
+ "id": "5",
+ "status": "success",
+ "mode": "manual",
+ "startedAt": "2026-10-22T08:48:15.413Z",
+ "stoppedAt": "2026-10-22T08:48:24.821Z",
+ "workflowId": "vnNewsCollector1",
+ "_note": "Trimmed: node status, item counts, run summary and 5 sample rows (title and URL only). Full execution data stays out of the public repo (publisher content).",
+ "nodes": {
+  "Chay tay": {
+   "executionStatus": "success",
+   "executionTime_ms": 1,
+   "items_out": [
+    1
+   ]
+  },
+  "Config": {
+   "executionStatus": "success",
+   "executionTime_ms": 12,
+   "items_out": [
+    1
+   ],
+   "output_summary": {
+    "trigger": "Chay tay",
+    "run_started_at": "2026-10-22T15:48:15.531+07:00",
+    "MAX_ITEMS_PER_RUN": 300,
+    "MAX_AI_ITEMS_PER_DAY": 200,
+    "ALERT_MIN_IMPORTANCE": 4,
+    "AI_BATCH_SIZE": 10,
+    "SNIPPET_MAX_CHARS": 500,
+    "DRY_RUN": true,
+    "FEED_BASE_OVERRIDE": "",
+    "sources": [
+     "cafef-chungkhoan",
+     "cafef-doanhnghiep",
+     "cafef-taichinh-nganhang",
+     "cafef-vimo",
+     "vietstock-cophieu",
+     "vietstock-giaodichnoibo",
+     "vietstock-niemyet",
+     "vietstock-hoatdongkinhdoanh",
+     "vietstock-cotuc",
+     "vietstock-tangvon-ma",
+     "vietstock-chinhsach",
+     "vietstock-vimo",
+     "vietstock-nganhang",
+     "vietstock-nhandinh",
+     "vietstock-en-stocks"
+    ]
+   }
+  },
+  "Tach nguon": {
+   "executionStatus": "success",
+   "executionTime_ms": 8,
+   "items_out": [
+    15
+   ]
+  },
+  "Tai feed": {
+   "executionStatus": "success",
+   "executionTime_ms": 1800,
+   "items_out": [
+    15,
+    0
+   ]
+  },
+  "Gan nguon": {
+   "executionStatus": "success",
+   "executionTime_ms": 58,
+   "items_out": [
+    15
+   ]
+  },
+  "XML sang JSON": {
+   "executionStatus": "success",
+   "executionTime_ms": 49,
+   "items_out": [
+    15
+   ]
+  },
+  "Chuan hoa": {
+   "executionStatus": "success",
+   "executionTime_ms": 65,
+   "items_out": [
+    424
+   ]
+  },
+  "Tao id": {
+   "executionStatus": "success",
+   "executionTime_ms": 414,
+   "items_out": [
+    424
+   ]
+  },
+  "Da co trong news_items?": {
+   "executionStatus": "success",
+   "executionTime_ms": 6800,
+   "items_out": [
+    0
+   ]
+  },
+  "Tong ket": {
+   "executionStatus": "success",
+   "executionTime_ms": 78,
+   "items_out": [
+    1
+   ],
+   "output": [
+    {
+     "run_id": "5",
+     "workflow": "VN news - collector",
+     "trigger": "Chay tay",
+     "started_at": "2026-10-22T15:48:15.531+07:00",
+     "finished_at": "2026-10-22T15:48:24.804+07:00",
+     "sources_total": 15,
+     "sources_ok": 15,
+     "sources_failed": 0,
+     "failed_source_ids": "",
+     "items_fetched": 430,
+     "items_unique": 424,
+     "items_new": 0,
+     "items_matched": 0,
+     "items_saved": 0,
+     "items_to_ai": 0,
+     "ai_calls": 0,
+     "ai_failures": 0,
+     "alerts_sent": 0,
+     "dry_run": true,
+     "error": ""
+    }
+   ]
+  },
+  "Ghi run_log": {
+   "executionStatus": "success",
+   "executionTime_ms": 15,
+   "items_out": [
+    1
+   ]
+  }
+ }
+}

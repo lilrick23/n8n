@@ -1,0 +1,9 @@
+﻿User-agent: *
+
+Disallow: /*.js
+Disallow: /*.css
+Disallow: /manager
+Disallow: /export
+Disallow: /cache
+
+Sitemap: https://vietstock.vn/sitemap.xml

@@ -1,0 +1,18 @@
+# 2026-10-22T08:47:07Z final run: fresh n8n 2.45.0 data folder, container n8n-p3 (mirror.gcr.io/n8nio/n8n:2.45.0)
+$ n8n import:workflow --input=/wf/news-error-handler.json
+Importing 1 workflows...
+Successfully imported 1 workflow.
+$ n8n import:workflow --input=/wf/news-setup.json
+Importing 1 workflows...
+Successfully imported 1 workflow.
+$ n8n import:workflow --input=/wf/news-collector.json
+Importing 1 workflows...
+Successfully imported 1 workflow.
+$ n8n import:workflow --input=/wf/news-collector-test.json
+Importing 1 workflows...
+Successfully imported 1 workflow.
+$ n8n list:workflow
+vnNewsErrorHdl01|VN news - error handler
+vnNewsSetup00001|VN news - setup tables
+vnNewsCollector1|VN news - collector
+vnNewsCollTest01|VN news - collector (fixture test)

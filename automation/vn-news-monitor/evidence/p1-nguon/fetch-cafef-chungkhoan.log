@@ -1,0 +1,20 @@
+# fetched_at_utc=2026-10-22T07:54:44Z fetched_at_ict=2026-10-22T14:54:44+07:00
+# cmd: curl -sS -L -m 20 -A '<browser UA>' -D - -o raw/cafef-chungkhoan.xml 'https://cafef.vn/thi-truong-chung-khoan.rss'
+HTTP/1.1 200 Connection Established
+
+HTTP/1.1 200 OK
+date: Thu, 22 Oct 2026 07:54:45 GMT
+content-type: text/xml; charset=utf-8
+transfer-encoding: chunked
+server: cf-rp
+cache-control: no-cache, private
+lastmodifieddate: 22/10/2026 14:54:45
+timeexpire: 300
+servername: 0
+referrer-policy: no-referrer-when-downgrade
+crc32: efae0bd9
+set-cookie: laravel_session=eyJpdiI6Im0zOVBGdU1sRWo5SGJ5VVFQWmxKUGc9PSIsInZhbHVlIjoiZlhwckdSdHprem8zanFrbEc4cDdPR2VEVm5TRGNBMkxFN0g4QU92dkpyenVUMXZ3bHdZZjBwVVFmRmp0a2dGL2N4VzNTMkgxckNhMXluWmxqeDYvalh4bXdHT1lZcm5QT2J3OGdoQlMzeE9Rb2dtazVJbWlVam9VTGttN0p1SDIiLCJtYWMiOiJhODU3ZDZhNWRkMzRmMTM3MjY3NGIyZjU5Zjk3ODUzYTVhYTIwYmVhMjg3NmZkNmE3ODE5ZjZhZTcxYmJmNDM2IiwidGFnIjoiIn0%3D; expires=Thu, 22-Oct-2026 09:54:45 GMT; Max-Age=7200; path=/; httponly; samesite=lax
+filterid: ft
+
+
+# http_code=200 content_type=text/xml; charset=utf-8 size=53697 url_effective=https://cafef.vn/thi-truong-chung-khoan.rss time=1.343080s

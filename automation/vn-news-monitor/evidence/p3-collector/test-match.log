@@ -1,0 +1,20 @@
+PASS ma dung, viet hoa: tickers=[VNM] topics=[] excluded=false
+PASS ma trong ngoac: tickers=[VNM] topics=[] excluded=false
+PASS ma viet thuong khong khop: tickers=[] topics=[] excluded=false
+PASS ma nam trong tu khac: tickers=[] topics=[] excluded=false
+PASS alias co dau: tickers=[HPG] topics=[] excluded=false
+PASS alias khong dau: tickers=[HPG] topics=[] excluded=false
+PASS alias viet hoa: tickers=[VNM] topics=[] excluded=false
+PASS alias tieng Anh: tickers=[VCB] topics=[] excluded=false
+PASS tu viet tat pho bien khong la ma: tickers=[] topics=[] excluded=false
+PASS hai ma trong mot tin: tickers=[FPT,VCB] topics=[] excluded=false
+PASS ma o doan trich: tickers=[FPT] topics=[] excluded=false
+PASS chu de vi mo co dau: tickers=[] topics=[lãi suất điều hành] excluded=false
+PASS chu de vi mo khong dau, tin viet khong dau: tickers=[] topics=[tỷ giá] excluded=false
+PASS gioi han da biet: cum tu nam trong cum dai hon van khop: tickers=[] topics=[tỷ giá] excluded=false
+PASS tin co dau khong khop ban khong dau: tickers=[] topics=[] excluded=false
+PASS chu de chu hoa thuong: tickers=[] topics=[FTSE Russell] excluded=false
+PASS tu loai tru: tickers=[HPG] topics=[] excluded=true
+PASS ten rieng gan giong alias: tickers=[] topics=[] excluded=false
+
+18 case(s), 0 failed

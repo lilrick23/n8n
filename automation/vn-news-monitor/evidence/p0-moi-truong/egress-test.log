@@ -1,0 +1,73 @@
+# egress test 2026-10-22T04:31:55Z UTC / 2026-10-22T11:31:55+0700 ICT
+# curl -sS -o /dev/null -m 20 -L -w '%{http_code} %{content_type} %{time_total}s' <url>
+https://cafef.vn/thi-truong-chung-khoan.rss -> curl: (56) CONNECT tunnel failed, response 403 000 |  | 0.261221s
+https://cafef.vn/doanh-nghiep.rss -> curl: (56) CONNECT tunnel failed, response 403 000 |  | 0.261834s
+https://cafef.vn/tai-chinh-ngan-hang.rss -> curl: (56) CONNECT tunnel failed, response 403 000 |  | 0.188475s
+https://cafef.vn/vi-mo-dau-tu.rss -> curl: (56) CONNECT tunnel failed, response 403 000 |  | 0.269457s
+https://vietstock.vn/830/chung-khoan/co-phieu.rss -> curl: (56) CONNECT tunnel failed, response 403 000 |  | 0.200951s
+https://vietstock.vn/739/chung-khoan/giao-dich-noi-bo.rss -> curl: (56) CONNECT tunnel failed, response 403 000 |  | 0.231702s
+https://vietstock.vn/741/chung-khoan/niem-yet.rss -> curl: (56) CONNECT tunnel failed, response 403 000 |  | 0.215266s
+https://vietstock.vn/737/doanh-nghiep/hoat-dong-kinh-doanh.rss -> curl: (56) CONNECT tunnel failed, response 403 000 |  | 0.250452s
+https://vietstock.vn/738/doanh-nghiep/co-tuc.rss -> curl: (56) CONNECT tunnel failed, response 403 000 |  | 0.189503s
+https://vietstock.vn/764/doanh-nghiep/tang-von-m-a.rss -> curl: (56) CONNECT tunnel failed, response 403 000 |  | 0.255287s
+https://vietstock.vn/143/chung-khoan/chinh-sach.rss -> curl: (56) CONNECT tunnel failed, response 403 000 |  | 0.220686s
+https://vietstock.vn/761/kinh-te/vi-mo.rss -> curl: (56) CONNECT tunnel failed, response 403 000 |  | 0.149407s
+https://vietstock.vn/757/tai-chinh/ngan-hang.rss -> curl: (56) CONNECT tunnel failed, response 403 000 |  | 0.236118s
+https://vietstock.vn/1636/nhan-dinh-phan-tich/nhan-dinh-thi-truong.rss -> curl: (56) CONNECT tunnel failed, response 403 000 |  | 0.237212s
+https://en.vietstock.vn/52015/vietnam-stocks.rss -> curl: (56) CONNECT tunnel failed, response 403 000 |  | 0.283063s
+https://en.vietstock.vn/962/earnings-and-outlook.rss -> curl: (56) CONNECT tunnel failed, response 403 000 |  | 0.256013s
+https://cafef.vn/rss.chn -> curl: (56) CONNECT tunnel failed, response 403 000 |  | 0.248511s
+https://vietstock.vn/rss -> curl: (56) CONNECT tunnel failed, response 403 000 |  | 0.268708s
+https://api.telegram.org -> curl: (56) CONNECT tunnel failed, response 403 000 |  | 0.225373s
+https://api.anthropic.com -> 404 | text/plain | 0.049641s
+https://registry.npmjs.org/n8n -> 200 | application/json | 0.157363s
+https://hub.docker.com -> 200 | text/html; charset=utf-8 | 0.476869s
+https://registry-1.docker.io/v2/ -> 401 | application/json | 0.383605s
+https://docker.n8n.io -> curl: (56) CONNECT tunnel failed, response 403 000 |  | 0.030306s
+https://www.hsx.vn -> curl: (56) CONNECT tunnel failed, response 403 000 |  | 0.030905s
+https://www.hnx.vn -> curl: (56) CONNECT tunnel failed, response 403 000 |  | 0.231756s
+https://ssc.gov.vn -> curl: (56) CONNECT tunnel failed, response 403 000 |  | 0.184124s
+https://news.google.com/rss -> curl: (56) CONNECT tunnel failed, response 403 000 |  | 0.200760s
+# proxy status
+{
+  "enabled": true,
+  "port": 44817,
+  "caBundlePath": "/root/.ccr/ca-bundle.crt",
+  "hasSystemCa": true,
+  "bundleCoversEveryHost": true,
+  "noProxy": "localhost,127.0.0.1,::1,127.0.0.0/8,0.0.0.0/8,::,169.254.0.0/16,api.anthropic.com,api-staging.anthropic.com,api-pr-preview.anthropic.com,mcp-proxy.anthropic.com,mcp-proxy-staging.anthropic.com,registry.npmjs.org,jsr.io,npm.jsr.io,pypi.org,files.pythonhosted.org,index.crates.io,proxy.golang.org,host.docker.internal,10.0.0.0/8,172.16.0.0/12,192.168.0.0/16,100.64.0.0/10,.svc.cluster.local,*.svc.cluster.local",
+  "selective": false,
+  "toolScoped": false,
+  "installedProxyPreconfiguredClis": [
+    "bq",
+    "gcloud",
+    "gh",
+    "gsutil"
+  ],
+  "javaTrustStorePath": "/etc/ssl/certs/java/cacerts",
+  "javaTrustStoreType": "JKS",
+  "readmePath": "/root/.ccr/README.md",
+  "gitConfigInjection": true,
+  "gitSshRewrite": true,
+  "recentRelayFailures": [
+    {
+      "ts": "2026-10-22T04:31:56.655Z",
+      "kind": "connect_rejected",
+      "detail": "gateway answered 403 to CONNECT (policy denial or upstream failure)",
+      "host": "vietstock.vn:443"
+    },
+    {
+      "ts": "2026-10-22T04:31:56.894Z",
+      "kind": "connect_rejected",
+      "detail": "gateway answered 403 to CONNECT (policy denial or upstream failure)",
+      "host": "vietstock.vn:443"
+    },
+    {
+      "ts": "2026-10-22T04:31:57.116Z",
+      "kind": "connect_rejected",
+      "detail": "gateway answered 403 to CONNECT (policy denial or upstream failure)",
+      "hos
+# egress from inside the n8n container (no proxy env) 2026-10-22T04:41:06Z
+https://cafef.vn/thi-truong-chung-khoan.rss -> ERR ENOTFOUND
+https://api.telegram.org -> ERR ENOTFOUND
+https://api.anthropic.com -> ERR SELF_SIGNED_CERT_IN_CHAIN

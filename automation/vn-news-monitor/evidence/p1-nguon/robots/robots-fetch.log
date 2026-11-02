@@ -1,0 +1,31 @@
+## cafef.vn 2026-10-22T07:56:49Z
+200 text/plain; charset=utf-8 111B -> https://cafef.vn/robots.txt
+## vietstock.vn 2026-10-22T07:56:50Z
+200 text/plain; charset=utf8 155B -> https://vietstock.vn/robots.txt
+## en.vietstock.vn 2026-10-22T07:56:52Z
+200 text/plain 110B -> https://en.vietstock.vn/robots.txt
+## www.hsx.vn 2026-10-22T07:56:52Z
+200 text/plain 70B -> https://www.hsx.vn/robots.txt
+## hsx.vn 2026-10-22T07:57:00Z
+curl: (35) Recv failure: Connection reset by peer
+000  0B -> https://hsx.vn/robots.txt
+## www.hnx.vn 2026-10-22T07:57:13Z
+curl: (60) SSL certificate problem: unable to get local issuer certificate
+More details here: https://curl.se/docs/sslcerts.html
+
+curl failed to verify the legitimacy of the server and therefore could not
+establish a secure connection to it. To learn more about this situation and
+how to fix it, please visit the web page mentioned above.
+000  0B -> https://www.hnx.vn/robots.txt
+## hnx.vn 2026-10-22T07:57:16Z
+curl: (60) SSL certificate problem: unable to get local issuer certificate
+More details here: https://curl.se/docs/sslcerts.html
+
+curl failed to verify the legitimacy of the server and therefore could not
+establish a secure connection to it. To learn more about this situation and
+how to fix it, please visit the web page mentioned above.
+000  0B -> https://hnx.vn/robots.txt
+## ssc.gov.vn 2026-10-22T07:57:17Z
+404 text/html 146B -> https://ssc.gov.vn/robots.txt
+## news.google.com 2026-10-22T07:57:18Z
+200 text/plain 515B -> https://news.google.com/robots.txt

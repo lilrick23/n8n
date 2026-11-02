@@ -1,0 +1,20 @@
+# POST /rest/workflows/vnNewsCollTest01/run (trigger: Chay tay) -> execution 2, fetched 2026-10-22T08:47:53Z
+status=success mode=manual started=2026-10-22T08:47:47.301Z stopped=2026-10-22T08:47:51.566Z
+  Chay tay                     status=success items_out=[1] ms=1
+  Config                       status=success items_out=[1] ms=136
+  Tach nguon                   status=success items_out=[16] ms=29
+  Tai feed                     status=success items_out=[15, 1] ms=140
+  Gan nguon                    status=success items_out=[15] ms=65
+  XML sang JSON                status=success items_out=[15] ms=64
+  Chuan hoa                    status=success items_out=[146] ms=68
+  Tao id                       status=success items_out=[146] ms=217
+  Da co trong news_items?      status=success items_out=[146] ms=2847
+  Gioi han                     status=success items_out=[146] ms=12
+  Khop watchlist               status=success items_out=[146] ms=159
+  Dinh dang dong               status=success items_out=[146] ms=25
+  Luu tin                      status=success items_out=[146] ms=191
+  Loi tai feed                 status=success items_out=[1] ms=69
+  Tong ket                     status=success items_out=[1] ms=76
+  Ghi run_log                  status=success items_out=[1] ms=15
+--- Tong ket output 0: 1 items
+{"run_id": "2", "workflow": "VN news - collector (fixture test)", "trigger": "Chay tay", "started_at": "2026-10-22T15:47:47.578+07:00", "finished_at": "2026-10-22T15:47:51.548+07:00", "sources_total": 16, "sources_ok": 15, "sources_failed": 1, "failed_source_ids": "test-missing-feed", "items_fetched": 150, "items_unique": 146, "items_new": 146, "items_matched": 6, "items_saved": 146, "items_to_ai": 85, "ai_calls": 0, "ai_failures": 0, "alerts_sent": 0, "dry_run": true, "error": ""}

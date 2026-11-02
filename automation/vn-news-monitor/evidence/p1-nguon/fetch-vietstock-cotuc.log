@@ -1,0 +1,18 @@
+# fetched_at_utc=2026-10-22T07:54:54Z fetched_at_ict=2026-10-22T14:54:54+07:00
+# cmd: curl -sS -L -m 20 -A '<browser UA>' -D - -o raw/vietstock-cotuc.xml 'https://vietstock.vn/738/doanh-nghiep/co-tuc.rss'
+HTTP/1.1 200 Connection Established
+
+HTTP/1.1 200 OK
+Server: nginx
+Date: Thu, 22 Oct 2026 07:54:55 GMT
+Content-Type: application/rss+xml; charset=utf-8
+Content-Length: 16057
+Connection: keep-alive
+Cache-Control: private,public
+Set-Cookie: ASP.NET_SessionId=l2cnimxnqqygl4pdjuqvw2zp; path=/; HttpOnly
+X-XSS-Protection: 1; mode=block
+X-Content-Type-Options: nosniff
+Strict-Transport-Security: max-age=7776000; includeSubDomains
+
+
+# http_code=200 content_type=application/rss+xml; charset=utf-8 size=16057 url_effective=https://vietstock.vn/738/doanh-nghiep/co-tuc.rss time=1.123794s

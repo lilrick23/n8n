@@ -1,0 +1,6 @@
+# POST /rest/workflows/vnNewsSetup00001/run (trigger: Chay tay) -> execution 1, fetched 2026-10-22T08:47:46Z
+status=success mode=manual started=2026-10-22T08:47:44.647Z stopped=2026-10-22T08:47:44.851Z
+  Chay tay                     status=success items_out=[1] ms=7
+  Tao news_items               status=success items_out=[1] ms=28
+  Tao run_log                  status=success items_out=[1] ms=21
+  Tao ai_usage                 status=success items_out=[1] ms=23

@@ -1,0 +1,67 @@
+{
+  "id": "vnNewsErrorHdl01",
+  "name": "VN news - error handler",
+  "active": false,
+  "nodes": [
+    {
+      "parameters": {},
+      "id": "120f1f11-be3c-5408-8a4a-44fa5c3a0aa4",
+      "name": "Khi co loi",
+      "type": "n8n-nodes-base.errorTrigger",
+      "typeVersion": 1,
+      "position": [
+        0,
+        200
+      ]
+    },
+    {
+      "parameters": {
+        "jsCode": "// Ban toi thieu (giai doan 3). Giai doan 6 them Telegram va chong bao loi.\nconst e = $json;\nconst redact = (s) => String(s ?? '')\n  .replace(/\\d{8,10}:[\\w-]{35}/g, '<telegram-token>')\n  .replace(/sk-[A-Za-z0-9_-]{10,}/g, '<api-key>')\n  .replace(/Bearer\\s+\\S+/g, 'Bearer <redacted>');\nreturn [{ json: {\n  workflow: e.workflow?.name ?? '',\n  node: e.execution?.lastNodeExecuted ?? '',\n  message: redact(e.execution?.error?.message).slice(0, 500),\n  at: DateTime.now().setZone('Asia/Ho_Chi_Minh').toISO({ suppressMilliseconds: true }),\n  url: e.execution?.url ?? '',\n} }];\n"
+      },
+      "id": "8a9188eb-37de-53a9-b00e-a9329a480680",
+      "name": "Dinh dang loi",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        240,
+        200
+      ]
+    },
+    {
+      "parameters": {
+        "content": "## news-error-handler\nNhan loi tu news-collector va news-digest.\nGiai doan 6: gui Telegram, toi da 1 bao loi giong nhau moi 30 phut.",
+        "width": 600,
+        "height": 180
+      },
+      "id": "c879ad73-2e0b-5184-b794-87ebee631a5f",
+      "name": "Ghi chu",
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        0,
+        -120
+      ]
+    }
+  ],
+  "connections": {
+    "Khi co loi": {
+      "main": [
+        [
+          {
+            "node": "Dinh dang loi",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "settings": {
+    "executionOrder": "v1",
+    "timezone": "Asia/Ho_Chi_Minh",
+    "saveManualExecutions": true,
+    "callerPolicy": "workflowsFromSameOwner"
+  },
+  "pinData": {},
+  "tags": []
+}
