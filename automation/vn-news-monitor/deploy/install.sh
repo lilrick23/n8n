@@ -55,20 +55,20 @@ fi
 
 say "Ghi chat ID vao workflow ban tin (chi tren may chu, khong vao repo)"
 CHAT_ID="$CHAT_ID" python3 - "$DIR/import/news-digest.json" <<'PY'
-import json, os, sys
+import json, os, re, sys
 p = sys.argv[1]
 wf = json.load(open(p, encoding="utf-8"))
 chat = os.environ.get("CHAT_ID", "")
 for n in wf["nodes"]:
     if n["name"] == "Config":
-        n["parameters"]["jsCode"] = n["parameters"]["jsCode"].replace("TELEGRAM_CHAT_ID: ''", f"TELEGRAM_CHAT_ID: {json.dumps(chat)}")
+        n["parameters"]["jsCode"] = re.sub(r"TELEGRAM_CHAT_ID: (\"\"|'')", lambda m: f"TELEGRAM_CHAT_ID: {json.dumps(chat)}", n["parameters"]["jsCode"])
 json.dump(wf, open(p, "w", encoding="utf-8"), ensure_ascii=False)
 PY
 
 say "Tao credential trong n8n (ma hoa bang N8N_ENCRYPTION_KEY)"
 umask 077
 ANTHROPIC_KEY="$ANTHROPIC_KEY" TELEGRAM_TOKEN="$TELEGRAM_TOKEN" python3 - "$DIR/import/credentials.json" <<'PY'
-import json, os, sys
+import json, os, re, sys
 creds = []
 if os.environ.get("ANTHROPIC_KEY"):
     creds.append({"id": "vnNewsAnthropic1", "name": "Anthropic (vn-news)", "type": "anthropicApi",

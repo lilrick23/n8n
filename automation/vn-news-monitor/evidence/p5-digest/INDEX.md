@@ -24,3 +24,9 @@ Kết luận: **ĐẠT MỘT PHẦN.** Bản tin dựng đúng từ dữ liệu 
 - Tin không có mã watchlist chia làm hai mục: "Vĩ mô" (chính sách, tín dụng, chủ đề vĩ mô) và "Doanh nghiệp ngoài watchlist". `config/watchlist.example.json` vẫn là danh sách ví dụ, nên phần lớn tin thật rơi vào mục sau.
 - Chi phí bản tin: ~44 bản tin/tháng × ~0,00027 USD ≈ 0,012 USD/tháng (tính từ số token đo được, giá Haiku 5.5 kiểm ngày 2026-10-22).
 - Tin khớp mã nhưng chưa qua AI (`keyword_only`) được liệt kê riêng ở cuối bản tin để không bỏ sót.
+
+## Bổ sung 2026-11-17: gửi Telegram thật
+
+| Khẳng định | Trạng thái | Bằng chứng |
+|---|---|---|
+| Bot `@Rickbriefbot` gửi được bản tin 3 phần tới chat riêng của Rick (DRY_RUN=true, nhãn [THỬ NGHIỆM]) | ĐÃ KIỂM CHỨNG | `telegram-live/run-log.md`, `telegram-live/digest-sent-2026-11-17.txt` |

@@ -1,6 +1,6 @@
 # Hướng dẫn vận hành: chạy hệ thống tin tức 24/7
 
-Cập nhật: 2026-11-02. Viết cho người không lập trình. Bản này bao phần cài đặt trên máy chủ riêng (VPS). Phần lỗi, giám sát và nghiệm thu bổ sung ở giai đoạn 6–8.
+Cập nhật: 2026-11-17. Viết cho người không lập trình. Bản này bao phần cài đặt trên máy chủ riêng (VPS). Rick chạy trên máy tính cá nhân: xem `docs/CAI-DAT-MAY-CA-NHAN.md`. Phần lỗi, giám sát và nghiệm thu bổ sung ở giai đoạn 6–8.
 
 ## 0. Hệ thống gồm những gì
 
@@ -67,5 +67,5 @@ Trong `VN news - digest`, mở node **Config**, đổi `DRY_RUN: true` thành `D
 | Việc | Trạng thái |
 |---|---|
 | `install.sh` trên VPS thật | CHƯA KIỂM CHỨNG TRỰC TIẾP. Đã chạy thử trong phiên Claude Code: cài, nhập credential và workflow, khởi động, chạy bảng và bản tin đều đạt (`evidence/p7-van-hanh/install-test.log`) |
-| Gửi Telegram thật | CHƯA KIỂM CHỨNG TRỰC TIẾP; cần token và chat ID của anh |
+| Gửi Telegram thật | ĐÃ KIỂM CHỨNG 2026-11-17: bản tin 3 phần tới bot của anh (`evidence/p5-digest/telegram-live/run-log.md`) |
 | Cảnh báo tức thời mức ≥ 4 | Chưa làm; bản tin 08:15 và 15:30 đã chạy được |
