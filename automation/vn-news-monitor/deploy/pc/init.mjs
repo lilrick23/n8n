@@ -20,6 +20,8 @@ const env = (k) => (process.env[k] ?? '').trim();
 const anthropic = env('ANTHROPIC_KEY');
 const telegram = env('TELEGRAM_TOKEN');
 let chatId = env('CHAT_ID');
+const callmebot = env('CALLMEBOT_APIKEY');
+const waPhone = env('WHATSAPP_PHONE').replace(/[^\d+]/g, '');
 
 if (telegram && !chatId) {
   try {
@@ -38,6 +40,7 @@ if (telegram && !chatId) {
 const creds = [];
 if (anthropic) creds.push({ id: 'vnNewsAnthropic1', name: 'Anthropic (vn-news)', type: 'anthropicApi', data: { apiKey: anthropic } });
 if (telegram) creds.push({ id: 'vnNewsTelegram01', name: 'Telegram (vn-news)', type: 'telegramApi', data: { accessToken: telegram } });
+if (callmebot) creds.push({ id: 'vnNewsCallMeBot1', name: 'CallMeBot WhatsApp (vn-news)', type: 'httpQueryAuth', data: { name: 'apikey', value: callmebot } });
 const tmp = `${DATA}/.creds-tmp.json`;
 if (creds.length) {
   fs.writeFileSync(tmp, JSON.stringify(creds), { mode: 0o600 });
@@ -52,11 +55,11 @@ if (creds.length) {
 
 for (const w of WORKFLOWS) {
   const wf = JSON.parse(fs.readFileSync(`${SETUP}/workflows/${w}.json`, 'utf8'));
-  if (w === 'news-digest' && chatId) {
+  if (w === 'news-digest') {
     for (const node of wf.nodes) {
-      if (node.name === 'Config') {
-        node.parameters.jsCode = node.parameters.jsCode.replace(/TELEGRAM_CHAT_ID: (""|'')/, `TELEGRAM_CHAT_ID: ${JSON.stringify(chatId)}`);
-      }
+      if (node.name !== 'Config') continue;
+      if (chatId) node.parameters.jsCode = node.parameters.jsCode.replace(/TELEGRAM_CHAT_ID: (""|'')/, `TELEGRAM_CHAT_ID: ${JSON.stringify(chatId)}`);
+      if (callmebot && waPhone) node.parameters.jsCode = node.parameters.jsCode.replace(/WHATSAPP_PHONE: (""|'')/, `WHATSAPP_PHONE: ${JSON.stringify(waPhone)}`);
     }
   }
   const p = `${DATA}/.wf-tmp.json`;

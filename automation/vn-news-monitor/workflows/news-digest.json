@@ -58,7 +58,7 @@
     },
     {
       "parameters": {
-        "jsCode": "// Cau hinh news-digest. Rick sua o day.\n// TELEGRAM_CHAT_ID: chat nhan ban tin (so, vi du 123456789). De trong thi chi dung ban tin, khong gui.\n// Khong commit chat ID that vao repo: dien truc tiep trong n8n.\nconst TRIGGERS = { 'Ban tin sang': 'sang', 'Ban tin chieu': 'chieu', 'Chay tay': 'tay' };\nconst trigger = Object.keys(TRIGGERS).find((n) => {\n  try {\n    return $(n).isExecuted;\n  } catch (e) {\n    return false;\n  }\n}) ?? 'Chay tay';\n\nreturn [{\n  json: {\n    trigger,\n    slot: TRIGGERS[trigger],\n    now: DateTime.now().setZone('Asia/Ho_Chi_Minh').toISO({ suppressMilliseconds: true }),\n    DRY_RUN: true,\n    TELEGRAM_CHAT_ID: \"\",\n    MIN_IMPORTANCE: 3,\n    MAX_LINES: 30,\n    MAX_UNCLASSIFIED: 10,\n    DEFAULT_LOOKBACK_HOURS: 24,\n    MAX_LOOKBACK_HOURS: 72,\n    PART_LIMIT: 3900,\n    // Neu chua co nguon cong bo chinh thuc (SSI MCP), ban tin ghi ro dieu nay.\n    OFFICIAL_SOURCE_CONNECTED: false,\n  },\n}];\n"
+        "jsCode": "// Cau hinh news-digest. Rick sua o day.\n// TELEGRAM_CHAT_ID: chat nhan ban tin (so, vi du 123456789). De trong thi chi dung ban tin, khong gui.\n// Khong commit chat ID that vao repo: dien truc tiep trong n8n.\n// WHATSAPP_PHONE: so WhatsApp nhan dong bao (dang +84...). De trong thi khong bao. Khoa CallMeBot nam trong credential.\nconst TRIGGERS = { 'Ban tin sang': 'sang', 'Ban tin chieu': 'chieu', 'Chay tay': 'tay' };\nconst trigger = Object.keys(TRIGGERS).find((n) => {\n  try {\n    return $(n).isExecuted;\n  } catch (e) {\n    return false;\n  }\n}) ?? 'Chay tay';\n\nreturn [{\n  json: {\n    trigger,\n    slot: TRIGGERS[trigger],\n    now: DateTime.now().setZone('Asia/Ho_Chi_Minh').toISO({ suppressMilliseconds: true }),\n    DRY_RUN: true,\n    TELEGRAM_CHAT_ID: \"\",\n    WHATSAPP_PHONE: \"\",\n    MIN_IMPORTANCE: 3,\n    MAX_LINES: 30,\n    MAX_UNCLASSIFIED: 10,\n    DEFAULT_LOOKBACK_HOURS: 24,\n    MAX_LOOKBACK_HOURS: 72,\n    PART_LIMIT: 3900,\n    // Neu chua co nguon cong bo chinh thuc (SSI MCP), ban tin ghi ro dieu nay.\n    OFFICIAL_SOURCE_CONNECTED: false,\n  },\n}];\n"
       },
       "id": "5083f2ac-127b-5aa3-a7f8-289fa94209d9",
       "name": "Config",
@@ -360,7 +360,100 @@
     },
     {
       "parameters": {
-        "content": "## news-digest\nBan tin 08:15 va 15:30 thu 2-6 (gio Viet Nam). Doc news_items tu lan gui truoc.\nSua cau hinh o node **Config**: dien TELEGRAM_CHAT_ID, tat DRY_RUN khi nghiem thu xong.\nAI (Haiku 5.5) chi viet 'Diem nhan' tu tom tat da co; loi AI thi ban tin van gui.\nThiet ke: docs/DESIGN.md muc 1.2 va 7",
+        "jsCode": "// Mot dong bao WhatsApp qua CallMeBot sau moi ban tin. Chi gui gio, so tin, so phan va trang thai.\n// Khong gui tieu de, ma co phieu hay noi dung: CallMeBot la ben trung gian (docs/DECISIONS.md muc 19).\nconst cfg = $('Config').first().json;\nconst s = $json;\nconst LABEL = { sang: 'Bản tin sáng', chieu: 'Bản tin chiều', tay: 'Bản tin chạy tay' };\nconst at = DateTime.fromISO(s.period_end).setZone('Asia/Ho_Chi_Minh').toFormat('HH:mm dd/MM');\nconst status = s.sent\n  ? `đã gửi Telegram ${s.parts_sent}/${s.parts} phần, ${s.items_listed} tin`\n  : `CHƯA gửi được Telegram (${s.parts_sent}/${s.parts} phần). Mở n8n, mục Executions để xem lỗi`;\nreturn [{ json: {\n  phone: String(cfg.WHATSAPP_PHONE || ''),\n  text: `${cfg.DRY_RUN ? '[THỬ NGHIỆM] ' : ''}${LABEL[s.slot] ?? LABEL.tay} ${at}: ${status}.`,\n} }];\n"
+      },
+      "id": "060ecd27-8831-5303-82b3-6e1e4d10a821",
+      "name": "Dong bao WhatsApp",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        2400,
+        600
+      ]
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "7d1e2f3a-4b5c-4d6e-8f70-91a2b3c4d5e6",
+              "leftValue": "={{ $json.phone }}",
+              "rightValue": "",
+              "operator": {
+                "type": "string",
+                "operation": "notEmpty",
+                "singleValue": true
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "id": "b2ec4a89-dfff-5bfc-aa55-7bfdbeeb823d",
+      "name": "Co WhatsApp?",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        2640,
+        600
+      ]
+    },
+    {
+      "parameters": {
+        "url": "https://api.callmebot.com/whatsapp.php",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "httpQueryAuth",
+        "sendQuery": true,
+        "queryParameters": {
+          "parameters": [
+            {
+              "name": "phone",
+              "value": "={{ $json.phone }}"
+            },
+            {
+              "name": "text",
+              "value": "={{ $json.text }}"
+            }
+          ]
+        },
+        "options": {
+          "timeout": 20000,
+          "response": {
+            "response": {
+              "responseFormat": "text"
+            }
+          }
+        }
+      },
+      "id": "ad29ab79-aaab-5eb1-8f27-cc46e373048a",
+      "name": "Gui WhatsApp",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        2880,
+        560
+      ],
+      "credentials": {
+        "httpQueryAuth": {
+          "id": "vnNewsCallMeBot1",
+          "name": "CallMeBot WhatsApp (vn-news)"
+        }
+      },
+      "retryOnFail": true,
+      "maxTries": 2,
+      "waitBetweenTries": 10000,
+      "onError": "continueRegularOutput"
+    },
+    {
+      "parameters": {
+        "content": "## news-digest\nBan tin 08:15 va 15:30 thu 2-6 (gio Viet Nam). Doc news_items tu lan gui truoc.\nSua cau hinh o node **Config**: dien TELEGRAM_CHAT_ID, WHATSAPP_PHONE (tuy chon), tat DRY_RUN khi nghiem thu xong.\nAI (Haiku 5.5) chi viet 'Diem nhan' tu tom tat da co; loi AI thi ban tin van gui.\nThiet ke: docs/DESIGN.md muc 1.2 va 7",
         "width": 900,
         "height": 200
       },
@@ -524,6 +617,33 @@
         [
           {
             "node": "Ghi digest_log",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Dong bao WhatsApp",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Dong bao WhatsApp": {
+      "main": [
+        [
+          {
+            "node": "Co WhatsApp?",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Co WhatsApp?": {
+      "main": [
+        [
+          {
+            "node": "Gui WhatsApp",
             "type": "main",
             "index": 0
           }

@@ -89,11 +89,22 @@ Không dán khóa hay token vào chat với Claude.
 
 Trong `VN news - digest`, node **Config**, đổi `DRY_RUN: true` thành `DRY_RUN: false`. Bản tin không còn nhãn `[THỬ NGHIỆM]`.
 
-## 11. Trạng thái kiểm chứng
+## 11. Dòng báo WhatsApp (tùy chọn)
+
+Mỗi lần bản tin gửi xong, WhatsApp của anh nhận một dòng, ví dụ: `Bản tin sáng 08:15 19/11: đã gửi Telegram 3/3 phần, 28 tin.` Dòng này không chứa tiêu đề hay mã cổ phiếu.
+
+1. Lưu số `+34 644 51 95 23` (CallMeBot) vào danh bạ.
+2. Trên WhatsApp, nhắn cho số đó: `I allow callmebot to send me messages`.
+3. Bot trả về `Your APIKEY is ...`. Chưa có sau 2 phút thì thử lại sau 24 giờ.
+4. Trong `khoa.txt`, điền `CALLMEBOT_APIKEY=` (dãy số nhận được) và `WHATSAPP_PHONE=` (số của anh, dạng `+84...`). Làm trước bước `docker compose up -d` ở mục 4.
+5. Nếu đã cài rồi: trong n8n, vào **Credentials**, tạo **Query Auth** tên `CallMeBot WhatsApp (vn-news)`, Name `apikey`, Value là khóa. Mở `VN news - digest`, node **Gui WhatsApp**, chọn credential đó. Ở node **Config**, điền `WHATSAPP_PHONE`.
+
+## 12. Trạng thái kiểm chứng
 
 | Việc | Trạng thái |
 |---|---|
 | Gói cài đặt chạy bằng `docker compose up -d`: nhập 2 credential, 4 workflow, tìm chat ID, lưu khóa mã hóa; chạy lại thì bỏ qua | ĐÃ KIỂM CHỨNG trên Linux trong phiên Claude Code (`evidence/p7-van-hanh/pc-install-test.md`) |
 | Gửi bản tin thật tới Telegram của anh | ĐÃ KIỂM CHỨNG 2026-11-17 (`evidence/p5-digest/telegram-live/run-log.md`) |
 | Cài trên Windows và macOS thật | CHƯA KIỂM CHỨNG TRỰC TIẾP. Cách kiểm: làm mục 4 và 5; đạt khi bản tin `[THỬ NGHIỆM]` đến Telegram |
+| Nhánh dòng báo WhatsApp: gửi đúng số, nội dung, khóa | ĐÃ KIỂM CHỨNG với máy nhận giả lập trong phiên (`evidence/p5-digest/whatsapp-ping-test.md`); gửi tới WhatsApp thật CHƯA KIỂM CHỨNG TRỰC TIẾP, chờ khóa CallMeBot |
 | Tự chạy lại sau khi khởi động lại máy | CHƯA KIỂM CHỨNG TRỰC TIẾP. Cách kiểm: khởi động lại máy, mở `http://localhost:5678` sau 2 phút |

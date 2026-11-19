@@ -325,9 +325,10 @@ def eval_workflow():
 
 
 TELEGRAM_CREDENTIAL = {"id": "vnNewsTelegram01", "name": "Telegram (vn-news)"}
+CALLMEBOT_CREDENTIAL = {"id": "vnNewsCallMeBot1", "name": "CallMeBot WhatsApp (vn-news)"}
 
 
-def digest_workflow(chat_id=""):
+def digest_workflow(chat_id="", wa_phone=""):
     """Scheduled digest (phase 5): read news_items since the last digest, group, add AI highlights, send."""
     d = lambda name, **subs: js(name, src=DIGEST_SRC, **subs)  # noqa: E731
     extractor = node("Viet diem nhan", "@n8n/n8n-nodes-langchain.informationExtractor", 1.2, 1440, 0, {
@@ -346,7 +347,7 @@ def digest_workflow(chat_id=""):
         node("Ban tin chieu", "n8n-nodes-base.scheduleTrigger", 1.4, 0, 260, {
             "rule": {"interval": [{"field": "cronExpression", "expression": "30 15 * * 1-5"}]}, "misfirePolicy": "skip"}),
         node("Chay tay", "n8n-nodes-base.manualTrigger", 1, 0, 420, {}),
-        code("Config", 240, 260, d("config.js", CHAT_ID=json.dumps(chat_id))),
+        code("Config", 240, 260, d("config.js", CHAT_ID=json.dumps(chat_id), WA_PHONE=json.dumps(wa_phone))),
         node("Doc digest_log", "n8n-nodes-base.dataTable", 1.1, 480, 260, {
             "resource": "row", "operation": "get", "dataTableId": table("digest_log"),
             "matchType": "anyCondition",
@@ -387,8 +388,27 @@ def digest_workflow(chat_id=""):
             "columns": {"mappingMode": "autoMapInputData", "value": {}, "matchingColumns": [],
                         "schema": [], "attemptToConvertTypes": False, "convertFieldsToString": False},
             "options": {}}),
+        code("Dong bao WhatsApp", 2400, 600, d("whatsapp-ping.js")),
+        node("Co WhatsApp?", "n8n-nodes-base.if", 2.2, 2640, 600, {
+            "conditions": {"options": {"caseSensitive": True, "leftValue": "", "typeValidation": "strict", "version": 2},
+                           "conditions": [{"id": "7d1e2f3a-4b5c-4d6e-8f70-91a2b3c4d5e6",
+                                           "leftValue": "={{ $json.phone }}", "rightValue": "",
+                                           "operator": {"type": "string", "operation": "notEmpty", "singleValue": True}}],
+                           "combinator": "and"},
+            "options": {}}),
+        node("Gui WhatsApp", "n8n-nodes-base.httpRequest", 4.2, 2880, 560, {
+            "url": "https://api.callmebot.com/whatsapp.php",
+            "authentication": "genericCredentialType",
+            "genericAuthType": "httpQueryAuth",
+            "sendQuery": True,
+            "queryParameters": {"parameters": [
+                {"name": "phone", "value": "={{ $json.phone }}"},
+                {"name": "text", "value": "={{ $json.text }}"}]},
+            "options": {"timeout": 20000, "response": {"response": {"responseFormat": "text"}}},
+        }, credentials={"httpQueryAuth": dict(CALLMEBOT_CREDENTIAL)},
+            retryOnFail=True, maxTries=2, waitBetweenTries=10000, onError="continueRegularOutput"),
         sticky("## news-digest\nBan tin 08:15 va 15:30 thu 2-6 (gio Viet Nam). Doc news_items tu lan gui truoc.\n"
-               "Sua cau hinh o node **Config**: dien TELEGRAM_CHAT_ID, tat DRY_RUN khi nghiem thu xong.\n"
+               "Sua cau hinh o node **Config**: dien TELEGRAM_CHAT_ID, WHATSAPP_PHONE (tuy chon), tat DRY_RUN khi nghiem thu xong.\n"
                "AI (Haiku 5.5) chi viet 'Diem nhan' tu tom tat da co; loi AI thi ban tin van gui.\n"
                "Thiet ke: docs/DESIGN.md muc 1.2 va 7", 0, -240, 900, 200),
     ]
@@ -400,7 +420,8 @@ def digest_workflow(chat_id=""):
         ("Viet diem nhan", "Dinh dang", 0),
         ("Dinh dang", "Co chat ID?", 0), ("Dinh dang", "Tong ket ban tin", 0),
         ("Co chat ID?", "Gui Telegram", 0),
-        ("Tong ket ban tin", "Ghi digest_log", 0),
+        ("Tong ket ban tin", "Ghi digest_log", 0), ("Tong ket ban tin", "Dong bao WhatsApp", 0),
+        ("Dong bao WhatsApp", "Co WhatsApp?", 0), ("Co WhatsApp?", "Gui WhatsApp", 0),
     ]
     conns = connect(pairs)
     conns["Mo hinh Haiku (ban tin)"] = {"ai_languageModel": [[{"node": "Viet diem nhan", "type": "ai_languageModel", "index": 0}]]}

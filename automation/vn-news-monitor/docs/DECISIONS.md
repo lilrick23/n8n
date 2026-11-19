@@ -24,6 +24,7 @@ Cập nhật lần cuối: 2026-11-02 (Rick duyệt #17, #18). Claude Code bổ 
 | 16 | Repo công khai | Chỉ commit tài liệu, workflow, dữ liệu mẫu, bằng chứng đã loại bí mật; watchlist thật không commit | `lilrick23/n8n` là fork công khai: ai cũng đọc được | MẶC ĐỊNH; **CẦN RICK** cân nhắc chuyển sang repo riêng tư |
 | 17 | Nhãn bộ mẫu đánh giá AI | 62 dòng, `DA_DUYET` | Rick duyệt toàn bộ đề xuất ngày 2026-11-02 | **ĐÃ CHỐT** (Rick) |
 | 18 | Ngưỡng đạt của AI và cách xử lý recall mức 4–5 | Phương án B; prompt v3: sự kiện cụ thể của mã watchlist tối thiểu mức 4 | Rick duyệt 2026-11-02. Prompt v3 đạt mọi ngưỡng B: recall 1,0, precision 0,81–0,84 (`evidence/p4-ai/eval-report.md` mục 7) | **ĐÃ CHỐT** (Rick) |
+| 19 | Kênh WhatsApp | Một dòng báo qua CallMeBot sau mỗi bản tin: giờ, số tin, số phần, trạng thái gửi. Không gửi tiêu đề, mã hay nội dung. Khóa CallMeBot là credential `httpQueryAuth`; số điện thoại chỉ điền trên máy chạy | CallMeBot là dịch vụ trung gian, miễn phí cho dùng cá nhân; nó thấy số điện thoại và dòng báo. Zalo dùng Zalo Bot Platform chính thức, chờ token | ĐÃ CHỐT 2026-11-19 (Rick chọn) |
 
 ## 2. Rủi ro tuân thủ cần Rick tự xác nhận
 

@@ -1,6 +1,7 @@
 // Cau hinh news-digest. Rick sua o day.
 // TELEGRAM_CHAT_ID: chat nhan ban tin (so, vi du 123456789). De trong thi chi dung ban tin, khong gui.
 // Khong commit chat ID that vao repo: dien truc tiep trong n8n.
+// WHATSAPP_PHONE: so WhatsApp nhan dong bao (dang +84...). De trong thi khong bao. Khoa CallMeBot nam trong credential.
 const TRIGGERS = { 'Ban tin sang': 'sang', 'Ban tin chieu': 'chieu', 'Chay tay': 'tay' };
 const trigger = Object.keys(TRIGGERS).find((n) => {
   try {
@@ -17,6 +18,7 @@ return [{
     now: DateTime.now().setZone('Asia/Ho_Chi_Minh').toISO({ suppressMilliseconds: true }),
     DRY_RUN: true,
     TELEGRAM_CHAT_ID: /*__CHAT_ID__*/'',
+    WHATSAPP_PHONE: /*__WA_PHONE__*/'',
     MIN_IMPORTANCE: 3,
     MAX_LINES: 30,
     MAX_UNCLASSIFIED: 10,

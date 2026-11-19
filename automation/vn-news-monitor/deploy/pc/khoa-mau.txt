@@ -1,6 +1,9 @@
 # Doi ten tep nay thanh khoa.txt, dan khoa sau dau =, luu lai, roi chay: docker compose up -d
-# Khong gui tep nay cho ai. Sau lan cai dau tien, xoa noi dung hai dong khoa.
+# Khong gui tep nay cho ai. Sau lan cai dau tien, xoa noi dung cac dong khoa.
 ANTHROPIC_KEY=
 TELEGRAM_TOKEN=
 # De trong: may tu tim chat ID sau khi anh gui /start cho bot.
 CHAT_ID=
+# Tuy chon: dong bao WhatsApp qua CallMeBot (xem huong dan muc 12). So dang +84...
+CALLMEBOT_APIKEY=
+WHATSAPP_PHONE=

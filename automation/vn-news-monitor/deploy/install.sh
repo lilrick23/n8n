@@ -40,6 +40,8 @@ fi
 ANTHROPIC_KEY="${ANTHROPIC_KEY:-}"
 TELEGRAM_TOKEN="${TELEGRAM_TOKEN:-}"
 CHAT_ID="${CHAT_ID:-}"
+CALLMEBOT_APIKEY="${CALLMEBOT_APIKEY:-}"
+WHATSAPP_PHONE="${WHATSAPP_PHONE:-}"
 if [ -z "$ANTHROPIC_KEY" ] && [ -t 0 ]; then
   read -r -s -p "Dan khoa Anthropic API (bat dau sk-ant-api03-), roi Enter: " ANTHROPIC_KEY; echo
 fi
@@ -54,20 +56,22 @@ if [ -n "$TELEGRAM_TOKEN" ] && [ -z "$CHAT_ID" ]; then
 fi
 
 say "Ghi chat ID vao workflow ban tin (chi tren may chu, khong vao repo)"
-CHAT_ID="$CHAT_ID" python3 - "$DIR/import/news-digest.json" <<'PY'
+CHAT_ID="$CHAT_ID" WHATSAPP_PHONE="$WHATSAPP_PHONE" CALLMEBOT_APIKEY="$CALLMEBOT_APIKEY" python3 - "$DIR/import/news-digest.json" <<'PY'
 import json, os, re, sys
 p = sys.argv[1]
 wf = json.load(open(p, encoding="utf-8"))
 chat = os.environ.get("CHAT_ID", "")
+phone = re.sub(r"[^\d+]", "", os.environ.get("WHATSAPP_PHONE", "")) if os.environ.get("CALLMEBOT_APIKEY") else ""
 for n in wf["nodes"]:
     if n["name"] == "Config":
         n["parameters"]["jsCode"] = re.sub(r"TELEGRAM_CHAT_ID: (\"\"|'')", lambda m: f"TELEGRAM_CHAT_ID: {json.dumps(chat)}", n["parameters"]["jsCode"])
+        n["parameters"]["jsCode"] = re.sub(r"WHATSAPP_PHONE: (\"\"|'')", lambda m: f"WHATSAPP_PHONE: {json.dumps(phone)}", n["parameters"]["jsCode"])
 json.dump(wf, open(p, "w", encoding="utf-8"), ensure_ascii=False)
 PY
 
 say "Tao credential trong n8n (ma hoa bang N8N_ENCRYPTION_KEY)"
 umask 077
-ANTHROPIC_KEY="$ANTHROPIC_KEY" TELEGRAM_TOKEN="$TELEGRAM_TOKEN" python3 - "$DIR/import/credentials.json" <<'PY'
+ANTHROPIC_KEY="$ANTHROPIC_KEY" TELEGRAM_TOKEN="$TELEGRAM_TOKEN" CALLMEBOT_APIKEY="$CALLMEBOT_APIKEY" python3 - "$DIR/import/credentials.json" <<'PY'
 import json, os, re, sys
 creds = []
 if os.environ.get("ANTHROPIC_KEY"):
@@ -76,6 +80,9 @@ if os.environ.get("ANTHROPIC_KEY"):
 if os.environ.get("TELEGRAM_TOKEN"):
     creds.append({"id": "vnNewsTelegram01", "name": "Telegram (vn-news)", "type": "telegramApi",
                   "data": {"accessToken": os.environ["TELEGRAM_TOKEN"]}})
+if os.environ.get("CALLMEBOT_APIKEY"):
+    creds.append({"id": "vnNewsCallMeBot1", "name": "CallMeBot WhatsApp (vn-news)", "type": "httpQueryAuth",
+                  "data": {"name": "apikey", "value": os.environ["CALLMEBOT_APIKEY"]}})
 json.dump(creds, open(sys.argv[1], "w"))
 print(f"{len(creds)} credential")
 PY
