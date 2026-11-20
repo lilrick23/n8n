@@ -1,0 +1,20 @@
+# fetched_at_utc=2026-10-22T07:54:46Z fetched_at_ict=2026-10-22T14:54:46+07:00
+# cmd: curl -sS -L -m 20 -A '<browser UA>' -D - -o raw/cafef-doanhnghiep.xml 'https://cafef.vn/doanh-nghiep.rss'
+HTTP/1.1 200 Connection Established
+
+HTTP/1.1 200 OK
+date: Thu, 22 Oct 2026 07:54:47 GMT
+content-type: text/xml; charset=utf-8
+transfer-encoding: chunked
+server: cf-rp
+cache-control: no-cache, private
+lastmodifieddate: 22/10/2026 14:54:47
+timeexpire: 300
+servername: 0
+referrer-policy: no-referrer-when-downgrade
+crc32: 5c84ea19
+set-cookie: laravel_session=eyJpdiI6ImdyZU5GdnJyK2NuZ2t4M2pBMkVkVmc9PSIsInZhbHVlIjoiUzlEb29nWTR1MHN3SWRpd0ZoY3c5dVMzU0ZZWEpBWVduQWhsNGRjWE5panhhbVJMYWg0ZS9LS2Q4RVZjLzc5UjQvL2psaTlreWVadXowNEVTL1BWTGVoaUVZTDY3cWtqUUdoZUFFUGo0emlQT0kvUjNnWDdiMWZJOFBTV3VLQ3AiLCJtYWMiOiJmNmNlY2IzMGMzMzY5OWY3NGM5YTA4MmVmMDY3NWY1MGIyZDk4NzQ1ZmZhZjg3MDRhNGM5ZmI1YWVkMjA5NWMwIiwidGFnIjoiIn0%3D; expires=Thu, 22-Oct-2026 09:54:47 GMT; Max-Age=7200; path=/; httponly; samesite=lax
+filterid: ft
+
+
+# http_code=200 content_type=text/xml; charset=utf-8 size=63039 url_effective=https://cafef.vn/doanh-nghiep.rss time=1.396875s

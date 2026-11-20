@@ -1,0 +1,17 @@
+# User-Agent test 2026-10-22T07:56:18Z. RSS Read node sends 'User-Agent: rss-parser' (packages/nodes-base/nodes/RssFeedRead/GenericFunctions.ts:11)
+https://cafef.vn/thi-truong-chung-khoan.rss             UA=rss-parser                               200 text/xml; charset=utf-8 53697B -> https://cafef.vn/thi-truong-chung-khoan.rss
+https://cafef.vn/thi-truong-chung-khoan.rss             UA=curl/default                             200 text/html; charset=UTF-8 2154B -> http://c.cafef.vn/sorry?continue=http%3A//cafef.vn/thi-truong-chung-khoan.rss
+https://cafef.vn/thi-truong-chung-khoan.rss             UA=Mozilla/5.0 (compatible; n8n-news-monito 200 text/xml; charset=utf-8 53697B -> https://cafef.vn/thi-truong-chung-khoan.rss
+https://cafef.vn/thi-truong-chung-khoan.rss             UA=Mozilla/5.0 (X11; Linux x86_64) AppleWeb 200 text/xml; charset=utf-8 53697B -> https://cafef.vn/thi-truong-chung-khoan.rss
+https://cafef.vn/doanh-nghiep.rss                       UA=rss-parser                               200 text/xml; charset=utf-8 63039B -> https://cafef.vn/doanh-nghiep.rss
+https://cafef.vn/doanh-nghiep.rss                       UA=curl/default                             200 text/html; charset=UTF-8 2144B -> http://c.cafef.vn/sorry?continue=http%3A//cafef.vn/doanh-nghiep.rss
+https://cafef.vn/doanh-nghiep.rss                       UA=Mozilla/5.0 (compatible; n8n-news-monito 200 text/xml; charset=utf-8 63039B -> https://cafef.vn/doanh-nghiep.rss
+https://cafef.vn/doanh-nghiep.rss                       UA=Mozilla/5.0 (X11; Linux x86_64) AppleWeb 200 text/xml; charset=utf-8 63039B -> https://cafef.vn/doanh-nghiep.rss
+https://vietstock.vn/830/chung-khoan/co-phieu.rss       UA=rss-parser                               200 application/rss+xml; charset=utf-8 18621B -> https://vietstock.vn/830/chung-khoan/co-phieu.rss
+https://vietstock.vn/830/chung-khoan/co-phieu.rss       UA=curl/default                             200 application/rss+xml; charset=utf-8 18621B -> https://vietstock.vn/830/chung-khoan/co-phieu.rss
+https://vietstock.vn/830/chung-khoan/co-phieu.rss       UA=Mozilla/5.0 (compatible; n8n-news-monito 200 application/rss+xml; charset=utf-8 18621B -> https://vietstock.vn/830/chung-khoan/co-phieu.rss
+https://vietstock.vn/830/chung-khoan/co-phieu.rss       UA=Mozilla/5.0 (X11; Linux x86_64) AppleWeb 200 application/rss+xml; charset=utf-8 18621B -> https://vietstock.vn/830/chung-khoan/co-phieu.rss
+https://en.vietstock.vn/52015/vietnam-stocks.rss        UA=rss-parser                               200 application/rss+xml 21325B -> https://en.vietstock.vn/52015/vietnam-stocks.rss
+https://en.vietstock.vn/52015/vietnam-stocks.rss        UA=curl/default                             200 application/rss+xml 21325B -> https://en.vietstock.vn/52015/vietnam-stocks.rss
+https://en.vietstock.vn/52015/vietnam-stocks.rss        UA=Mozilla/5.0 (compatible; n8n-news-monito 200 application/rss+xml 21325B -> https://en.vietstock.vn/52015/vietnam-stocks.rss
+https://en.vietstock.vn/52015/vietnam-stocks.rss        UA=Mozilla/5.0 (X11; Linux x86_64) AppleWeb 200 application/rss+xml 21325B -> https://en.vietstock.vn/52015/vietnam-stocks.rss

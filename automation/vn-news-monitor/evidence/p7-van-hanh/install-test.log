@@ -1,0 +1,29 @@
+# Chay thu deploy/install.sh trong phien Claude Code, 2026-11-02 ~11:22 UTC
+# LOCAL_SRC=repo, khong co Telegram, khoa Anthropic doc tu bien moi truong. Log da loc dong rong va dong migration.
+== Tai cau hinh va workflow
+== Tao khoa ma hoa N8N_ENCRYPTION_KEY
+Da luu trong /tmp/claude-0/p5/inst/.env. SAO LUU tep nay o noi rieng: mat khoa la mat moi credential.
+== Ghi chat ID vao workflow ban tin (chi tren may chu, khong vao repo)
+== Tao credential trong n8n (ma hoa bang N8N_ENCRYPTION_KEY)
+1 credential
+Added workflow:publish scope to project roles with workflow:update
+Successfully imported 1 credential.
+Importing 1 workflows...
+Successfully imported 1 workflow.
+Importing 1 workflows...
+Successfully imported 1 workflow.
+Importing 1 workflows...
+Successfully imported 1 workflow.
+Importing 1 workflows...
+Successfully imported 1 workflow.
+== Khoi dong n8n
+ Container inst-n8n-1 Started
+curl: (56) Recv failure: Connection reset by peer
+Xong phan cai dat. Buoc tiep theo (lam tren may tinh cua anh):
+1. Mo duong ham:  ssh -L 5678:127.0.0.1:5678 root@<IP may chu>
+2. Mo trinh duyet: http://localhost:5678 , tao tai khoan quan tri.
+3. Mo workflow "VN news - setup tables", bam Execute workflow (mot lan).
+4. Bat (Publish) hai workflow: "VN news - collector" va "VN news - digest".
+Chi tiet: docs/RUNBOOK.md
+# Lan dau n8n khong khoi dong: "n8n's address '::' is not available" -> da them N8N_LISTEN_ADDRESS=0.0.0.0 vao docker-compose.yml, chay lai: healthz {"status":"ok"}
+# Sau do qua REST: tao owner, chay 'VN news - setup tables' (execution 1, success), chay 'VN news - digest' (execution 2, success, 0 tin, error=chua_co_chat_id)

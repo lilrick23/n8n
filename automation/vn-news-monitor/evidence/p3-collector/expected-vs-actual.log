@@ -1,0 +1,39 @@
+# python3 -I scripts/expected_collector.py <execution-run1 full>  (2026-10-22T08:48:51Z)
+| Chi so | Ky vong (Python, doc fixture) | Thuc te (n8n) | Ket qua |
+|---|---|---|---|
+| Tin doc tu feed (items_fetched) | 150 | 150 | OK |
+| Sau loai trung trong lan chay (URL chuan hoa) | 146 | 146 | OK |
+| Tap URL chuan hoa trung khop | giong nhau | giong nhau | OK |
+| Tap item_id (SHA-256) trung khop | giong nhau | giong nhau | OK |
+| Tin khop watchlist/vi mo | 6 | 6 | OK |
+| Tap tin khop trung khop | giong nhau | giong nhau | OK |
+| Ma va chu de tung tin trung khop | True | True | OK |
+| published_at cua moi tin co +07:00 (sau Chuan hoa) | True | True | OK |
+| Thoi diem dang giu nguyen khi doi sang ICT | True | True | OK |
+| So nguon co it nhat mot tin da doi sang ICT | 15 | 15 | OK |
+
+Tin khop:
+- cafef-taichinh-nganhang: tickers=[] topics=[tỷ giá] https://cafef.vn/khi-usd-la-tam-diem-quy-iv-2026-doanh-nghiep-can-chuan-bi-gi-cho-cac-khoan-thu-chi-ngoai-te-188261022072445566.chn
+- cafef-taichinh-nganhang: tickers=[] topics=[room tín dụng] https://cafef.vn/vdsc-chi-dao-moi-cua-nhnn-co-the-khien-mot-so-ngan-hang-bi-vuot-room-tin-dung-188261022113202819.chn
+- vietstock-en-stocks: tickers=[] topics=[FTSE Russell] https://en.vietstock.vn/2026/10/stock-market-needs-more-quality-listings-transparency-to-raise-long-term-capital-36-645721.htm
+- vietstock-chinhsach: tickers=[] topics=[nâng hạng thị trường] https://vietstock.vn/2026/10/chu-tich-ubcknnnang-hang-thi-truong-khong-phai-la-dich-den-ma-la-diem-khoi-dau-cua-mot-hanh-trinh-moi-143-1498627.htm
+- vietstock-cophieu: tickers=[VNM,VCB] topics=[] https://vietstock.vn/2026/10/ngay-22102026-10-co-phieu-nong-duoi-goc-nhin-ptkt-cua-vietstock-585-1505196.htm
+- vietstock-chinhsach: tickers=[] topics=[dòng vốn ngoại] https://vietstock.vn/2026/10/tu-nisa-sip-den-tisa-bai-hoc-chuyen-tiet-kiem-thanh-dau-tu-cho-thi-truong-viet-nam-143-1498049.htm
+
+Mot tin moi nguon (published_at sau Chuan hoa):
+- cafef-chungkhoan: 2026-10-22T13:42:00+07:00
+- cafef-doanhnghiep: 2026-10-22T14:47:00+07:00
+- cafef-taichinh-nganhang: 2026-10-22T14:39:00+07:00
+- cafef-vimo: 2026-10-22T14:50:00+07:00
+- vietstock-chinhsach: 2026-10-21T21:32:00+07:00
+- vietstock-cophieu: 2026-10-22T14:07:00+07:00
+- vietstock-cotuc: 2026-10-21T10:11:49+07:00
+- vietstock-en-stocks: 2026-10-22T13:45:02+07:00
+- vietstock-giaodichnoibo: 2026-10-20T07:42:00+07:00
+- vietstock-hoatdongkinhdoanh: 2026-10-22T14:02:00+07:00
+- vietstock-nganhang: 2026-10-22T12:27:03+07:00
+- vietstock-nhandinh: 2026-10-21T20:00:00+07:00
+- vietstock-niemyet: 2026-10-19T16:30:00+07:00
+- vietstock-tangvon-ma: 2026-10-22T10:30:00+07:00
+- vietstock-vimo: 2026-10-21T21:00:00+07:00
+exit=0

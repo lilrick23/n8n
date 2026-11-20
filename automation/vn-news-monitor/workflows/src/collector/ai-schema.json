@@ -1,0 +1,23 @@
+{
+  "type": "object",
+  "required": ["results"],
+  "properties": {
+    "results": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["id", "event_type", "fact_or_opinion", "importance", "sentiment", "summary_vi", "why_it_matters", "needs_human_check"],
+        "properties": {
+          "id": { "type": "string" },
+          "event_type": { "type": "string", "description": "Một giá trị trong danh sách LOẠI SỰ KIỆN" },
+          "fact_or_opinion": { "type": "string", "description": "official_disclosure | reported_fact | analyst_opinion | rumor" },
+          "importance": { "type": "integer", "description": "1 đến 5" },
+          "sentiment": { "type": "string", "description": "tich_cuc | trung_lap | tieu_cuc" },
+          "summary_vi": { "type": "string", "description": "Tối đa 40 từ" },
+          "why_it_matters": { "type": "string", "description": "Tối đa 25 từ" },
+          "needs_human_check": { "type": "boolean" }
+        }
+      }
+    }
+  }
+}

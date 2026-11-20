@@ -1,0 +1,19 @@
+{
+  "_note": "VÍ DỤ MINH HỌA. Rick thay bằng danh sách thật. Không ghi thông tin khách hàng hay tài khoản vào đây.",
+  "tickers": [
+    { "ticker": "VNM", "aliases": ["Vinamilk", "Công ty CP Sữa Việt Nam"], "sector": "Hàng tiêu dùng", "priority": "A" },
+    { "ticker": "FPT", "aliases": ["FPT Corp", "Tập đoàn FPT"], "sector": "Công nghệ", "priority": "A" },
+    { "ticker": "VCB", "aliases": ["Vietcombank"], "sector": "Ngân hàng", "priority": "A" },
+    { "ticker": "HPG", "aliases": ["Hòa Phát"], "sector": "Thép", "priority": "B" }
+  ],
+  "macro_topics": [
+    "lãi suất điều hành", "tỷ giá", "room tín dụng", "trái phiếu doanh nghiệp",
+    "nâng hạng thị trường", "FTSE Russell", "dòng vốn ngoại", "thuế giao dịch", "Thông tư chứng khoán"
+  ],
+  "exclude_keywords": ["quảng cáo", "tuyển dụng", "khuyến mãi"],
+  "ticker_matching_rules": [
+    "Mã khớp theo ranh giới từ, chỉ ký tự IN HOA, ví dụ (^|[^A-Za-z0-9])VNM($|[^A-Za-z0-9]).",
+    "Mã trùng từ phổ biến (USD, GDP, CPI, ETF, IPO, ...) không nằm trong danh sách trắng nên không bị nhận nhầm.",
+    "Tên gọi khác (aliases) khớp không phân biệt hoa thường và có dấu/không dấu."
+  ]
+}

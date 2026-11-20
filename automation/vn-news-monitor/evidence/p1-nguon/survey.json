@@ -1,0 +1,1074 @@
+{
+  "feeds": {
+    "cafef-chungkhoan": {
+      "xml_encoding": "(none, default UTF-8)",
+      "item_count": 50,
+      "fields_present": {
+        "title": 50,
+        "link": 50,
+        "guid": 50,
+        "pubDate_raw": 50,
+        "description": 50
+      },
+      "date_shapes": [
+        [
+          "Wed, 99 Oct 99 99:99:99 +9999",
+          33
+        ],
+        [
+          "Thu, 99 Oct 99 99:99:99 +9999",
+          17
+        ]
+      ],
+      "has_timezone": true,
+      "unparsed_dates": 0,
+      "newest_ict": "2026-10-22T13:42:00+07:00",
+      "oldest_ict": "2026-10-21T10:09:00+07:00",
+      "span_hours": 27.6,
+      "items_last_24h": 33,
+      "items_0900_1500_newest_day": 8,
+      "per_hour_0900_1500": 1.33,
+      "links_with_tracking_params": 0,
+      "link_schemes": {
+        "https": 50
+      },
+      "guid_equals_link": 50,
+      "description_contains_html": 50,
+      "snippet_text_len_max": 322,
+      "snippet_text_len_median": 145,
+      "sample_titles": [
+        "Một công ty chứng khoán thua lỗ 17 quý liên tiếp, nâng lỗ lũy kế lên hơn 183 tỷ đồng",
+        "Giá vàng bất động, chênh lệch mua - bán mỗi nơi một kiểu",
+        "Giá vàng 9999 Bảo Tín Mạnh Hải hôm nay 22/10/2026",
+        "TVC không hoàn tất giao dịch mua 500.000 cổ phiếu TVB",
+        "Công ty con của REE thành lập công ty tài chính vốn điều lệ 1 triệu USD"
+      ]
+    },
+    "cafef-doanhnghiep": {
+      "xml_encoding": "(none, default UTF-8)",
+      "item_count": 50,
+      "fields_present": {
+        "title": 50,
+        "link": 50,
+        "guid": 50,
+        "pubDate_raw": 50,
+        "description": 50
+      },
+      "date_shapes": [
+        [
+          "Wed, 99 Oct 99 99:99:99 +9999",
+          29
+        ],
+        [
+          "Thu, 99 Oct 99 99:99:99 +9999",
+          21
+        ]
+      ],
+      "has_timezone": true,
+      "unparsed_dates": 0,
+      "newest_ict": "2026-10-22T14:47:00+07:00",
+      "oldest_ict": "2026-10-21T08:03:00+07:00",
+      "span_hours": 30.7,
+      "items_last_24h": 33,
+      "items_0900_1500_newest_day": 13,
+      "per_hour_0900_1500": 2.17,
+      "links_with_tracking_params": 0,
+      "link_schemes": {
+        "https": 50
+      },
+      "guid_equals_link": 50,
+      "description_contains_html": 50,
+      "snippet_text_len_max": 339,
+      "snippet_text_len_median": 209,
+      "sample_titles": [
+        "Giá lợn hơi giảm, Dabaco báo lãi ròng quý III/2026 giảm hơn 41% dù doanh thu tăng",
+        "Công an kiểm tra cửa hàng thời trang, khởi tố ông chủ Lê Tuấn Đức SN 1999",
+        "Một DN vốn 9.000 tỷ được chọn để nộp hồ sơ khai thác mỏ sắt lớn nhất Đông Nam Á, nơi tỷ phú Trần Đình Long từng muốn tham gia",
+        "Loạt website chính phủ châu Âu khẩn cấp tạm ngừng hoạt động: Lý do xuất phát từ công ty của một kỹ sư người Việt",
+        "MMusic và bài toán sau một bản hit: Làm sao để giá trị nghệ sĩ tiếp tục lớn lên?"
+      ]
+    },
+    "cafef-taichinh-nganhang": {
+      "xml_encoding": "(none, default UTF-8)",
+      "item_count": 50,
+      "fields_present": {
+        "title": 50,
+        "link": 50,
+        "guid": 50,
+        "pubDate_raw": 50,
+        "description": 50
+      },
+      "date_shapes": [
+        [
+          "Wed, 99 Oct 99 99:99:99 +9999",
+          27
+        ],
+        [
+          "Tue, 99 Oct 99 99:99:99 +9999",
+          12
+        ],
+        [
+          "Thu, 99 Oct 99 99:99:99 +9999",
+          11
+        ]
+      ],
+      "has_timezone": true,
+      "unparsed_dates": 0,
+      "newest_ict": "2026-10-22T14:39:00+07:00",
+      "oldest_ict": "2026-10-20T12:38:00+07:00",
+      "span_hours": 50.0,
+      "items_last_24h": 21,
+      "items_0900_1500_newest_day": 8,
+      "per_hour_0900_1500": 1.33,
+      "links_with_tracking_params": 0,
+      "link_schemes": {
+        "https": 50
+      },
+      "guid_equals_link": 50,
+      "description_contains_html": 50,
+      "snippet_text_len_max": 425,
+      "snippet_text_len_median": 237,
+      "sample_titles": [
+        "Techcombank giảm lãi suất cho vay đến 2%, tập trung vào hoạt động sản xuất kinh doanh",
+        "Đề xuất giữ lại 5% tiền mua nhà tại ngân hàng, có sổ đỏ mới trả cho chủ đầu tư",
+        "CEO TPBank Nguyễn Hưng: Ngân hàng 18 triệu khách nhưng chỉ 0,5% giao dịch còn ra quầy",
+        "Giá vàng miếng, vàng nhẫn trưa 22/10 tại SJC, PNJ, DOJI, Phú Quý, Bảo Tín Minh Châu và Bảo Tín Mạnh Hải",
+        "VDSC: Chỉ đạo mới của NHNN có thể khiến một số ngân hàng bị vượt room tín dụng"
+      ]
+    },
+    "cafef-vimo": {
+      "xml_encoding": "(none, default UTF-8)",
+      "item_count": 50,
+      "fields_present": {
+        "title": 50,
+        "link": 50,
+        "guid": 50,
+        "pubDate_raw": 50,
+        "description": 50
+      },
+      "date_shapes": [
+        [
+          "Wed, 99 Oct 99 99:99:99 +9999",
+          24
+        ],
+        [
+          "Thu, 99 Oct 99 99:99:99 +9999",
+          23
+        ],
+        [
+          "Tue, 99 Oct 99 99:99:99 +9999",
+          3
+        ]
+      ],
+      "has_timezone": true,
+      "unparsed_dates": 0,
+      "newest_ict": "2026-10-22T14:50:00+07:00",
+      "oldest_ict": "2026-10-20T20:31:00+07:00",
+      "span_hours": 42.3,
+      "items_last_24h": 31,
+      "items_0900_1500_newest_day": 16,
+      "per_hour_0900_1500": 2.67,
+      "links_with_tracking_params": 0,
+      "link_schemes": {
+        "https": 50
+      },
+      "guid_equals_link": 50,
+      "description_contains_html": 50,
+      "snippet_text_len_max": 424,
+      "snippet_text_len_median": 181,
+      "sample_titles": [
+        "14 thương nhân đầu mối xăng dầu giảm 300-350 đồng/lít so với giá điều hành",
+        "6,5 triệu người dân tại thành phố giàu nhất Việt Nam đón tin vui, công trình 10.000 tỷ đồng chưa từng có sắp hoàn thành, khu vực hưởng lợi lộ diện",
+        "Xã Kim Anh: Tháo gỡ vướng mắc, đẩy nhanh tiến độ dự án Khu công nghiệp sạch Sóc Sơn",
+        "Từ ngày 20/10/2026, nhóm người dân này được Nhà nước hỗ trợ tới 95% một khoản phí: Ai thuộc diện áp dụng?",
+        "Việt Nam đang xây cây cầu có trụ tháp cao bằng toà nhà 35 tầng, nhịp chính dài thứ 2 cả nước, dự kiến hoàn thành năm 2028"
+      ]
+    },
+    "vietstock-cophieu": {
+      "xml_encoding": "utf-8",
+      "item_count": 20,
+      "fields_present": {
+        "title": 20,
+        "link": 20,
+        "guid": 20,
+        "pubDate_raw": 20,
+        "description": 20
+      },
+      "date_shapes": [
+        [
+          "Wed, 99 Oct 9999 99:99:99 +9999",
+          7
+        ],
+        [
+          "Tue, 99 Oct 9999 99:99:99 +9999",
+          7
+        ],
+        [
+          "Thu, 99 Oct 9999 99:99:99 +9999",
+          6
+        ]
+      ],
+      "has_timezone": true,
+      "unparsed_dates": 0,
+      "newest_ict": "2026-10-22T14:07:00+07:00",
+      "oldest_ict": "2026-10-20T12:53:48+07:00",
+      "span_hours": 49.2,
+      "items_last_24h": 9,
+      "items_0900_1500_newest_day": 4,
+      "per_hour_0900_1500": 0.67,
+      "links_with_tracking_params": 0,
+      "link_schemes": {
+        "http": 20
+      },
+      "guid_equals_link": 20,
+      "description_contains_html": 20,
+      "snippet_text_len_max": 443,
+      "snippet_text_len_median": 258,
+      "sample_titles": [
+        "Nhịp đập Thị trường 22/10: Sắc đỏ ngày một lan rộng, nhóm Vingroup tiếp tục giữ điểm cho thị trường",
+        "Phân tích kỹ thuật phiên chiều 22/10: Sắc xanh đỏ đan xen",
+        "Tăng tốc chuẩn bị CCP, cổ phiếu chứng khoán nhen nhóm ấm lên",
+        "Ngày 22/10/2026: 10 cổ phiếu nóng dưới góc nhìn PTKT của Vietstock",
+        "Top cổ phiếu đáng chú ý đầu phiên 22/10"
+      ]
+    },
+    "vietstock-giaodichnoibo": {
+      "xml_encoding": "utf-8",
+      "item_count": 20,
+      "fields_present": {
+        "title": 20,
+        "link": 20,
+        "guid": 20,
+        "pubDate_raw": 20,
+        "description": 20
+      },
+      "date_shapes": [
+        [
+          "Mon, 99 Oct 9999 99:99:99 +9999",
+          7
+        ],
+        [
+          "Fri, 99 Oct 9999 99:99:99 +9999",
+          4
+        ],
+        [
+          "Sun, 99 Oct 9999 99:99:99 +9999",
+          3
+        ],
+        [
+          "Thu, 99 Oct 9999 99:99:99 +9999",
+          3
+        ],
+        [
+          "Tue, 99 Oct 9999 99:99:99 +9999",
+          2
+        ],
+        [
+          "Wed, 99 Oct 9999 99:99:99 +9999",
+          1
+        ]
+      ],
+      "has_timezone": true,
+      "unparsed_dates": 0,
+      "newest_ict": "2026-10-20T07:42:00+07:00",
+      "oldest_ict": "2026-10-07T16:06:21+07:00",
+      "span_hours": 303.6,
+      "items_last_24h": 3,
+      "items_0900_1500_newest_day": 0,
+      "per_hour_0900_1500": 0.0,
+      "links_with_tracking_params": 0,
+      "link_schemes": {
+        "http": 20
+      },
+      "guid_equals_link": 20,
+      "description_contains_html": 20,
+      "snippet_text_len_max": 325,
+      "snippet_text_len_median": 165,
+      "sample_titles": [
+        "Vợ Chủ tịch HPX gom thành công 15 triệu cp",
+        "MB Capital muốn bán lượng lớn cổ phần PGC giữa đà tăng vọt thị giá",
+        "Lãnh đạo mua bán cổ phiếu: Giao dịch sôi động, bên mua áp đảo",
+        "Chị gái Chủ tịch An Gia muốn mua thêm 3 triệu cp AGG",
+        "TTL Holdings gom hơn 20% vốn Thăng Long trước kế hoạch về tay CMC"
+      ]
+    },
+    "vietstock-niemyet": {
+      "xml_encoding": "utf-8",
+      "item_count": 20,
+      "fields_present": {
+        "title": 20,
+        "link": 20,
+        "guid": 20,
+        "pubDate_raw": 20,
+        "description": 20
+      },
+      "date_shapes": [
+        [
+          "Mon, 99 Oct 9999 99:99:99 +9999",
+          3
+        ],
+        [
+          "Wed, 99 Aug 9999 99:99:99 +9999",
+          3
+        ],
+        [
+          "Tue, 99 Aug 9999 99:99:99 +9999",
+          2
+        ],
+        [
+          "Tue, 99 Jul 9999 99:99:99 +9999",
+          2
+        ],
+        [
+          "Wed, 99 Oct 9999 99:99:99 +9999",
+          1
+        ],
+        [
+          "Tue, 99 Oct 9999 99:99:99 +9999",
+          1
+        ],
+        [
+          "Sun, 99 Oct 9999 99:99:99 +9999",
+          1
+        ],
+        [
+          "Thu, 99 Oct 9999 99:99:99 +9999",
+          1
+        ],
+        [
+          "Mon, 99 Sep 9999 99:99:99 +9999",
+          1
+        ],
+        [
+          "Fri, 99 Sep 9999 99:99:99 +9999",
+          1
+        ],
+        [
+          "Thu, 99 Aug 9999 99:99:99 +9999",
+          1
+        ],
+        [
+          "Thu, 99 Jul 9999 99:99:99 +9999",
+          1
+        ],
+        [
+          "Wed, 99 Jul 9999 99:99:99 +9999",
+          1
+        ],
+        [
+          "Fri, 99 Jul 9999 99:99:99 +9999",
+          1
+        ]
+      ],
+      "has_timezone": true,
+      "unparsed_dates": 0,
+      "newest_ict": "2026-10-19T16:30:00+07:00",
+      "oldest_ict": "2026-07-14T17:33:25+07:00",
+      "span_hours": 2326.9,
+      "items_last_24h": 1,
+      "items_0900_1500_newest_day": 0,
+      "per_hour_0900_1500": 0.0,
+      "links_with_tracking_params": 0,
+      "link_schemes": {
+        "http": 20
+      },
+      "guid_equals_link": 20,
+      "description_contains_html": 20,
+      "snippet_text_len_max": 436,
+      "snippet_text_len_median": 233,
+      "sample_titles": [
+        "Chứng khoán Bảo Minh tạm hoãn niêm yết lên HOSE sau 6 tháng nộp hồ sơ",
+        "Tôn Đông Á được chấp thuận niêm yết trên HOSE",
+        "Nhà sản xuất phân bón miền Tây tính lên HOSE ngay quý 4",
+        "Chuyển sàn cổ phiếu HNX về HOSE, nhà đầu tư cần lưu ý gì?",
+        "Các sàn châu Á cạnh tranh doanh nghiệp niêm yết: Ưu đãi thuế, luật mới và vị trí của Việt Nam"
+      ]
+    },
+    "vietstock-hoatdongkinhdoanh": {
+      "xml_encoding": "utf-8",
+      "item_count": 20,
+      "fields_present": {
+        "title": 20,
+        "link": 20,
+        "guid": 20,
+        "pubDate_raw": 20,
+        "description": 20
+      },
+      "date_shapes": [
+        [
+          "Thu, 99 Oct 9999 99:99:99 +9999",
+          18
+        ],
+        [
+          "Wed, 99 Oct 9999 99:99:99 +9999",
+          2
+        ]
+      ],
+      "has_timezone": true,
+      "unparsed_dates": 0,
+      "newest_ict": "2026-10-22T14:02:00+07:00",
+      "oldest_ict": "2026-10-21T17:30:39+07:00",
+      "span_hours": 20.5,
+      "items_last_24h": 20,
+      "items_0900_1500_newest_day": 17,
+      "per_hour_0900_1500": 2.83,
+      "links_with_tracking_params": 0,
+      "link_schemes": {
+        "http": 20
+      },
+      "guid_equals_link": 20,
+      "description_contains_html": 20,
+      "snippet_text_len_max": 367,
+      "snippet_text_len_median": 227,
+      "sample_titles": [
+        "Khép lại quý 3, PGBank báo lãi lũy kế 630 tỷ đồng",
+        "Lãi ròng NCT giảm 14% trong quý 3 dù doanh thu tăng mạnh",
+        "Kế hoạch cơ cấu lại vốn của RESCO",
+        "KBSV và Ngân hàng MB ký kết mở rộng cơ hội hợp tác trên nền tảng số",
+        "Hãng tàu đi Phú Quốc lãi quý 3 chưa đến 300 triệu, cổ phiếu dò đáy 6 năm"
+      ]
+    },
+    "vietstock-cotuc": {
+      "xml_encoding": "utf-8",
+      "item_count": 20,
+      "fields_present": {
+        "title": 20,
+        "link": 20,
+        "guid": 20,
+        "pubDate_raw": 20,
+        "description": 20
+      },
+      "date_shapes": [
+        [
+          "Wed, 99 Oct 9999 99:99:99 +9999",
+          6
+        ],
+        [
+          "Thu, 99 Oct 9999 99:99:99 +9999",
+          4
+        ],
+        [
+          "Fri, 99 Oct 9999 99:99:99 +9999",
+          4
+        ],
+        [
+          "Sun, 99 Oct 9999 99:99:99 +9999",
+          2
+        ],
+        [
+          "Sat, 99 Oct 9999 99:99:99 +9999",
+          2
+        ],
+        [
+          "Mon, 99 Oct 9999 99:99:99 +9999",
+          1
+        ],
+        [
+          "Tue, 99 Oct 9999 99:99:99 +9999",
+          1
+        ]
+      ],
+      "has_timezone": true,
+      "unparsed_dates": 0,
+      "newest_ict": "2026-10-21T10:11:49+07:00",
+      "oldest_ict": "2026-10-07T09:45:00+07:00",
+      "span_hours": 336.4,
+      "items_last_24h": 1,
+      "items_0900_1500_newest_day": 1,
+      "per_hour_0900_1500": 0.17,
+      "links_with_tracking_params": 0,
+      "link_schemes": {
+        "http": 20
+      },
+      "guid_equals_link": 20,
+      "description_contains_html": 20,
+      "snippet_text_len_max": 242,
+      "snippet_text_len_median": 162,
+      "sample_titles": [
+        "MSR sắp chi hơn 2.2 ngàn tỷ tạm ứng cổ tức tỷ lệ 20%",
+        "PHC sắp chi hơn 25 tỷ trả cổ tức",
+        "Tuần 19-23/10: Nổi bật khoản tạm ứng cổ tức 900 tỷ của Vimico",
+        "Công ty con của Transimex chốt tạm ứng cổ tức tỷ lệ 14%",
+        "Vừa chuyển sang HOSE, Nhựa sinh thái Việt Nam (ECO) sắp trả cổ tức tỷ lệ 6%, nâng vốn lên 320 tỷ"
+      ]
+    },
+    "vietstock-tangvon-ma": {
+      "xml_encoding": "utf-8",
+      "item_count": 20,
+      "fields_present": {
+        "title": 20,
+        "link": 20,
+        "guid": 20,
+        "pubDate_raw": 20,
+        "description": 20
+      },
+      "date_shapes": [
+        [
+          "Thu, 99 Oct 9999 99:99:99 +9999",
+          5
+        ],
+        [
+          "Wed, 99 Oct 9999 99:99:99 +9999",
+          4
+        ],
+        [
+          "Tue, 99 Oct 9999 99:99:99 +9999",
+          4
+        ],
+        [
+          "Mon, 99 Oct 9999 99:99:99 +9999",
+          4
+        ],
+        [
+          "Fri, 99 Oct 9999 99:99:99 +9999",
+          2
+        ],
+        [
+          "Sun, 99 Oct 9999 99:99:99 +9999",
+          1
+        ]
+      ],
+      "has_timezone": true,
+      "unparsed_dates": 0,
+      "newest_ict": "2026-10-22T10:30:00+07:00",
+      "oldest_ict": "2026-10-13T15:44:22+07:00",
+      "span_hours": 210.8,
+      "items_last_24h": 3,
+      "items_0900_1500_newest_day": 1,
+      "per_hour_0900_1500": 0.17,
+      "links_with_tracking_params": 0,
+      "link_schemes": {
+        "http": 20
+      },
+      "guid_equals_link": 20,
+      "description_contains_html": 20,
+      "snippet_text_len_max": 347,
+      "snippet_text_len_median": 243,
+      "sample_titles": [
+        "Thiết bị Đông Anh sắp phát hành cổ phiếu để tăng vốn lên gần 490 tỷ",
+        "RYG phân phối 5.55 triệu cp \"ế\" cho hai cá nhân",
+        "Định chế tài chính Hà Lan FMO tính rót tiền vào doanh nghiệp cà phê của Tuấn Lộc Group",
+        "Bị pha loãng tại VinaLiving Holdings, VES chi thêm 64 tỷ giành lại quyền chi phối",
+        "M&A Việt Nam tháng 9/2026: Bất động sản dẫn đầu với 1.2 tỷ USD"
+      ]
+    },
+    "vietstock-chinhsach": {
+      "xml_encoding": "utf-8",
+      "item_count": 20,
+      "fields_present": {
+        "title": 20,
+        "link": 20,
+        "guid": 20,
+        "pubDate_raw": 20,
+        "description": 20
+      },
+      "date_shapes": [
+        [
+          "Thu, 99 Oct 9999 99:99:99 +9999",
+          5
+        ],
+        [
+          "Sat, 99 Oct 9999 99:99:99 +9999",
+          3
+        ],
+        [
+          "Wed, 99 Oct 9999 99:99:99 +9999",
+          2
+        ],
+        [
+          "Mon, 99 Oct 9999 99:99:99 +9999",
+          2
+        ],
+        [
+          "Wed, 99 Sep 9999 99:99:99 +9999",
+          2
+        ],
+        [
+          "Mon, 99 Sep 9999 99:99:99 +9999",
+          2
+        ],
+        [
+          "Sat, 99 Sep 9999 99:99:99 +9999",
+          1
+        ],
+        [
+          "Fri, 99 Sep 9999 99:99:99 +9999",
+          1
+        ],
+        [
+          "Thu, 99 Sep 9999 99:99:99 +9999",
+          1
+        ],
+        [
+          "Tue, 99 Sep 9999 99:99:99 +9999",
+          1
+        ]
+      ],
+      "has_timezone": true,
+      "unparsed_dates": 0,
+      "newest_ict": "2026-10-21T21:32:00+07:00",
+      "oldest_ict": "2026-09-08T18:49:10+07:00",
+      "span_hours": 1034.7,
+      "items_last_24h": 1,
+      "items_0900_1500_newest_day": 0,
+      "per_hour_0900_1500": 0.0,
+      "links_with_tracking_params": 0,
+      "link_schemes": {
+        "http": 20
+      },
+      "guid_equals_link": 20,
+      "description_contains_html": 20,
+      "snippet_text_len_max": 572,
+      "snippet_text_len_median": 280,
+      "sample_titles": [
+        "Thị trường chứng khoán sau nâng hạng: Tập trung nâng chất lượng, thu hút vốn dài hạn",
+        "Tăng trưởng 2 con số và nhiệm vụ huy động vốn của thị trường chứng khoán",
+        "Dự kiến chuyển chứng chỉ hành nghề chứng khoán bản giấy sang điện tử từ 01/11",
+        "Luxembourg thúc đẩy đưa vốn vào Việt Nam qua các quỹ đầu tư",
+        "Thứ trưởng Bộ Tài chính: Cắt giảm thủ tục hành chính, tạo thuận lợi cho nhà đầu tư ngoại tiếp cận TTCK Việt Nam"
+      ]
+    },
+    "vietstock-vimo": {
+      "xml_encoding": "utf-8",
+      "item_count": 20,
+      "fields_present": {
+        "title": 20,
+        "link": 20,
+        "guid": 20,
+        "pubDate_raw": 20,
+        "description": 20
+      },
+      "date_shapes": [
+        [
+          "Tue, 99 Oct 9999 99:99:99 +9999",
+          5
+        ],
+        [
+          "Thu, 99 Oct 9999 99:99:99 +9999",
+          4
+        ],
+        [
+          "Wed, 99 Oct 9999 99:99:99 +9999",
+          3
+        ],
+        [
+          "Sun, 99 Oct 9999 99:99:99 +9999",
+          3
+        ],
+        [
+          "Fri, 99 Oct 9999 99:99:99 +9999",
+          3
+        ],
+        [
+          "Sat, 99 Oct 9999 99:99:99 +9999",
+          2
+        ]
+      ],
+      "has_timezone": true,
+      "unparsed_dates": 0,
+      "newest_ict": "2026-10-21T21:00:00+07:00",
+      "oldest_ict": "2026-10-13T18:06:59+07:00",
+      "span_hours": 194.9,
+      "items_last_24h": 4,
+      "items_0900_1500_newest_day": 0,
+      "per_hour_0900_1500": 0.0,
+      "links_with_tracking_params": 0,
+      "link_schemes": {
+        "http": 20
+      },
+      "guid_equals_link": 20,
+      "description_contains_html": 20,
+      "snippet_text_len_max": 427,
+      "snippet_text_len_median": 323,
+      "sample_titles": [
+        "Phó Thủ tướng: Sẽ trình Trung ương nghị quyết mới về chính sách tiền lương và bảo hiểm xã hội",
+        "Thủ tướng sắp đối thoại về 'định vị Việt Nam trong tương lai toàn cầu'",
+        "Việt Nam và Đan Mạch nâng quan hệ lên Đối tác chiến lược toàn diện",
+        "Sửa đổi Luật Điện lực: Thu hẹp độc quyền, tiến tới xóa bù chéo giá điện",
+        "Chính phủ đề xuất sửa đổi 4 luật, tháo gỡ vướng mắc trong hoạt động thương mại"
+      ]
+    },
+    "vietstock-nganhang": {
+      "xml_encoding": "utf-8",
+      "item_count": 20,
+      "fields_present": {
+        "title": 20,
+        "link": 20,
+        "guid": 20,
+        "pubDate_raw": 20,
+        "description": 20
+      },
+      "date_shapes": [
+        [
+          "Tue, 99 Oct 9999 99:99:99 +9999",
+          10
+        ],
+        [
+          "Wed, 99 Oct 9999 99:99:99 +9999",
+          7
+        ],
+        [
+          "Thu, 99 Oct 9999 99:99:99 +9999",
+          3
+        ]
+      ],
+      "has_timezone": true,
+      "unparsed_dates": 0,
+      "newest_ict": "2026-10-22T12:27:03+07:00",
+      "oldest_ict": "2026-10-20T09:32:00+07:00",
+      "span_hours": 50.9,
+      "items_last_24h": 8,
+      "items_0900_1500_newest_day": 3,
+      "per_hour_0900_1500": 0.5,
+      "links_with_tracking_params": 0,
+      "link_schemes": {
+        "http": 20
+      },
+      "guid_equals_link": 20,
+      "description_contains_html": 20,
+      "snippet_text_len_max": 508,
+      "snippet_text_len_median": 297,
+      "sample_titles": [
+        "Hiệu quả tín dụng và yêu cầu về đổi mới để phát triển đối với doanh nghiệp nhỏ và vừa trên địa bàn TPHCM",
+        "Sau khách hàng doanh nghiệp, SACOMBANK tiếp tục hạ lãi suất cho vay khách hàng cá nhân thấp nhất từ 1.5 - 2%",
+        "AIIB chuẩn bị cho Việt Nam vay 300 triệu USD, khoản vay đầu tiên ngoài khu vực doanh nghiệp",
+        "SeABank đồng hành đưa tinh hoa giao hưởng Nhật Bản tới khán giả Việt",
+        "NHNN chỉ đạo mới về việc giảm mặt bằng lãi suất"
+      ]
+    },
+    "vietstock-nhandinh": {
+      "xml_encoding": "utf-8",
+      "item_count": 20,
+      "fields_present": {
+        "title": 20,
+        "link": 20,
+        "guid": 20,
+        "pubDate_raw": 20,
+        "description": 20
+      },
+      "date_shapes": [
+        [
+          "Wed, 99 Oct 9999 99:99:99 +9999",
+          4
+        ],
+        [
+          "Tue, 99 Oct 9999 99:99:99 +9999",
+          4
+        ],
+        [
+          "Mon, 99 Oct 9999 99:99:99 +9999",
+          4
+        ],
+        [
+          "Thu, 99 Oct 9999 99:99:99 +9999",
+          3
+        ],
+        [
+          "Sun, 99 Oct 9999 99:99:99 +9999",
+          2
+        ],
+        [
+          "Fri, 99 Oct 9999 99:99:99 +9999",
+          2
+        ],
+        [
+          "Sat, 99 Oct 9999 99:99:99 +9999",
+          1
+        ]
+      ],
+      "has_timezone": true,
+      "unparsed_dates": 0,
+      "newest_ict": "2026-10-22T14:07:00+07:00",
+      "oldest_ict": "2026-10-15T19:30:00+07:00",
+      "span_hours": 162.6,
+      "items_last_24h": 5,
+      "items_0900_1500_newest_day": 1,
+      "per_hour_0900_1500": 0.17,
+      "links_with_tracking_params": 0,
+      "link_schemes": {
+        "http": 20
+      },
+      "guid_equals_link": 20,
+      "description_contains_html": 20,
+      "snippet_text_len_max": 443,
+      "snippet_text_len_median": 221,
+      "sample_titles": [
+        "Nhịp đập Thị trường 22/10: Sắc đỏ ngày một lan rộng, nhóm Vingroup tiếp tục giữ điểm cho thị trường",
+        "Thị trường chứng quyền ngày 22/10/2026: Khởi sắc cùng thị trường cơ sở",
+        "Chứng khoán phái sinh ngày 22/10/2026: Triển vọng phục hồi hiện hữu?",
+        "Vietstock Daily 22/10/2026: Tín hiệu đảo chiều xuất hiện?",
+        "Nhịp đập Thị trường 21/10: Khối ngoại quay lại mua ròng trong phiên VN-Index tăng hơn 46 điểm"
+      ]
+    },
+    "vietstock-en-stocks": {
+      "xml_encoding": "(none, default UTF-8)",
+      "item_count": 30,
+      "fields_present": {
+        "title": 30,
+        "link": 30,
+        "guid": 30,
+        "pubDate_raw": 30,
+        "description": 30
+      },
+      "date_shapes": [
+        [
+          "Thu, 99 Oct 9999 99:99:99 +9999",
+          7
+        ],
+        [
+          "Tue, 99 Oct 9999 99:99:99 +9999",
+          7
+        ],
+        [
+          "Fri, 99 Oct 9999 99:99:99 +9999",
+          6
+        ],
+        [
+          "Mon, 99 Oct 9999 99:99:99 +9999",
+          5
+        ],
+        [
+          "Wed, 99 Oct 9999 99:99:99 +9999",
+          4
+        ],
+        [
+          "Sat, 99 Oct 9999 99:99:99 +9999",
+          1
+        ]
+      ],
+      "has_timezone": true,
+      "unparsed_dates": 0,
+      "newest_ict": "2026-10-22T13:45:02+07:00",
+      "oldest_ict": "2026-10-09T07:33:44+07:00",
+      "span_hours": 318.2,
+      "items_last_24h": 5,
+      "items_0900_1500_newest_day": 2,
+      "per_hour_0900_1500": 0.33,
+      "links_with_tracking_params": 0,
+      "link_schemes": {
+        "https": 30
+      },
+      "guid_equals_link": 30,
+      "description_contains_html": 30,
+      "snippet_text_len_max": 219,
+      "snippet_text_len_median": 136,
+      "sample_titles": [
+        "Government proposes relaxing IPO conditions",
+        "SHB: Receiving Approval for bond listing on SGX-ST",
+        "Lawmakers seek stronger safeguards in securities law amendments",
+        "VN-Index soars above 1,700 points on Vin-related stocks",
+        "Stock market needs more quality listings, transparency to raise long-term capital"
+      ]
+    },
+    "vietstock-en-earnings": {
+      "xml_encoding": "(none, default UTF-8)",
+      "item_count": 30,
+      "fields_present": {
+        "title": 30,
+        "link": 30,
+        "guid": 30,
+        "pubDate_raw": 30,
+        "description": 30
+      },
+      "date_shapes": [
+        [
+          "Tue, 99 May 9999 99:99:99 +9999",
+          3
+        ],
+        [
+          "Thu, 99 Apr 9999 99:99:99 +9999",
+          3
+        ],
+        [
+          "Fri, 99 Jul 9999 99:99:99 +9999",
+          2
+        ],
+        [
+          "Tue, 99 Jul 9999 99:99:99 +9999",
+          2
+        ],
+        [
+          "Mon, 99 Jun 9999 99:99:99 +9999",
+          2
+        ],
+        [
+          "Tue, 99 Jun 9999 99:99:99 +9999",
+          2
+        ],
+        [
+          "Fri, 99 May 9999 99:99:99 +9999",
+          2
+        ],
+        [
+          "Tue, 99 Apr 9999 99:99:99 +9999",
+          2
+        ],
+        [
+          "Mon, 99 Mar 9999 99:99:99 +9999",
+          2
+        ],
+        [
+          "Fri, 99 Sep 9999 99:99:99 +9999",
+          1
+        ],
+        [
+          "Thu, 99 Aug 9999 99:99:99 +9999",
+          1
+        ],
+        [
+          "Mon, 99 Aug 9999 99:99:99 +9999",
+          1
+        ],
+        [
+          "Sat, 99 Aug 9999 99:99:99 +9999",
+          1
+        ],
+        [
+          "Mon, 99 Jul 9999 99:99:99 +9999",
+          1
+        ],
+        [
+          "Wed, 99 Jul 9999 99:99:99 +9999",
+          1
+        ],
+        [
+          "Thu, 99 Jun 9999 99:99:99 +9999",
+          1
+        ],
+        [
+          "Sat, 99 May 9999 99:99:99 +9999",
+          1
+        ],
+        [
+          "Mon, 99 Apr 9999 99:99:99 +9999",
+          1
+        ],
+        [
+          "Fri, 99 Apr 9999 99:99:99 +9999",
+          1
+        ]
+      ],
+      "has_timezone": true,
+      "unparsed_dates": 0,
+      "newest_ict": "2026-09-25T09:30:09+07:00",
+      "oldest_ict": "2026-03-09T08:10:15+07:00",
+      "span_hours": 4801.3,
+      "items_last_24h": 1,
+      "items_0900_1500_newest_day": 1,
+      "per_hour_0900_1500": 0.17,
+      "links_with_tracking_params": 0,
+      "link_schemes": {
+        "https": 30
+      },
+      "guid_equals_link": 30,
+      "description_contains_html": 30,
+      "snippet_text_len_max": 421,
+      "snippet_text_len_median": 203,
+      "sample_titles": [
+        "Vietnam Airlines (HVN) profit hit hard by rising fuel costs",
+        "Searefico Rolls Out Nearly 9.6 Hectares of Industrial and Logistics Projects",
+        "Coteccons (CTD) reports excellent 2026 results, profits surge 72.7%",
+        "HDB reports 31 per cent profit growth, joins Việt Nam’s trillion-VNĐ asset club, and secures landmark international deals",
+        "Hòa Phát posts (HPG) VNĐ15.5 trillion profit in H1, achieves 70% of annual target"
+      ]
+    }
+  },
+  "cross_feed": {
+    "total_items": 460,
+    "unique_urls": 454,
+    "urls_in_multiple_feeds": 5,
+    "feed_pairs_sharing_urls": {
+      "vietstock-cophieu + vietstock-nhandinh": 5
+    },
+    "cross_publisher_similar_titles_jaccard_ge_0_5": [
+      {
+        "jaccard": 1.0,
+        "a": [
+          "cafef-taichinh-nganhang",
+          "Doanh nghiệp nặng nợ cũ không mặn mà gói vay mới dù lãi suất giảm"
+        ],
+        "b": [
+          "vietstock-nganhang",
+          "Doanh nghiệp nặng nợ cũ không mặn mà gói vay mới dù lãi suất giảm"
+        ]
+      },
+      {
+        "jaccard": 1.0,
+        "a": [
+          "cafef-taichinh-nganhang",
+          "VPBank đồng loạt giảm lãi suất cho vay và huy động"
+        ],
+        "b": [
+          "vietstock-nganhang",
+          "VPBank đồng loạt giảm lãi suất cho vay và huy động"
+        ]
+      },
+      {
+        "jaccard": 1.0,
+        "a": [
+          "cafef-taichinh-nganhang",
+          "BAOVIET Bank 9 tháng: Đa dạng hóa nguồn thu, ưu tiên gia cố đệm an toàn"
+        ],
+        "b": [
+          "vietstock-nganhang",
+          "BAOVIET Bank 9 tháng: Đa dạng hóa nguồn thu, ưu tiên gia cố đệm an toàn"
+        ]
+      },
+      {
+        "jaccard": 1.0,
+        "a": [
+          "cafef-taichinh-nganhang",
+          "SACOMBANK giảm 0,5%/năm lãi suất huy động, \nhưởng ứng chủ trương của Chính phủ"
+        ],
+        "b": [
+          "vietstock-nganhang",
+          "SACOMBANK giảm 0.5%/năm lãi suất huy động, hưởng ứng chủ trương của Chính phủ"
+        ]
+      },
+      {
+        "jaccard": 0.95,
+        "a": [
+          "cafef-taichinh-nganhang",
+          "Sau khách hàng doanh nghiệp, SACOMBANK tiếp tục hạ lãi suất cho vay khách hàng cá nhân thấp nhất từ 1,5% đến 2%"
+        ],
+        "b": [
+          "vietstock-nganhang",
+          "Sau khách hàng doanh nghiệp, SACOMBANK tiếp tục hạ lãi suất cho vay khách hàng cá nhân thấp nhất từ 1.5 - 2%"
+        ]
+      },
+      {
+        "jaccard": 0.62,
+        "a": [
+          "cafef-taichinh-nganhang",
+          "OCB có Tổng Giám đốc mới"
+        ],
+        "b": [
+          "vietstock-nganhang",
+          "OCB bổ nhiệm Tổng Giám đốc mới"
+        ]
+      },
+      {
+        "jaccard": 0.6,
+        "a": [
+          "cafef-vimo",
+          "Sẽ trình Trung ương nghị quyết mới về chính sách tiền lương"
+        ],
+        "b": [
+          "vietstock-vimo",
+          "Phó Thủ tướng: Sẽ trình Trung ương nghị quyết mới về chính sách tiền lương và bảo hiểm xã hội"
+        ]
+      },
+      {
+        "jaccard": 0.5,
+        "a": [
+          "cafef-taichinh-nganhang",
+          "Từ tạo lập tài sản đến quản trị gia sản: Việt Nam cần một chuẩn Private Banking mới"
+        ],
+        "b": [
+          "vietstock-nganhang",
+          "Từ tài sản đến di sản: Chương mới của quản trị gia sản tại Việt Nam"
+        ]
+      }
+    ]
+  }
+}

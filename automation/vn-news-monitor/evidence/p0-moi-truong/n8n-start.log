@@ -1,0 +1,85 @@
+# 2026-10-22T04:33:35Z UTC / 2026-10-22T11:33:35+0700 ICT
+$ docker run -d --name n8n-p0 -p 5678:5678 -e GENERIC_TIMEZONE=Asia/Ho_Chi_Minh -e TZ=Asia/Ho_Chi_Minh -e N8N_DIAGNOSTICS_ENABLED=false -e N8N_ENCRYPTION_KEY=<redacted-test-key> -v /tmp/claude-0/n8n-data:/home/node/.n8n mirror.gcr.io/n8nio/n8n:2.45.0
+e35a8dfd561803e190774c8948cd0dc99c38ea72252e88cc7b39729127ff56a9
+# healthz after ~120s
+curl: (7) Failed to connect to localhost port 5678 after 0 ms: Couldn't connect to server
+
+# docker exec n8n --version
+Error response from daemon: container e35a8dfd561803e190774c8948cd0dc99c38ea72252e88cc7b39729127ff56a9 is not running
+# docker exec node -v
+Error response from daemon: container e35a8dfd561803e190774c8948cd0dc99c38ea72252e88cc7b39729127ff56a9 is not running
+# docker exec date
+Error response from daemon: container e35a8dfd561803e190774c8948cd0dc99c38ea72252e88cc7b39729127ff56a9 is not running
+# container logs
+Initializing n8n process
+n8n's address '::' is not available. Please run n8n with a different address, provide correct address in the environment variables N8N_LISTEN_ADDRESS and/or N8N_WORKER_SERVER_ADDRESS.
+
+# ---- Attempt 2: add N8N_LISTEN_ADDRESS=0.0.0.0 (container has no IPv6) ----
+# 2026-10-22T04:35:48Z UTC / 2026-10-22T11:35:48+0700 ICT
+$ docker run -d --name n8n-p0 -p 5678:5678 -e N8N_LISTEN_ADDRESS=0.0.0.0 -e GENERIC_TIMEZONE=Asia/Ho_Chi_Minh -e TZ=Asia/Ho_Chi_Minh -e N8N_DIAGNOSTICS_ENABLED=false -e N8N_ENCRYPTION_KEY=<redacted-test-key> -v /tmp/claude-0/n8n-data:/home/node/.n8n mirror.gcr.io/n8nio/n8n:2.45.0
+b3b84528772afd4aceeb724f51413c1fbcc8d4cdfdd92ee232e9b45f419a9b1a
+# healthz after ~180s
+curl: (7) Failed to connect to localhost port 5678 after 0 ms: Couldn't connect to server
+
+# n8n --version
+Error response from daemon: container b3b84528772afd4aceeb724f51413c1fbcc8d4cdfdd92ee232e9b45f419a9b1a is not running
+# node -v (inside image)
+Error response from daemon: container b3b84528772afd4aceeb724f51413c1fbcc8d4cdfdd92ee232e9b45f419a9b1a is not running
+# date (inside)
+Error response from daemon: container b3b84528772afd4aceeb724f51413c1fbcc8d4cdfdd92ee232e9b45f419a9b1a is not running
+# GET / http code
+000
+# container logs
+Error: Failed to load command "start"
+Error: Mismatching encryption keys. The encryption key in the settings file /home/node/.n8n/config does not match the N8N_ENCRYPTION_KEY env var. Please make sure both keys match. More information: https://docs.n8n.io/deploy/host-n8n/configure-n8n/basic-configuration/configuration-examples/set-a-custom-encryption-key
+    at InstanceSettings.loadOrCreate (/usr/local/lib/node_modules/n8n/node_modules/.pnpm/n8n-core@file++++home+runner+_work+n8n+n8n+packages+core/node_modules/n8n-core/src/instance-settings/instance-settings.ts:333:11)
+    at new InstanceSettings (/usr/local/lib/node_modules/n8n/node_modules/.pnpm/n8n-core@file++++home+runner+_work+n8n+n8n+packages+core/node_modules/n8n-core/src/instance-settings/instance-settings.ts:104:24)
+    at ContainerClass.get (/usr/local/lib/node_modules/n8n/node_modules/.pnpm/@n8n+di@file++++home+runner+_work+n8n+n8n+packages+@n8n+di/node_modules/@n8n/di/src/di.ts:113:16)
+    at Object.<anonymous> (/usr/local/lib/node_modules/n8n/src/crash-journal.ts:20:33)
+    at Module._compile (node:internal/modules/cjs/loader:1956:14)
+    at Object..js (node:internal/modules/cjs/loader:2096:10)
+    at Module.load (node:internal/modules/cjs/loader:1678:32)
+    at Module._load (node:internal/modules/cjs/loader:1470:12)
+    at wrapModuleLoad (node:internal/modules/cjs/loader:261:19)
+    at Module.require (node:internal/modules/cjs/loader:1701:12)
+
+# ---- Attempt 3: attempt 1 had already written a different key to /home/node/.n8n/config; test data dir wiped (empty test instance, nothing lost), fixed key reused ----
+# 2026-10-22T04:39:05Z UTC / 2026-10-22T11:39:05+0700 ICT
+$ docker run -d --name n8n-p0 -p 5678:5678 -e N8N_LISTEN_ADDRESS=0.0.0.0 -e GENERIC_TIMEZONE=Asia/Ho_Chi_Minh -e TZ=Asia/Ho_Chi_Minh -e N8N_DIAGNOSTICS_ENABLED=false -e N8N_ENCRYPTION_KEY=<redacted-test-key> -v /tmp/claude-0/n8n-data:/home/node/.n8n mirror.gcr.io/n8nio/n8n:2.45.0
+21f4cdc6f0b7a87c62b72dacd2c671cd0d70c877afc3e3ad12addece930513fb
+# healthz after ~10s
+{"status":"ok"}
+# n8n --version
+2.45.0
+# node -v (inside image)
+v26.10.0
+# date (inside)
+Thu Oct 22 11:39:13 +07 2026
+# GET / http code
+200
+# container logs
+Starting migration CreateTrustedKeyTables1776000000000
+Finished migration CreateTrustedKeyTables1776000000000
+Starting migration CreateFavoritesTable1776150756000
+Finished migration CreateFavoritesTable1776150756000
+Starting migration CreateDeploymentKeyTable1777000000000
+Finished migration CreateDeploymentKeyTable1777000000000
+Starting migration AddJweKeyIndexesToDeploymentKey1777023444000
+Finished migration AddJweKeyIndexesToDeploymentKey1777023444000
+Starting migration AddTracingContextToExecution1777045000000
+Finished migration AddTracingContextToExecution1777045000000
+Starting migration AddLangsmithIdsToInstanceAiRunSnapshots1777100000000
+Finished migration AddLangsmithIdsToInstanceAiRunSnapshots1777100000000
+Starting migration CreateAiBuilderTemporaryWorkflowTable1777281990043
+Finished migration CreateAiBuilderTemporaryWorkflowTable1777281990043
+Starting migration AddRunIndexToTestCaseExecution1777996709110
+Finished migration AddRunIndexToTestCaseExecution1777996709110
+Starting migration AddExecutionDeduplicationKey1778000000000
+Finished migration AddExecutionDeduplicationKey1778000000000
+Starting migration CreateEvaluationConfig1778100000000
+Finished migration CreateEvaluationConfig1778100000000
+Starting migration AddWorkflowVersionToTestRun1778100001000
+Finished migration AddWorkflowVersionToTestRun1778100001000
+Starting migration AddEvaluationConfigColumnsToTestRun1778100002000
+Finished migration AddEvaluationConfigColumnsToTestRun1778100002000
+Starting migration CreateEvaluationCollection1778496086558

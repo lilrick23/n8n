@@ -1,0 +1,20 @@
+# fetched_at_utc=2026-10-22T07:54:47Z fetched_at_ict=2026-10-22T14:54:47+07:00
+# cmd: curl -sS -L -m 20 -A '<browser UA>' -D - -o raw/cafef-taichinh-nganhang.xml 'https://cafef.vn/tai-chinh-ngan-hang.rss'
+HTTP/1.1 200 Connection Established
+
+HTTP/1.1 200 OK
+date: Thu, 22 Oct 2026 07:54:48 GMT
+content-type: text/xml; charset=utf-8
+transfer-encoding: chunked
+server: cf-rp
+cache-control: no-cache, private
+lastmodifieddate: 22/10/2026 14:54:48
+timeexpire: 300
+servername: 0
+referrer-policy: no-referrer-when-downgrade
+crc32: a8574f2a
+set-cookie: laravel_session=eyJpdiI6IjkrV2N3UDM2dmR3eTNJSkZ0bDdMUnc9PSIsInZhbHVlIjoiQmNSTzVFM095Y1BmV0xtTW1wQzRCdXZ5b2gxYjUyT1BqZk9BbjE0ZFYyVnR4c2V2NDdtTGJMT2c3VW4yY3JFblNCUHRaV0dSOFprMmZwdmlJWmJJVy92RXFkYzVPOWNPUWVHNmtwZU00UDU2MXBOSnhqbmV0c0tkKytTT0Z5c3MiLCJtYWMiOiJhZTlkMTk1ZmZiOGU5ZmVlNjAyNWM3MTAwNmZhZWFiNTMyOWMwYjNlZjEyY2Y1ZTgyMzk2MmIyNzM5M2MzOGM5IiwidGFnIjoiIn0%3D; expires=Thu, 22-Oct-2026 09:54:48 GMT; Max-Age=7200; path=/; httponly; samesite=lax
+filterid: ft
+
+
+# http_code=200 content_type=text/xml; charset=utf-8 size=61630 url_effective=https://cafef.vn/tai-chinh-ngan-hang.rss time=1.234853s

@@ -1,0 +1,16 @@
+# fetched_at_utc=2026-10-22T07:55:02Z fetched_at_ict=2026-10-22T14:55:02+07:00
+# cmd: curl -sS -L -m 20 -A '<browser UA>' -D - -o raw/vietstock-en-stocks.xml 'https://en.vietstock.vn/52015/vietnam-stocks.rss'
+HTTP/1.1 200 Connection Established
+
+HTTP/2 200 
+date: Thu, 22 Oct 2026 07:55:03 GMT
+content-type: application/rss+xml
+server: cloudflare
+nel: {"report_to":"cf-nel","success_fraction":0.0,"max_age":604800}
+x-powered-by: ASP.NET
+cf-cache-status: DYNAMIC
+report-to: {"group":"cf-nel","max_age":604800,"endpoints":[{"url":"https://a.nel.cloudflare.com/report/v4?s=Dz5ydFocymfVntNMftGkPyw2CrLJav9ibbmn0lHADkxt5hWiUOMo298Yd2wyxo%2BPdShUfLIcKQDIQQ%2BjYro7re%2B%2F2Qwbv0GeSPwuyjGNpF1Is%2FhapPNVK7cbgih6FysXGw%3D%3D"}]}
+cf-ray: a4e6effd7d171f96-IAD
+
+
+# http_code=200 content_type=application/rss+xml size=21325 url_effective=https://en.vietstock.vn/52015/vietnam-stocks.rss time=1.021160s

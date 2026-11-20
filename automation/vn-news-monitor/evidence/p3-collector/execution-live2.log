@@ -1,0 +1,15 @@
+# POST /rest/workflows/vnNewsCollector1/run (trigger: Chay tay) -> execution 5, fetched 2026-10-22T08:48:25Z
+status=success mode=manual started=2026-10-22T08:48:15.413Z stopped=2026-10-22T08:48:24.821Z
+  Chay tay                     status=success items_out=[1] ms=1
+  Config                       status=success items_out=[1] ms=12
+  Tach nguon                   status=success items_out=[15] ms=8
+  Tai feed                     status=success items_out=[15, 0] ms=1800
+  Gan nguon                    status=success items_out=[15] ms=58
+  XML sang JSON                status=success items_out=[15] ms=49
+  Chuan hoa                    status=success items_out=[424] ms=65
+  Tao id                       status=success items_out=[424] ms=414
+  Da co trong news_items?      status=success items_out=[0] ms=6800
+  Tong ket                     status=success items_out=[1] ms=78
+  Ghi run_log                  status=success items_out=[1] ms=15
+--- Tong ket output 0: 1 items
+{"run_id": "5", "workflow": "VN news - collector", "trigger": "Chay tay", "started_at": "2026-10-22T15:48:15.531+07:00", "finished_at": "2026-10-22T15:48:24.804+07:00", "sources_total": 15, "sources_ok": 15, "sources_failed": 0, "failed_source_ids": "", "items_fetched": 430, "items_unique": 424, "items_new": 0, "items_matched": 0, "items_saved": 0, "items_to_ai": 0, "ai_calls": 0, "ai_failures": 0, "alerts_sent": 0, "dry_run": true, "error": ""}

@@ -1,0 +1,14 @@
+# Egress retest 2026-10-22T07:53:24Z (ICT 2026-10-22T14:53:24)
+# cmd: curl -sS -o /dev/null -m 20 -L -w '%{http_code} %{url_effective} %{time_total}s'
+https://cafef.vn/            200 http://c.cafef.vn/sorry?continue=http%3A//cafef.vn/ 2.395673s 
+https://vietstock.vn/        200 https://vietstock.vn/ 2.475030s 
+https://api.telegram.org/    200 https://core.telegram.org/bots 0.915139s 
+https://hsx.vn/              curl: (35) Recv failure: Connection reset by peer 000 https://hsx.vn/ 12.576192s 
+https://www.hsx.vn/          200 https://www.hsx.vn/ 6.932003s 
+https://hnx.vn/              curl: (60) SSL certificate problem: unable to get local issuer certificate More details here: https://curl.se/docs/sslcerts.html  curl failed to verify the legitimacy of the server and therefore could not establish a secure connection to it. To learn more about this situation and how to fix it, please visit the web page mentioned above. 000 https://hnx.vn/ 0.951784s 
+https://www.hnx.vn/          curl: (60) SSL certificate problem: unable to get local issuer certificate More details here: https://curl.se/docs/sslcerts.html  curl failed to verify the legitimacy of the server and therefore could not establish a secure connection to it. To learn more about this situation and how to fix it, please visit the web page mentioned above. 000 https://www.hnx.vn/ 2.047325s 
+https://ssc.gov.vn/          curl: (47) Maximum (50) redirects followed 302 https://ssc.gov.vn/webcenter/portal/ubck 15.865419s 
+https://www.ssc.gov.vn/      curl: (47) Maximum (50) redirects followed 302 https://ssc.gov.vn/webcenter/portal/ubck 17.952535s 
+https://news.google.com/     200 https://news.google.com/home?hl=en-US&gl=US&ceid=US:en 0.751722s 
+https://vnexpress.net/       404 https://vnexpress.net/ 0.892927s 
+https://en.vietstock.vn/     200 https://en.vietstock.vn/ 8.027407s 

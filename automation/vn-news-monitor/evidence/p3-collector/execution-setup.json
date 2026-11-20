@@ -1,0 +1,39 @@
+{
+ "id": "1",
+ "status": "success",
+ "mode": "manual",
+ "startedAt": "2026-10-22T08:47:44.647Z",
+ "stoppedAt": "2026-10-22T08:47:44.851Z",
+ "workflowId": "vnNewsSetup00001",
+ "_note": "Trimmed: node status, item counts, run summary and 5 sample rows (title and URL only). Full execution data stays out of the public repo (publisher content).",
+ "nodes": {
+  "Chay tay": {
+   "executionStatus": "success",
+   "executionTime_ms": 7,
+   "items_out": [
+    1
+   ]
+  },
+  "Tao news_items": {
+   "executionStatus": "success",
+   "executionTime_ms": 28,
+   "items_out": [
+    1
+   ]
+  },
+  "Tao run_log": {
+   "executionStatus": "success",
+   "executionTime_ms": 21,
+   "items_out": [
+    1
+   ]
+  },
+  "Tao ai_usage": {
+   "executionStatus": "success",
+   "executionTime_ms": 23,
+   "items_out": [
+    1
+   ]
+  }
+ }
+}

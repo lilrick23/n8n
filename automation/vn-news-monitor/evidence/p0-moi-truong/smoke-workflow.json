@@ -1,0 +1,15 @@
+{
+  "id": "p0smoke000000001",
+  "name": "p0 smoke test (khong dung cho san xuat)",
+  "nodes": [
+    { "parameters": {}, "id": "a1", "name": "Manual Trigger", "type": "n8n-nodes-base.manualTrigger", "typeVersion": 1, "position": [0, 0] },
+    { "parameters": { "jsCode": "const now = $now;\nreturn [{ json: { ok: true, n8n_now_iso: now.toISO(), zone: now.zoneName, workflow_tz: $workflow.timezone ?? null, sample_hash_input: 'https://cafef.vn/a.chn?utm_source=x' } }];" }, "id": "a2", "name": "Kiem tra mui gio", "type": "n8n-nodes-base.code", "typeVersion": 2, "position": [220, 0] },
+    { "parameters": { "url": "https://cafef.vn/thi-truong-chung-khoan.rss", "options": { "timeout": 20000 } }, "id": "a3", "name": "Thu tai RSS CafeF", "type": "n8n-nodes-base.httpRequest", "typeVersion": 4.2, "position": [440, 0], "onError": "continueRegularOutput" }
+  ],
+  "connections": {
+    "Manual Trigger": { "main": [[{ "node": "Kiem tra mui gio", "type": "main", "index": 0 }]] },
+    "Kiem tra mui gio": { "main": [[{ "node": "Thu tai RSS CafeF", "type": "main", "index": 0 }]] }
+  },
+  "settings": { "timezone": "Asia/Ho_Chi_Minh", "executionOrder": "v1" },
+  "active": false
+}

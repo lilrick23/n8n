@@ -1,0 +1,369 @@
+{
+ "id": "9",
+ "status": "success",
+ "startedAt": "2026-11-02T11:19:00.247Z",
+ "stoppedAt": "2026-11-02T11:19:00.479Z",
+ "runData": {
+  "Chay tay": [
+   {
+    "startTime": 1793618340369,
+    "executionIndex": 0,
+    "source": [],
+    "hints": [],
+    "executionTime": 0,
+    "executionStatus": "success",
+    "data": {
+     "main": [
+      [
+       {
+        "json": {},
+        "pairedItem": {
+         "item": 0
+        }
+       }
+      ]
+     ]
+    }
+   }
+  ],
+  "Config": [
+   {
+    "startTime": 1793618340370,
+    "executionIndex": 1,
+    "source": [
+     {
+      "previousNode": "Chay tay",
+      "previousNodeOutput": 0,
+      "previousNodeRun": 0
+     }
+    ],
+    "hints": [],
+    "executionTime": 10,
+    "executionStatus": "success",
+    "data": {
+     "main": [
+      [
+       {
+        "json": {
+         "trigger": "Chay tay",
+         "slot": "tay",
+         "now": "2026-11-02T18:19:00.379+07:00",
+         "DRY_RUN": true,
+         "TELEGRAM_CHAT_ID": "",
+         "MIN_IMPORTANCE": 3,
+         "MAX_LINES": 30,
+         "MAX_UNCLASSIFIED": 10,
+         "DEFAULT_LOOKBACK_HOURS": 24,
+         "MAX_LOOKBACK_HOURS": 72,
+         "PART_LIMIT": 3900,
+         "OFFICIAL_SOURCE_CONNECTED": false
+        },
+        "pairedItem": {
+         "item": 0
+        }
+       }
+      ]
+     ]
+    }
+   }
+  ],
+  "Doc digest_log": [
+   {
+    "startTime": 1793618340380,
+    "executionIndex": 2,
+    "source": [
+     {
+      "previousNode": "Config",
+      "previousNodeOutput": 0,
+      "previousNodeRun": 0
+     }
+    ],
+    "hints": [],
+    "executionTime": 8,
+    "executionStatus": "success",
+    "data": {
+     "main": [
+      [
+       {
+        "json": {},
+        "pairedItem": {
+         "item": 0
+        }
+       }
+      ]
+     ]
+    }
+   }
+  ],
+  "Tinh ky": [
+   {
+    "startTime": 1793618340389,
+    "executionIndex": 3,
+    "source": [
+     {
+      "previousNode": "Doc digest_log",
+      "previousNodeOutput": 0,
+      "previousNodeRun": 0
+     }
+    ],
+    "hints": [],
+    "executionTime": 12,
+    "executionStatus": "success",
+    "data": {
+     "main": [
+      [
+       {
+        "json": {
+         "since": "2026-11-01T18:19:00.379+07:00",
+         "until": "2026-11-02T18:19:00.379+07:00",
+         "since_utc": "2026-11-01T11:19:00.379Z"
+        },
+        "pairedItem": {
+         "item": 0
+        }
+       }
+      ]
+     ]
+    }
+   }
+  ],
+  "Chon va nhom": [
+   {
+    "startTime": 1793618340422,
+    "executionIndex": 5,
+    "source": [
+     {
+      "previousNode": "Doc tin",
+      "previousNodeOutput": 0,
+      "previousNodeRun": 0
+     }
+    ],
+    "hints": [],
+    "executionTime": 16,
+    "executionStatus": "success",
+    "data": {
+     "main": [
+      [
+       {
+        "json": {
+         "period": {
+          "since": "2026-11-01T18:19:00.379+07:00",
+          "until": "2026-11-02T18:19:00.379+07:00",
+          "since_utc": "2026-11-01T11:19:00.379Z"
+         },
+         "counts": {
+          "in_period": 0,
+          "eligible": 0,
+          "listed": 0,
+          "unclassified": 0,
+          "needs_check": 0
+         },
+         "lines": [],
+         "unclassified": [],
+         "has_highlights": false,
+         "ai_input": ""
+        },
+        "pairedItem": {
+         "item": 0
+        }
+       }
+      ]
+     ]
+    }
+   }
+  ],
+  "Co tin muc cao?": [
+   {
+    "startTime": 1793618340438,
+    "executionIndex": 6,
+    "source": [
+     {
+      "previousNode": "Chon va nhom",
+      "previousNodeOutput": 0,
+      "previousNodeRun": 0
+     }
+    ],
+    "hints": [],
+    "executionTime": 6,
+    "executionStatus": "success",
+    "data": {
+     "main": [
+      [],
+      [
+       {
+        "json": {
+         "period": {
+          "since": "2026-11-01T18:19:00.379+07:00",
+          "until": "2026-11-02T18:19:00.379+07:00",
+          "since_utc": "2026-11-01T11:19:00.379Z"
+         },
+         "counts": {
+          "in_period": 0,
+          "eligible": 0,
+          "listed": 0,
+          "unclassified": 0,
+          "needs_check": 0
+         },
+         "lines": [],
+         "unclassified": [],
+         "has_highlights": false,
+         "ai_input": ""
+        },
+        "pairedItem": {
+         "item": 0
+        }
+       }
+      ]
+     ]
+    }
+   }
+  ],
+  "Dinh dang": [
+   {
+    "startTime": 1793618340444,
+    "executionIndex": 7,
+    "source": [
+     {
+      "previousNode": "Co tin muc cao?",
+      "previousNodeOutput": 1,
+      "previousNodeRun": 0
+     }
+    ],
+    "hints": [],
+    "executionTime": 19,
+    "executionStatus": "success",
+    "data": {
+     "main": [
+      [
+       {
+        "json": {
+         "part_no": 1,
+         "parts_total": 1,
+         "text": "<i>[THỬ NGHIỆM]</i>\n<b>Bản tin chạy tay · 02/11/2026 18:19</b>\nKỳ: 18:19 01/11 → 18:19 02/11 · 0 tin mới, 0 tin mức ≥ 3\nKhông có tin mức ≥ 3 trong kỳ.\n<i>Công cụ nghiên cứu nội bộ. Không phải khuyến nghị đầu tư. Kiểm tra nguồn gốc trước khi sử dụng.</i>",
+         "chat_id": ""
+        },
+        "pairedItem": {
+         "item": 0
+        }
+       }
+      ]
+     ]
+    }
+   }
+  ],
+  "Co chat ID?": [
+   {
+    "startTime": 1793618340463,
+    "executionIndex": 8,
+    "source": [
+     {
+      "previousNode": "Dinh dang",
+      "previousNodeOutput": 0,
+      "previousNodeRun": 0
+     }
+    ],
+    "hints": [],
+    "executionTime": 2,
+    "executionStatus": "success",
+    "data": {
+     "main": [
+      [],
+      [
+       {
+        "json": {
+         "part_no": 1,
+         "parts_total": 1,
+         "text": "<i>[THỬ NGHIỆM]</i>\n<b>Bản tin chạy tay · 02/11/2026 18:19</b>\nKỳ: 18:19 01/11 → 18:19 02/11 · 0 tin mới, 0 tin mức ≥ 3\nKhông có tin mức ≥ 3 trong kỳ.\n<i>Công cụ nghiên cứu nội bộ. Không phải khuyến nghị đầu tư. Kiểm tra nguồn gốc trước khi sử dụng.</i>",
+         "chat_id": ""
+        },
+        "pairedItem": {
+         "item": 0
+        }
+       }
+      ]
+     ]
+    }
+   }
+  ],
+  "Tong ket ban tin": [
+   {
+    "startTime": 1793618340465,
+    "executionIndex": 9,
+    "source": [
+     {
+      "previousNode": "Dinh dang",
+      "previousNodeOutput": 0,
+      "previousNodeRun": 0
+     }
+    ],
+    "hints": [],
+    "executionTime": 13,
+    "executionStatus": "success",
+    "data": {
+     "main": [
+      [
+       {
+        "json": {
+         "slot": "tay",
+         "period_start": "2026-11-01T18:19:00.379+07:00",
+         "period_end": "2026-11-02T18:19:00.379+07:00",
+         "items_in_period": 0,
+         "items_listed": 0,
+         "parts": 1,
+         "parts_sent": 0,
+         "sent": false,
+         "dry_run": true,
+         "error": "chua_co_chat_id",
+         "created_at": "2026-11-02T18:19:00.477+07:00"
+        },
+        "pairedItem": {
+         "item": 0
+        }
+       }
+      ]
+     ]
+    }
+   }
+  ],
+  "Ghi digest_log": [
+   {
+    "startTime": 1793618340479,
+    "executionIndex": 10,
+    "source": [
+     {
+      "previousNode": "Tong ket ban tin",
+      "previousNodeOutput": 0,
+      "previousNodeRun": 0
+     }
+    ],
+    "hints": [],
+    "executionTime": 0,
+    "executionStatus": "success",
+    "data": {
+     "main": [
+      [
+       {
+        "json": {
+         "slot": "tay",
+         "period_start": "2026-11-01T18:19:00.379+07:00",
+         "period_end": "2026-11-02T18:19:00.379+07:00",
+         "items_in_period": 0,
+         "items_listed": 0,
+         "parts": 1,
+         "parts_sent": 0,
+         "sent": false,
+         "dry_run": true,
+         "error": "chua_co_chat_id",
+         "created_at": "2026-11-02T18:19:00.477+07:00"
+        },
+        "pairedItem": {
+         "item": 0
+        }
+       }
+      ]
+     ]
+    }
+   }
+  ]
+ }
+}

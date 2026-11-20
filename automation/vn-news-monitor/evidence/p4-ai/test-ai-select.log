@@ -1,0 +1,3 @@
+PASS matched first, tier-1 only while day total < half cap: {"ai_matched":4,"ai_tier1":1,"keyword_only":7}
+PASS day already at tier-1 share: only matched go to AI: {"ai_matched":1,"ai_tier1":0,"keyword_only":1}
+PASS cap reached: nothing goes to AI: {"ai_matched":0,"ai_tier1":0,"keyword_only":2}

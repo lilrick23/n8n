@@ -1,0 +1,18 @@
+# fetched_at_utc=2026-10-22T07:54:53Z fetched_at_ict=2026-10-22T14:54:53+07:00
+# cmd: curl -sS -L -m 20 -A '<browser UA>' -D - -o raw/vietstock-hoatdongkinhdoanh.xml 'https://vietstock.vn/737/doanh-nghiep/hoat-dong-kinh-doanh.rss'
+HTTP/1.1 200 Connection Established
+
+HTTP/1.1 200 OK
+Server: nginx
+Date: Thu, 22 Oct 2026 07:54:54 GMT
+Content-Type: application/rss+xml; charset=utf-8
+Content-Length: 18234
+Connection: keep-alive
+Cache-Control: private,public
+Set-Cookie: ASP.NET_SessionId=t5yyivvdswlyvd44muxrz0kp; path=/; HttpOnly
+X-XSS-Protection: 1; mode=block
+X-Content-Type-Options: nosniff
+Strict-Transport-Security: max-age=7776000; includeSubDomains
+
+
+# http_code=200 content_type=application/rss+xml; charset=utf-8 size=18234 url_effective=https://vietstock.vn/737/doanh-nghiep/hoat-dong-kinh-doanh.rss time=1.055110s

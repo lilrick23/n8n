@@ -1,0 +1,18 @@
+# fetched_at_utc=2026-10-22T07:54:56Z fetched_at_ict=2026-10-22T14:54:56+07:00
+# cmd: curl -sS -L -m 20 -A '<browser UA>' -D - -o raw/vietstock-chinhsach.xml 'https://vietstock.vn/143/chung-khoan/chinh-sach.rss'
+HTTP/1.1 200 Connection Established
+
+HTTP/1.1 200 OK
+Server: nginx
+Date: Thu, 22 Oct 2026 07:54:57 GMT
+Content-Type: application/rss+xml; charset=utf-8
+Content-Length: 21560
+Connection: keep-alive
+Cache-Control: private,public
+Set-Cookie: ASP.NET_SessionId=m0hya1ldqhsvknfrwpg52g4k; path=/; HttpOnly
+X-XSS-Protection: 1; mode=block
+X-Content-Type-Options: nosniff
+Strict-Transport-Security: max-age=7776000; includeSubDomains
+
+
+# http_code=200 content_type=application/rss+xml; charset=utf-8 size=21560 url_effective=https://vietstock.vn/143/chung-khoan/chinh-sach.rss time=1.111709s

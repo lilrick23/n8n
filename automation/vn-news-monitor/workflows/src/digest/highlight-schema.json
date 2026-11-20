@@ -1,0 +1,11 @@
+{
+  "type": "object",
+  "properties": {
+    "diem_nhan": {
+      "type": "array",
+      "description": "Tối đa 3 câu điểm nhấn, mỗi câu tối đa 30 từ.",
+      "items": { "type": "string" }
+    }
+  },
+  "required": ["diem_nhan"]
+}
