@@ -266,6 +266,10 @@ export interface FrontendSettings {
 	ai: {
 		allowSendingParameterValues: boolean;
 	};
+	aiPreferences: {
+		enabled: boolean;
+		managedByEnv: boolean;
+	};
 	pruning?: {
 		isEnabled: boolean;
 		maxAge: number;
@@ -355,6 +359,11 @@ export type FrontendModuleSettings = {
 		serverUrl?: string;
 		/** Whether newly created workflows are auto-exposed to MCP. */
 		autoExposeNewWorkflows: boolean;
+	};
+
+	skills?: {
+		skillSyncEnabled: boolean;
+		skillSyncManagedByEnv: boolean;
 	};
 
 	/**
